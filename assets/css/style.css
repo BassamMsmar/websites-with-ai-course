@@ -492,6 +492,58 @@ kbd {
 .complete-bar.is-done { background: var(--success-soft); border-color: transparent; }
 .complete-bar.is-done p { color: var(--success); font-weight: 600; }
 
+/* ---------- 8.5 الدروس المحجوبة ---------- */
+/* إخفاء مؤقت حتى يقرّر app.js: هل الدرس مفتوح؟ مع مؤقّت أمان في الصفحة نفسها */
+.gate-pending .lesson-layout { visibility: hidden; }
+
+.badge-locked { background: var(--surface-2); color: var(--muted); border-color: var(--border); }
+.badge-locked svg { width: 11px; height: 11px; }
+
+.lesson-row.is-locked { cursor: not-allowed; }
+.lesson-row.is-locked:hover { background: none; }
+.lesson-row.is-locked .num,
+.lesson-row.is-locked .title,
+.lesson-row.is-locked .desc { color: var(--muted); }
+.lesson-row.is-locked .arrow { opacity: 0.25; }
+.lesson-row.is-locked:hover .arrow { transform: none; }
+
+/* عنصر القائمة الجانبية المحجوب: span لا رابط، فلا يُنقر ولا يُركّز عليه */
+.side-list .is-locked {
+  display: grid; grid-template-columns: 1.6rem 1fr auto; align-items: center; gap: var(--s-2);
+  padding: 0.45rem var(--s-2); border-radius: var(--r-sm);
+  color: var(--muted); opacity: 0.6; font-size: var(--t-sm); line-height: 1.4; cursor: not-allowed;
+}
+.side-list .lock { width: 13px; height: 13px; color: var(--muted); flex: none; }
+
+.lesson-layout.is-gated { grid-template-columns: minmax(0, 1fr); }
+
+.locked-screen {
+  grid-column: 1 / -1;
+  max-width: 46ch; margin: var(--s-16) auto; text-align: center;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md);
+  padding: var(--s-10) var(--s-6);
+}
+.locked-screen .locked-icon { width: 44px; height: 44px; color: var(--muted); margin: 0 auto var(--s-4); }
+.locked-screen h1 { font-size: var(--t-lg); margin-bottom: var(--s-1); }
+.locked-screen .locked-title { color: var(--primary); font-weight: 600; margin-bottom: var(--s-4); }
+.locked-screen p { color: var(--muted); }
+.locked-screen strong { color: var(--ink); }
+.locked-actions { display: flex; gap: var(--s-3); justify-content: center; flex-wrap: wrap; margin-top: var(--s-6); }
+
+.next-unlock {
+  display: flex; align-items: center; gap: var(--s-2); flex-wrap: wrap;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md);
+  padding: var(--s-3) var(--s-4); margin-bottom: var(--s-5);
+  font-size: var(--t-sm); color: var(--muted);
+}
+.next-unlock strong { color: var(--ink); }
+.next-unlock[hidden] { display: none; }
+
+.lesson-nav a[aria-disabled="true"] { opacity: 0.55; }
+.lesson-nav a[aria-disabled="true"] strong { color: var(--muted); }
+
+#schedule-table tr.is-locked td { color: var(--muted); }
+
 /* ---------- 9. الاختبار ---------- */
 .quiz { max-width: var(--measure); }
 .quiz-head { display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); margin-bottom: var(--s-4); }

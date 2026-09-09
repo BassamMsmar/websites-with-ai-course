@@ -29,9 +29,51 @@
     ]
   };
 
+  /* =====================================================================
+     جدول فتح الدروس — المكان الوحيد الذي تعدّله
+     ---------------------------------------------------------------------
+     FIRST_UNLOCK : تاريخ فتح الدرس الأول (سنة، شهر، يوم). الشهر يبدأ من 1.
+                    اجعله يوم الاثنين الذي يسبق المحاضرة الأولى.
+     EVERY_DAYS   : كل كم يوم يُفتح الدرس التالي. 7 = أسبوعيًا.
+     UNLOCK_ALL   : اجعله true لفتح كل الدروس فورًا (المراجعة قبل الاختبار).
+     UNLOCK_UP_TO : افتح حتى هذا الرقم يدويًا مهما كان التاريخ. 0 = تجاهله.
+     SHIFT        : تأخير أو تقديم درس بعينه بعدد أيام، عند تأجيل محاضرة.
+                    مثال: { 4: 7 } يؤخّر الدرس الرابع أسبوعًا وما بعده يبقى كما هو.
+     ===================================================================== */
+  const SCHEDULE = {
+    FIRST_UNLOCK: [2026, 9, 14],
+    EVERY_DAYS: 7,
+    UNLOCK_ALL: false,
+    UNLOCK_UP_TO: 0,
+    SHIFT: {}
+  };
+
   const ROOT = document.documentElement.dataset.root || "./";
   const KEY = "bnm-progress-v1";
   const pad = (n) => String(n).padStart(2, "0");
+
+  /* ---------- حساب الفتح ---------- */
+  // تاريخ فتح الدرس رقم n، بمنتصف ليل التوقيت المحلي
+  function unlockDate(n) {
+    const [y, m, d] = SCHEDULE.FIRST_UNLOCK;
+    const dt = new Date(y, m - 1, d, 0, 0, 0, 0);
+    dt.setDate(dt.getDate() + (n - 1) * SCHEDULE.EVERY_DAYS + (Number(SCHEDULE.SHIFT[n]) || 0));
+    return dt;
+  }
+  function isUnlocked(n) {
+    if (SCHEDULE.UNLOCK_ALL) return true;
+    if (n <= (Number(SCHEDULE.UNLOCK_UP_TO) || 0)) return true;
+    return Date.now() >= unlockDate(n).getTime();
+  }
+  // «الاثنين 14 سبتمبر» بالأرقام اللاتينية لتبقى مقروءة كبقية أرقام الموقع
+  const DAY_NAMES = ["الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"];
+  const MONTH_NAMES = ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"];
+  function formatDate(dt) {
+    return DAY_NAMES[dt.getDay()] + " " + dt.getDate() + " " + MONTH_NAMES[dt.getMonth()];
+  }
+  function nextUnlockLesson() {
+    return COURSE.lessons.find((l) => !isUnlocked(l.n)) || null;
+  }
 
   /* ---------- التخزين ---------- */
   function load() {
@@ -107,20 +149,40 @@
     document.querySelectorAll("[data-lesson-row]").forEach((row) => {
       const n = Number(row.dataset.lessonRow);
       const st = s.lessons[n];
-      row.classList.toggle("is-done", !!(st && st.done));
+      const open = isUnlocked(n);
+      row.classList.toggle("is-done", !!(st && st.done && open));
+      row.classList.toggle("is-locked", !open);
+      if (!open) {
+        // الصف المحجوب لا يُنقر ولا يُصل إليه بلوحة المفاتيح
+        row.setAttribute("aria-disabled", "true");
+        row.setAttribute("tabindex", "-1");
+        row.setAttribute("title", "يُفتح " + formatDate(unlockDate(n)));
+      } else {
+        row.removeAttribute("aria-disabled");
+        row.removeAttribute("tabindex");
+        row.removeAttribute("title");
+      }
       const badge = row.querySelector("[data-status]");
       if (badge) {
-        if (st && st.done) {
+        if (!open) {
+          badge.className = "badge badge-locked";
+          badge.innerHTML = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="1.5"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2"/></svg> يُفتح ' + formatDate(unlockDate(n));
+        } else if (st && st.done) {
           badge.className = "badge badge-done";
           badge.innerHTML = typeof st.score === "number" ? "مكتمل · <bdi class=\"num-ltr\">" + st.score + "/10</bdi>" : "مكتمل";
+        } else {
+          badge.className = "badge";
+          badge.textContent = "متاح";
         }
       }
     });
     document.querySelectorAll("[data-side-check]").forEach((c) => {
       const n = Number(c.dataset.sideCheck);
-      c.hidden = !(s.lessons[n] && s.lessons[n].done);
+      c.hidden = !(s.lessons[n] && s.lessons[n].done && isUnlocked(n));
     });
     refreshLadder();
+    refreshNextUnlockNote();
+    refreshHeroCta();
   }
 
   function refreshLadder() {
@@ -150,14 +212,89 @@
       sync();
       mq.addEventListener("change", sync);
     }
-    list.innerHTML = COURSE.lessons.map((l) => `
-      <li>
-        <a href="${ROOT}lessons/lesson-${pad(l.n)}.html" ${l.n === current ? 'aria-current="page"' : ""}>
-          <span class="n">${pad(l.n)}</span>
-          <span>${l.title}</span>
-          <svg class="check" data-side-check="${l.n}" hidden viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8.5l3 3 7-7"/></svg>
-        </a>
-      </li>`).join("");
+    list.innerHTML = COURSE.lessons.map((l) => {
+      const open = isUnlocked(l.n);
+      const check = `<svg class="check" data-side-check="${l.n}" hidden viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8.5l3 3 7-7"/></svg>`;
+      const lock = `<svg class="lock" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="1.5"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2"/></svg>`;
+      const inner = `<span class="n">${pad(l.n)}</span><span>${l.title}</span>${open ? check : lock}`;
+      return open
+        ? `<li><a href="${ROOT}lessons/lesson-${pad(l.n)}.html" ${l.n === current ? 'aria-current="page"' : ""}>${inner}</a></li>`
+        : `<li><span class="is-locked" aria-disabled="true" title="يُفتح ${formatDate(unlockDate(l.n))}">${inner}</span></li>`;
+    }).join("");
+  }
+
+  /* ---------- زر البداية في الرئيسية: يشير إلى أول درس متاح ---------- */
+  function refreshHeroCta() {
+    const cta = document.querySelector("[data-start-cta]");
+    if (!cta) return;
+    const s = load();
+    const open = COURSE.lessons.filter((l) => isUnlocked(l.n));
+    if (!open.length) {
+      const first = COURSE.lessons[0];
+      cta.setAttribute("aria-disabled", "true");
+      cta.setAttribute("href", "#lessons");
+      cta.textContent = "تبدأ المادة " + formatDate(unlockDate(first.n));
+      return;
+    }
+    // أول درس متاح لم يكتمل، وإلا آخر درس متاح
+    const target = open.find((l) => !(s.lessons[l.n] && s.lessons[l.n].done)) || open[open.length - 1];
+    cta.removeAttribute("aria-disabled");
+    cta.setAttribute("href", "lessons/lesson-" + pad(target.n) + ".html");
+    cta.textContent = (target.n === 1 && !(s.lessons[1] && s.lessons[1].done))
+      ? "ابدأ الدرس الأول"
+      : "تابع الدرس " + pad(target.n);
+  }
+
+  /* ---------- سطر «الدرس القادم يُفتح ...» ---------- */
+  function refreshNextUnlockNote() {
+    const el = document.querySelector("[data-next-unlock]");
+    if (!el) return;
+    const next = nextUnlockLesson();
+    if (!next) { el.hidden = true; return; }
+    el.hidden = false;
+    el.innerHTML = 'الدرس القادم <strong>' + pad(next.n) + " · " + next.title +
+      "</strong> يُفتح " + formatDate(unlockDate(next.n)) + ".";
+  }
+
+  /* ---------- جدول المواعيد في صفحة «عن المادة» ---------- */
+  function renderSchedule() {
+    const body = document.querySelector("[data-schedule]");
+    if (!body) return;
+    body.innerHTML = COURSE.lessons.map((l) => {
+      const u = unlockDate(l.n);
+      const lec = new Date(u); lec.setDate(lec.getDate() + 1);
+      const open = isUnlocked(l.n);
+      return `<tr class="${open ? "" : "is-locked"}">
+        <td><span class="num-ltr">${pad(l.n)}</span></td>
+        <td>${l.title}</td>
+        <td>${formatDate(u)}</td>
+        <td>${formatDate(lec)}</td>
+        <td>${open ? '<span class="badge badge-done">مفتوح</span>' : '<span class="badge badge-locked">محجوب</span>'}</td>
+      </tr>`;
+    }).join("");
+  }
+
+  /* ---------- حجب صفحة الدرس نفسها ---------- */
+  function gateLessonPage(current) {
+    document.documentElement.classList.remove("gate-pending");
+    if (!current || isUnlocked(current)) return false;
+    const lesson = COURSE.lessons.find((l) => l.n === current);
+    const layout = document.querySelector(".lesson-layout");
+    if (!layout) return true;
+    layout.classList.add("is-gated");
+    layout.innerHTML = `
+      <div class="locked-screen">
+        <svg class="locked-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+        <h1>الدرس <span class="num-ltr">${pad(current)}</span> لم يُفتح بعد</h1>
+        <p class="locked-title">${lesson ? lesson.title : ""}</p>
+        <p>يُفتح هذا الدرس <strong>${formatDate(unlockDate(current))}</strong>، قبل المحاضرة بيوم. الدروس تُفتح واحدًا كل أسبوع لتسير المجموعة معًا.</p>
+        <div class="locked-actions">
+          <a class="btn" href="${ROOT}index.html#lessons">الدروس المتاحة الآن</a>
+          <a class="btn btn-ghost" href="${ROOT}pages/about.html#schedule">جدول المواعيد كاملًا</a>
+        </div>
+      </div>`;
+    document.title = "الدرس " + pad(current) + " · يُفتح " + formatDate(unlockDate(current));
+    return true;
   }
 
   function renderLessonNav(current) {
@@ -165,9 +302,11 @@
     if (!nav) return;
     const prev = COURSE.lessons.find((l) => l.n === current - 1);
     const next = COURSE.lessons.find((l) => l.n === current + 1);
-    const link = (l, cls, label) => l
-      ? `<a class="${cls}" href="${ROOT}lessons/lesson-${pad(l.n)}.html"><small>${label}</small><strong>${pad(l.n)} · ${l.title}</strong></a>`
-      : `<a class="${cls}" aria-disabled="true" href="#"><small>${label}</small><strong>—</strong></a>`;
+    const link = (l, cls, label) => {
+      if (!l) return `<a class="${cls}" aria-disabled="true" href="#"><small>${label}</small><strong>—</strong></a>`;
+      if (!isUnlocked(l.n)) return `<a class="${cls}" aria-disabled="true" href="#"><small>${label}</small><strong>${pad(l.n)} · ${l.title}</strong><small>يُفتح ${formatDate(unlockDate(l.n))}</small></a>`;
+      return `<a class="${cls}" href="${ROOT}lessons/lesson-${pad(l.n)}.html"><small>${label}</small><strong>${pad(l.n)} · ${l.title}</strong></a>`;
+    };
     nav.innerHTML = link(prev, "prev", "الدرس السابق") + link(next, "next", "الدرس التالي");
     if (!next) {
       nav.lastElementChild.outerHTML = `<a class="next" href="${ROOT}index.html"><small>انتهت الدروس</small><strong>العودة إلى الرئيسية</strong></a>`;
@@ -293,14 +432,17 @@
     const current = Number(document.body.dataset.lesson) || null;
     initTheme();
     initNav();
+    // الحجب أولًا: إن كان الدرس مغلقًا فلا داعي لبناء تبويباته واختباره
+    if (gateLessonPage(current)) { refreshProgress(); return; }
     renderSidebar(current);
     renderLessonNav(current);
     initTabs(current);
     initComplete(current);
     initReset();
+    renderSchedule();
     refreshProgress();
   });
 
   // واجهة صغيرة لمحرك الاختبارات
-  window.BNM = { COURSE, lessonState, updateLesson, toast, refreshProgress, pad, ROOT };
+  window.BNM = { COURSE, lessonState, updateLesson, toast, refreshProgress, pad, ROOT, isUnlocked, unlockDate, formatDate, SCHEDULE };
 })();
