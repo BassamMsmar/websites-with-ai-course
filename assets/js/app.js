@@ -44,7 +44,7 @@
     FIRST_UNLOCK: [2026, 9, 14],
     EVERY_DAYS: 7,
     UNLOCK_ALL: false,
-    UNLOCK_UP_TO: 0,
+    UNLOCK_UP_TO: 1,
     SHIFT: {}
   };
 
