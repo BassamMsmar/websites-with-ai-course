@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-root="../">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>الدرس 6 · رفع المواقع (1): Git و GitHub | بناء ونشر المواقع بالذكاء الاصطناعي</title>
+  <meta name="description" content="مشكلة «نسخة نهائية 2»، لقطات Git والرجوع للخلف، لماذا Git ضروري مع الذكاء الاصطناعي، ثم GitHub و GitHub Pages.">
+  <script>(function(){try{var t=localStorage.getItem('bnm-theme');if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}})();</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%234a5a1e'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='monospace' font-size='14' font-weight='700' fill='white'%3E%3C/%3E%3C/text%3E%3C/svg%3E">
+</head>
+<body data-lesson="6">
+  <a class="skip-link" href="#main">تخطّ إلى المحتوى</a>
+
+  <header class="topbar">
+    <div class="container">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark" aria-hidden="true">&lt;/&gt;</span>
+        <span>بناء ونشر المواقع<span class="brand-sub">بالذكاء الاصطناعي</span></span>
+      </a>
+      <nav class="nav" id="nav" aria-label="الأقسام">
+        <a href="../index.html">الرئيسية</a>
+        <a href="../index.html#lessons" aria-current="page">الدروس</a>
+        <a href="../pages/glossary.html">المسرد</a>
+        <a href="../pages/resources.html">الموارد</a>
+        <a href="../pages/about.html">عن المادة</a>
+      </nav>
+      <div class="topbar-tools">
+        <div class="ring" role="img" aria-label="نسبة الإنجاز"><span>0%</span></div>
+        <button class="icon-btn" type="button" data-theme-toggle aria-label="التبديل إلى الوضع الليلي">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+        <button class="icon-btn nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="القائمة">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container lesson-layout">
+    <aside class="sidebar" aria-label="قائمة الدروس">
+      <details>
+        <summary>قائمة الدروس</summary>
+        <h2>المحاضرات</h2>
+        <ul class="side-list" data-side-list></ul>
+      </details>
+      <div class="side-progress">
+        <div class="row"><span>تقدّمك</span><strong data-progress-percent>0%</strong></div>
+        <div class="bar" aria-hidden="true"><i data-progress-bar></i></div>
+        <div class="row"><span>دروس مكتملة</span><span data-progress-text>0 / 10</span></div>
+      </div>
+    </aside>
+
+    <main id="main">
+      <header class="lesson-head">
+        <div class="kicker">
+          <span class="num-big">المحاضرة 06</span>
+          <span class="badge">90 دقيقة</span>
+          <span class="badge badge-project">درجة النشر 3: GitHub Pages</span>
+        </div>
+        <h1>رفع المواقع (1): Git و GitHub</h1>
+        <p class="meta">
+          <span>وداعًا «نسخة نهائية 2»</span>
+          <span>لقطات ترجع إليها متى شئت</span>
+          <span>مشاريعك الأربعة على GitHub</span>
+        </p>
+      </header>
+
+      <div class="tabs" role="tablist" aria-label="أقسام الدرس">
+        <button class="tab" role="tab" id="tab-content" aria-controls="panel-content" aria-selected="true" data-tab="content"><span class="n">1</span><span class="long">محتوى الدرس</span><span class="short">المحتوى</span></button>
+        <button class="tab" role="tab" id="tab-practice" aria-controls="panel-practice" aria-selected="false" data-tab="practice" tabindex="-1"><span class="n">2</span><span class="long">التدريب العملي</span><span class="short">العملي</span></button>
+        <button class="tab" role="tab" id="tab-quiz" aria-controls="panel-quiz" aria-selected="false" data-tab="quiz" tabindex="-1"><span class="n">3</span><span class="long">التدريب النظري والاختبار</span><span class="short">الاختبار</span></button>
+      </div>
+
+      <!-- ============ 1. المحتوى ============ -->
+      <section id="panel-content" role="tabpanel" aria-labelledby="tab-content" class="lesson-body prose" data-print-title="محتوى الدرس">
+        <h2>مشكلة «نسخة نهائية 2»</h2>
+        <p>افتح مجلد أي مشروع قديم وستجد: <code>final</code>، <code>final-2</code>، <code>final-REAL</code>، <code>final-before-change</code>. كل مجلد نسخة كاملة، ولا أحد يذكر الفرق بينها، وأي تعديل خاطئ يعني البحث في المجلدات عن آخر نسخة كانت تعمل.</p>
+        <p>مع الذكاء الاصطناعي تتضاعف المشكلة: تطلب تعديلًا صغيرًا فيغيّر عشرة ملفات دفعة واحدة، ويكسر شيئًا كان يعمل، ولا تعرف ماذا غيّر بالضبط. <strong>Git هو الحل</strong>، وهو أهم أداة في هذه المادة بعد المتصفح.</p>
+
+        <h2>Git: كاميرا تصوّر مجلدك</h2>
+        <p>تخيّل كاميرا تلتقط صورة لمجلد المشروع كاملًا كلما طلبت. كل صورة اسمها <strong>لقطة (Commit)</strong>، ولها رسالة تصف ما تغيّر. الصور تُحفظ بالترتيب في <strong>سجل (History)</strong>، وتستطيع في أي لحظة أن تعود إلى أي صورة قديمة. المجلد نفسه اسمه <strong>مستودع (Repository)</strong>.</p>
+        <p>ما يميّز Git عن نسخ المجلدات: لا تكرار للملفات، ورسالة مع كل لقطة، ومقارنة دقيقة تخبرك أي سطر تغيّر في أي ملف.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>ما تريده</th><th>الأمر</th><th>بلغة بسيطة</th></tr></thead>
+            <tbody>
+              <tr><td>ابدأ التصوير في هذا المجلد</td><td><code>git init</code></td><td>يحوّل المجلد إلى مستودع (مرة واحدة فقط)</td></tr>
+              <tr><td>ما الذي تغيّر منذ آخر لقطة؟</td><td><code>git status</code></td><td>قائمة الملفات المعدّلة والجديدة</td></tr>
+              <tr><td>جهّز كل التغييرات للقطة</td><td><code>git add .</code></td><td>النقطة تعني «كل شيء»</td></tr>
+              <tr><td>التقط الصورة برسالة</td><td><code>git commit -m "أضفت صفحة التواصل"</code></td><td>الرسالة تصف ما فعلت، للمستقبل</td></tr>
+              <tr><td>اعرض السجل</td><td><code>git log --oneline</code></td><td>سطر لكل لقطة: رقم قصير + الرسالة</td></tr>
+              <tr><td>ألغِ التعديلات التي لم أصوّرها بعد</td><td><code>git restore .</code></td><td>يعيد الملفات إلى آخر لقطة</td></tr>
+              <tr><td>أعد ملفات لقطة قديمة</td><td><code>git checkout a1b2c3 -- .</code></td><td>يجلب ملفات اللقطة رقم a1b2c3، ثم تصوّر لقطة جديدة</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>سبعة أوامر تكفي المادة كلها. وإن كانت الأوامر تزعجك فبرنامج <strong>GitHub Desktop</strong> يفعل الشيء نفسه بأزرار: Commit، History، Push. الفكرة واحدة.</p>
+
+        <div class="callout callout-note">
+          <div class="callout-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM12 8v4M12 16h.01"/></svg>
+            القاعدة الذهبية مع الذكاء الاصطناعي
+          </div>
+          <p><strong>لقطة قبل كل طلب.</strong> قبل أن تطلب من الذكاء الاصطناعي أي تعديل، صوّر لقطة. إن أعجبك التعديل، صوّر لقطة أخرى. إن كسر شيئًا، <code>git restore .</code> ويعود كل شيء كما كان في ثانية. بلا Git، الرجوع يعني إعادة البناء.</p>
+        </div>
+
+        <h3>الرسالة الجيدة</h3>
+        <p>الرسالة تُقرأ بعد شهر حين تنسى ما فعلت. اكتب <em>ماذا</em> و<em>لماذا</em> بجملة قصيرة:</p>
+        <ul>
+          <li>سيئة: <code>تعديلات</code>، <code>update</code>، <code>fix</code>.</li>
+          <li>جيدة: <code>أضفت زر واتساب ثابتًا للجوال</code>، <code>أصلحت مسارات الصور بعد نقلها إلى assets</code>.</li>
+        </ul>
+
+        <h2>GitHub: نسخة في السحابة، وموقع مجاني</h2>
+        <p>Git يعمل على جهازك. <strong>GitHub</strong> موقع يحفظ نسخة من مستودعك على الإنترنت، فيصبح لديك: نسخة احتياطية، ومكان يراه الآخرون (المدرّب، صاحب عمل)، وموقع منشور مجانًا.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>المصطلح</th><th>معناه</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Repository</strong> على GitHub</td><td>نسخة مستودعك في السحابة. لكل مشروع مستودع.</td></tr>
+              <tr><td><strong>Push</strong></td><td>ارفع لقطاتي الجديدة من جهازي إلى GitHub.</td></tr>
+              <tr><td><strong>Pull</strong></td><td>أنزل ما على GitHub إلى جهازي (إن عدّلت من جهاز آخر).</td></tr>
+              <tr><td><strong>README.md</strong></td><td>ملف نصي يظهر في صفحة المستودع: ما المشروع، كيف يُفتح، رابط الموقع الحي. أول ما يقرؤه الزائر.</td></tr>
+              <tr><td><strong>Pull Request</strong></td><td>اقتراح تعديل للمراجعة قبل دمجه. تستخدمه الفرق، وستراه كثيرًا، لكنك في مشروعك الفردي لا تحتاجه الآن.</td></tr>
+              <tr><td><strong>GitHub Pages</strong></td><td>خدمة تنشر مستودعك كموقع على رابط <code>اسمك.github.io/اسم-المستودع</code>. مجانية.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>الدرجة الثالثة من سلّم النشر</h3>
+        <p>ما الفرق عن Netlify Drop؟ في Netlify Drop تسحب المجلد كل مرة وتحصل على رابط جديد. في GitHub Pages: <strong>كل <code>git push</code> يحدّث الموقع تلقائيًا</strong> على الرابط نفسه، ومع سجل كامل لكل نسخة. هذا هو الفرق بين «رفع ملفات» و«نشر مشروع».</p>
+        <p>تفعيله ثلاث نقرات: صفحة المستودع ← Settings ← Pages ← اختر Branch: main ← Save. بعد دقيقة يظهر الرابط.</p>
+
+        <div class="callout callout-advanced">
+          <div class="callout-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7.1L12 17.3 5.8 21l1.6-7.1L2 9.2l7.1-.6z"/></svg>
+            للمتقدمين
+          </div>
+          <p>هذا الموقع الذي تقرأ منه مستودع Git أيضًا. افتح <code>git log --oneline</code> في مجلده وسترى كيف بُني درسًا درسًا. وجرّب <code>git diff</code> بعد أي تعديل: يعرض بالضبط الأسطر التي تغيّرت، بالأحمر ما حُذف وبالأخضر ما أُضيف. هذه أفضل طريقة لمراجعة ما فعله الذكاء الاصطناعي قبل أن تقبله.</p>
+        </div>
+
+        <h2>مسرد الدرس</h2>
+        <dl class="terms">
+          <div><dt>Git <span></span></dt><dd>أداة تحفظ لقطات من مجلد المشروع وتتيح الرجوع إلى أي لقطة.</dd></div>
+          <div><dt>مستودع <span>Repository / Repo</span></dt><dd>مجلد المشروع بعد تفعيل Git فيه، أو نسخته على GitHub.</dd></div>
+          <div><dt>لقطة <span>Commit</span></dt><dd>صورة محفوظة للمجلد كاملًا مع رسالة تصف التغيير.</dd></div>
+          <div><dt>سجل <span>History / Log</span></dt><dd>قائمة اللقطات بالترتيب الزمني.</dd></div>
+          <div><dt>استرجاع <span>Restore / Checkout</span></dt><dd>إعادة الملفات إلى حالة لقطة سابقة.</dd></div>
+          <div><dt>GitHub <span></span></dt><dd>موقع يستضيف مستودعات Git في السحابة ويوفر GitHub Pages.</dd></div>
+          <div><dt>رفع <span>Push</span></dt><dd>إرسال اللقطات الجديدة من جهازك إلى GitHub.</dd></div>
+          <div><dt>README.md <span></span></dt><dd>ملف تعريف المشروع الذي يظهر في صفحة المستودع.</dd></div>
+          <div><dt>طلب دمج <span>Pull Request</span></dt><dd>اقتراح تعديل للمراجعة قبل دمجه في المشروع. للفرق.</dd></div>
+          <div><dt>GitHub Pages <span></span></dt><dd>نشر المستودع كموقع مجاني يتحدث مع كل push.</dd></div>
+        </dl>
+      </section>
+
+      <!-- ============ 2. التدريب العملي ============ -->
+      <section id="panel-practice" role="tabpanel" aria-labelledby="tab-practice" class="lesson-body prose" hidden data-print-title="التدريب العملي">
+        <p>مخرج اليوم: <strong>كسرت موقعك عمدًا واسترجعته بـ Git</strong>، ثم <strong>مشاريعك الأربعة على GitHub</strong> بروابط GitHub Pages حية.</p>
+
+        <h2>الجزء الأول: التجهيز (15 دقيقة)</h2>
+        <ol class="steps">
+          <li><strong>ثبّت Git.</strong><p>من <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">git-scm.com</a>. اترك الخيارات الافتراضية. للتأكد افتح الطرفية (Terminal) واكتب <code>git --version</code>.</p></li>
+          <li><strong>أنشئ حسابًا على <a href="https://github.com" target="_blank" rel="noopener">GitHub</a></strong> باسم مهني (اسمك الحقيقي أو قريب منه). هذا الحساب سيظهر في سيرتك.</li>
+          <li><strong>عرّف Git بنفسك</strong> مرة واحدة:
+<pre><code>git config --global user.name "اسمك"
+git config --global user.email "بريدك@example.com"</code></pre></li>
+        </ol>
+
+        <h2>الجزء الثاني: اكسر واسترجع (25 دقيقة)</h2>
+        <p>نستخدم مشروع الدرس 2 (<code>my-card</code>). افتح الطرفية داخل مجلده (في VS Code: Terminal ← New Terminal).</p>
+        <ol class="steps">
+          <li><strong>ابدأ التصوير وصوّر أول لقطة.</strong>
+<pre><code>git init
+git add .
+git commit -m "النسخة الأولى من البطاقة الرقمية"
+git log --oneline</code></pre>
+<p>سترى سطرًا واحدًا برقم قصير ورسالتك.</p></li>
+          <li><strong>التخريب الأول (بلا لقطة).</strong><p>افتح <code>style.css</code>، حدد كل محتواه واحذفه، احفظ. افتح الموقع في المتصفح: بلا تنسيق. الآن:</p>
+<pre><code>git status
+git restore .</code></pre>
+<p>حدّث المتصفح. عاد كل شيء. هذا ما ستفعله كل مرة يكسر الذكاء الاصطناعي شيئًا.</p></li>
+          <li><strong>التخريب الثاني (بلقطة).</strong><p>غيّر لون العنوان في CSS إلى أصفر فاقع واحفظ، ثم صوّر لقطة: <code>git add .</code> ثم <code>git commit -m "جربت الأصفر"</code>. الآن الخراب محفوظ في السجل. للرجوع:</p>
+<pre><code>git log --oneline
+git checkout [رقم اللقطة الأولى] -- .
+git commit -m "رجعت إلى اللون الأصلي"</code></pre>
+<p>لاحظ: لم نحذف لقطة «الأصفر» من السجل، بل أضفنا لقطة جديدة تعيد الملفات. السجل لا يُمحى، وهذا مقصود.</p></li>
+          <li><strong>طبّق القاعدة الذهبية.</strong><p>اطلب من الذكاء الاصطناعي تعديلًا حقيقيًا على البطاقة (مثل إضافة قسم مهارات). <em>قبل</em> لصق النتيجة: لقطة. بعد التأكد أنها تعمل: لقطة برسالة تصف الإضافة.</p></li>
+        </ol>
+
+        <h2>الجزء الثالث: على GitHub وعلى الهواء (50 دقيقة)</h2>
+        <ol class="steps">
+          <li><strong>أنشئ مستودعًا على GitHub.</strong><p>الزر الأخضر New. الاسم: <code>my-card</code>. اتركه Public. لا تضف README من هنا (لديك ملفات). Create repository.</p></li>
+          <li><strong>اربط وارفع.</strong><p>GitHub سيعرض لك الأوامر. هي ثلاثة:</p>
+<pre><code>git remote add origin https://github.com/اسمك/my-card.git
+git branch -M main
+git push -u origin main</code></pre>
+<p>سيطلب تسجيل الدخول أول مرة. بعدها حدّث صفحة GitHub: ملفاتك هناك.</p></li>
+          <li><strong>أضف README.md.</strong><p>ملف نصي في جذر المشروع بثلاثة أسطر: اسم المشروع، جملة عنه، ورابط الموقع الحي (ستضيفه بعد الخطوة التالية). ثم لقطة و <code>git push</code>.</p></li>
+          <li><strong>فعّل GitHub Pages.</strong><p>Settings ← Pages ← Branch: main ← Save. انتظر دقيقة وحدّث الصفحة. الرابط: <code>https://اسمك.github.io/my-card/</code>. افتحه على جوالك. أنت على الدرجة الثالثة.</p></li>
+          <li><strong>كرّر للمشاريع الثلاثة الأخرى</strong> (النشاط التجاري، المعرض، العرض التقديمي). لكل مشروع: <code>git init</code>، لقطة، مستودع جديد على GitHub، push، Pages. المرة الثانية تأخذ 5 دقائق.</li>
+          <li><strong>جرّب التحديث التلقائي.</strong><p>عدّل شيئًا صغيرًا في أي مشروع، لقطة، <code>git push</code>. انتظر دقيقة وحدّث الرابط: التعديل ظهر بلا سحب وإفلات.</p></li>
+          <li><strong>أرسل للمدرّب</strong> رابط حسابك على GitHub. فيه المستودعات الأربعة وروابطها الحية.</li>
+        </ol>
+
+        <div class="callout callout-stuck">
+          <div class="callout-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3l9 16H3l9-16zM12 10v4M12 17h.01"/></svg>
+            إذا تعثّرت
+          </div>
+          <ul>
+            <li><strong>الأوامر ترعبني:</strong> ثبّت <a href="https://desktop.github.com" target="_blank" rel="noopener">GitHub Desktop</a>. Add local repository ← اختر المجلد ← Commit ← Publish repository. الأزرار نفسها الأوامر.</li>
+            <li><strong>git: command not found:</strong> Git لم يُثبّت أو الطرفية لم تُعد فتحها بعد التثبيت. أغلق VS Code وافتحه.</li>
+            <li><strong>Pages يعطي 404:</strong> إما لم تمر دقيقة بعد، أو <code>index.html</code> ليس في جذر المستودع، أو الاسم <code>Index.html</code>. نفس درس المسارات.</li>
+            <li><strong>push يطلب كلمة مرور ويرفضها:</strong> GitHub لا يقبل كلمة المرور في الطرفية. سجّل الدخول من النافذة التي تظهر، أو استخدم GitHub Desktop.</li>
+            <li><strong>الموقع يعمل على جهازي ومكسور على Pages:</strong> مسار يبدأ بـ <code>/</code> (مطلق). اجعله نسبيًا. راجع الدرس 4.</li>
+          </ul>
+        </div>
+
+        <div class="callout callout-advanced">
+          <div class="callout-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7.1L12 17.3 5.8 21l1.6-7.1L2 9.2l7.1-.6z"/></svg>
+            للمتقدمين
+          </div>
+          <ul>
+            <li>أنشئ فرعًا (branch) باسم <code>experiment</code>، جرّب فيه تعديلًا جريئًا، ثم ادمجه أو احذفه: <code>git switch -c experiment</code>.</li>
+            <li>افتح Pull Request من الفرع إلى main على GitHub واقرأ كيف يعرض الفرق. هكذا تعمل الفرق البرمجية.</li>
+            <li>أضف ملف <code>.gitignore</code> يتجاهل الملفات المؤقتة مثل <code>.DS_Store</code> و<code>Thumbs.db</code>.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ============ 3. النظري والاختبار ============ -->
+      <section id="panel-quiz" role="tabpanel" aria-labelledby="tab-quiz" class="lesson-body prose" hidden data-print-title="التدريب النظري والاختبار">
+        <h2>تلخيص المفاهيم</h2>
+        <ul>
+          <li>Git كاميرا تصوّر لقطات (commits) من مجلد المشروع، لكل لقطة رسالة، وتستطيع الرجوع إلى أيها.</li>
+          <li>سبعة أوامر: <code>init</code>، <code>status</code>، <code>add .</code>، <code>commit -m</code>، <code>log --oneline</code>، <code>restore .</code>، <code>checkout [رقم] -- .</code></li>
+          <li>القاعدة الذهبية: لقطة قبل كل طلب من الذكاء الاصطناعي، ولقطة بعد التأكد.</li>
+          <li><code>restore .</code> يلغي ما لم يُصوَّر بعد. <code>checkout [رقم] -- .</code> يجلب ملفات لقطة قديمة ثم تصوّر لقطة جديدة. السجل لا يُمحى.</li>
+          <li>GitHub نسخة سحابية: push يرفع، README يعرّف، Pull Request للفرق، وGitHub Pages ينشر مجانًا.</li>
+          <li>الدرجة الثالثة: كل push يحدّث الموقع تلقائيًا على الرابط نفسه، مع سجل كامل.</li>
+        </ul>
+
+        <h2>الاختبار</h2>
+        <p>عشرة أسئلة عن أوامر Git وسيناريوهات الاسترجاع. اختر إجابة لترى التصحيح والشرح فورًا.</p>
+        <div id="quiz" class="quiz no-print"></div>
+        <div class="print-quiz"></div>
+      </section>
+
+      <div class="complete-bar" data-complete>
+        <p></p>
+        <button class="btn" type="button">تعليم الدرس كمكتمل</button>
+      </div>
+
+      <nav class="lesson-nav" aria-label="التنقل بين الدروس" data-lesson-nav></nav>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <span>بناء ونشر المواقع بالذكاء الاصطناعي · مادة جامعية</span>
+      <span><button class="btn btn-subtle no-print" type="button" onclick="window.print()">طباعة الدرس</button></span>
+    </div>
+  </footer>
+
+  <script>
+  window.QUIZ_DATA = [
+    {
+      scenario: "سيناريو استرجاع",
+      q: "طلبت من الذكاء الاصطناعي تعديلًا فكسر الموقع. لم تصوّر لقطة بعد التعديل، لكنك صوّرت قبله. ما الأمر الذي يعيد كل شيء؟",
+      options: ["git init", "git restore .", "git push", "git commit -m \"إصلاح\""],
+      answer: 1,
+      explain: "restore . يعيد كل الملفات إلى آخر لقطة محفوظة، أي إلى ما قبل التعديل. لهذا نصوّر لقطة قبل كل طلب."
+    },
+    {
+      scenario: "سيناريو استرجاع",
+      q: "صوّرت لقطة بعد تعديل سيئ، ثم اكتشفت أنه سيئ. كيف ترجع إلى ما قبله؟",
+      options: ["git restore . يكفي", "احذف المجلد وابدأ من جديد", "git log --oneline ثم git checkout [رقم اللقطة السابقة] -- . ثم لقطة جديدة", "لا يمكن الرجوع بعد commit"],
+      answer: 2,
+      explain: "restore يعمل فقط لما لم يُصوَّر. التعديل صار في لقطة، فتجلب ملفات اللقطة السابقة بـ checkout وتصوّر لقطة جديدة. السجل يبقى كاملًا."
+    },
+    {
+      scenario: "أوامر",
+      q: "ما الترتيب الصحيح لتصوير لقطة؟",
+      options: ["git commit ثم git add", "git add . ثم git commit -m \"رسالة\"", "git push ثم git commit", "git init كل مرة"],
+      answer: 1,
+      explain: "add يجهّز التغييرات، commit يصوّرها برسالة. init مرة واحدة فقط في بداية المشروع، وpush للرفع إلى GitHub."
+    },
+    {
+      scenario: "رسائل",
+      q: "أي رسالة لقطة أفضل؟",
+      options: ["update", "تعديلات", "أصلحت مسارات الصور بعد نقلها إلى assets", "final final"],
+      answer: 2,
+      explain: "الرسالة تُقرأ بعد شهر. «ماذا ولماذا» بجملة قصيرة تجعل السجل مفهومًا. الكلمات العامة لا تخبر بشيء."
+    },
+    {
+      scenario: "القاعدة الذهبية",
+      q: "متى تصوّر لقطة عند العمل مع الذكاء الاصطناعي؟",
+      options: ["في نهاية اليوم فقط", "قبل كل طلب تعديل، وبعد التأكد أن النتيجة تعمل", "فقط حين ينكسر شيء", "مرة عند إنشاء المشروع"],
+      answer: 1,
+      explain: "اللقطة قبل الطلب تجعل الرجوع بأمر واحد. اللقطة بعد النجاح تحفظ التقدّم. هكذا لا تخسر أكثر من طلب واحد أبدًا."
+    },
+    {
+      scenario: "GitHub",
+      q: "عدّلت الموقع على جهازك وصوّرت لقطة، لكن GitHub Pages ما زال يعرض النسخة القديمة. ما الناقص؟",
+      options: ["git init", "git push", "git restore .", "إعادة تفعيل Pages"],
+      answer: 1,
+      explain: "اللقطة على جهازك فقط. push يرفعها إلى GitHub، وPages يحدّث الموقع تلقائيًا بعد دقيقة."
+    },
+    {
+      scenario: "مقارنة",
+      q: "ما الفرق الجوهري بين Netlify Drop و GitHub Pages؟",
+      options: ["لا فرق، كلاهما مجاني", "Pages يتحدّث تلقائيًا مع كل push ويحتفظ بسجل النسخ، وDrop يحتاج سحب المجلد كل مرة", "Drop أسرع دائمًا", "Pages يحتاج دفعًا"],
+      answer: 1,
+      explain: "Drop رفع ملفات. Pages نشر مشروع: الرابط ثابت، التحديث بأمر واحد، والسجل كامل. هذا معنى الصعود درجة."
+    },
+    {
+      scenario: "تشخيص",
+      q: "فعّلت Pages والرابط يعطي 404 بعد خمس دقائق. السبب الأرجح؟",
+      options: ["GitHub معطل", "index.html ليس في جذر المستودع أو اسمه بحرف كبير", "يجب دفع اشتراك", "المتصفح قديم"],
+      answer: 1,
+      explain: "Pages يبحث عن index.html في الجذر بالضبط، مثل Netlify والمتصفح. راجع المكان والاسم."
+    },
+    {
+      scenario: "مفاهيم",
+      q: "ما وظيفة ملف README.md في المستودع؟",
+      options: ["يشغّل الموقع", "يعرّف المشروع في صفحة المستودع: ما هو، كيف يُفتح، رابط الموقع الحي", "يحفظ كلمات المرور", "يحدد ألوان الموقع"],
+      answer: 1,
+      explain: "README أول ما يراه زائر المستودع. ثلاثة أسطر تكفي: الاسم، الوصف، الرابط الحي."
+    },
+    {
+      scenario: "مفاهيم",
+      q: "زميلك في فريق يريد اقتراح تعديل على مشروعك ليراجعه أحد قبل دمجه. أي أداة في GitHub تناسب ذلك؟",
+      options: ["README", "Pull Request", "GitHub Pages", "git restore"],
+      answer: 1,
+      explain: "Pull Request يعرض التعديل المقترح مع الفرق سطرًا سطرًا، ويُدمج بعد المراجعة. أداة الفرق، ولا تحتاجه في مشروعك الفردي الآن."
+    }
+  ];
+  </script>
+  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/quiz.js"></script>
+</body>
+</html>

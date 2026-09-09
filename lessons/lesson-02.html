@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-root="../">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>الدرس 2 · بطاقتي الشخصية / السيرة الرقمية | بناء ونشر المواقع بالذكاء الاصطناعي</title>
+  <meta name="description" content="لماذا رابط بدل PDF؟ تشريح ملفات الموقع الثلاثة، بناء السيرة الرقمية بالذكاء الاصطناعي، والنشر بالسحب والإفلات.">
+  <script>(function(){try{var t=localStorage.getItem('bnm-theme');if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}})();</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%234a5a1e'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='monospace' font-size='14' font-weight='700' fill='white'%3E%3C/%3E%3C/text%3E%3C/svg%3E">
+</head>
+<body data-lesson="2">
+  <a class="skip-link" href="#main">تخطّ إلى المحتوى</a>
+
+  <header class="topbar">
+    <div class="container">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark" aria-hidden="true">&lt;/&gt;</span>
+        <span>بناء ونشر المواقع<span class="brand-sub">بالذكاء الاصطناعي</span></span>
+      </a>
+      <nav class="nav" id="nav" aria-label="الأقسام">
+        <a href="../index.html">الرئيسية</a>
+        <a href="../index.html#lessons" aria-current="page">الدروس</a>
+        <a href="../pages/glossary.html">المسرد</a>
+        <a href="../pages/resources.html">الموارد</a>
+        <a href="../pages/about.html">عن المادة</a>
+      </nav>
+      <div class="topbar-tools">
+        <div class="ring" role="img" aria-label="نسبة الإنجاز"><span>0%</span></div>
+        <button class="icon-btn" type="button" data-theme-toggle aria-label="التبديل إلى الوضع الليلي">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+        <button class="icon-btn nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="القائمة">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container lesson-layout">
+    <aside class="sidebar" aria-label="قائمة الدروس">
+      <details>
+        <summary>قائمة الدروس</summary>
+        <h2>المحاضرات</h2>
+        <ul class="side-list" data-side-list></ul>
+      </details>
+      <div class="side-progress">
+        <div class="row"><span>تقدّمك</span><strong data-progress-percent>0%</strong></div>
+        <div class="bar" aria-hidden="true"><i data-progress-bar></i></div>
+        <div class="row"><span>دروس مكتملة</span><span data-progress-text>0 / 10</span></div>
+      </div>
+    </aside>
+
+    <main id="main">
+      <header class="lesson-head">
+        <div class="kicker">
+          <span class="num-big">المحاضرة 02</span>
+          <span class="badge">90 دقيقة</span>
+          <span class="badge badge-project">مشروع 1</span>
+          <span class="badge badge-project">درجة النشر 2: Netlify Drop</span>
+        </div>
+        <h1>بطاقتي الشخصية / السيرة الرقمية</h1>
+        <p class="meta">
+          <span>لماذا رابط بدل ملف PDF؟</span>
+          <span>تشريح الملفات الثلاثة</span>
+          <span>أول تعديل يدوي في الكود</span>
+        </p>
+      </header>
+
+      <div class="tabs" role="tablist" aria-label="أقسام الدرس">
+        <button class="tab" role="tab" id="tab-content" aria-controls="panel-content" aria-selected="true" data-tab="content"><span class="n">1</span><span class="long">محتوى الدرس</span><span class="short">المحتوى</span></button>
+        <button class="tab" role="tab" id="tab-practice" aria-controls="panel-practice" aria-selected="false" data-tab="practice" tabindex="-1"><span class="n">2</span><span class="long">التدريب العملي</span><span class="short">العملي</span></button>
+        <button class="tab" role="tab" id="tab-quiz" aria-controls="panel-quiz" aria-selected="false" data-tab="quiz" tabindex="-1"><span class="n">3</span><span class="long">التدريب النظري والاختبار</span><span class="short">الاختبار</span></button>
+      </div>
+
+      <!-- ============ 1. المحتوى ============ -->
+      <section id="panel-content" role="tabpanel" aria-labelledby="tab-content" class="lesson-body prose" data-print-title="محتوى الدرس">
+        <h2>لماذا رابط بدل ملف PDF؟</h2>
+        <p>ملف السيرة الذاتية يُرسَل مرة واحدة ثم يتجمّد. الرابط يبقى حيًّا: تعدّله اليوم فيراه كل من معه الرابط غدًا. وفوق ذلك:</p>
+        <ul>
+          <li><strong>يفتح على الجوال فورًا</strong> بلا تنزيل ولا برنامج.</li>
+          <li><strong>يمكن أن يتفاعل</strong>: زر واتساب، رابط LinkedIn، معرض مشاريع قابل للنقر.</li>
+          <li><strong>يثبت مهارتك</strong> قبل أن تقول إنها لديك. من يبني بطاقته الرقمية بنفسه يقول شيئًا عن نفسه.</li>
+          <li><strong>يُشارك في أي مكان</strong>: سطر في السيرة، رمز QR على بطاقة ورقية، توقيع البريد.</li>
+        </ul>
+        <p>لا يعني هذا التخلي عن PDF. البطاقة الرقمية الجيدة فيها زر «تحميل النسخة PDF» لمن يريدها.</p>
+
+        <h2>عناصر البطاقة الناجحة</h2>
+        <p>صفحة واحدة، تُقرأ في 30 ثانية، ترتيبها من الأهم إلى الأقل:</p>
+        <ol>
+          <li><strong>الاسم والعنوان المهني</strong> بجملة واحدة: «مهندسة برمجيات، مهتمة بواجهات الويب».</li>
+          <li><strong>صورة</strong> واضحة الوجه، أو بلا صورة. لا صورة سيئة.</li>
+          <li><strong>جملة تعريف</strong> من سطرين: ماذا تفعل، ولمن.</li>
+          <li><strong>المهارات</strong> كقائمة قصيرة، لا نسب مئوية.</li>
+          <li><strong>مشاريع أو خبرات</strong>: ثلاثة على الأكثر، كل واحد بسطر ورابط إن وجد.</li>
+          <li><strong>التعليم</strong> باختصار.</li>
+          <li><strong>التواصل</strong>: بريد، واتساب، LinkedIn. زر واحد بارز.</li>
+        </ol>
+
+        <h2>تشريح الموقع: ثلاثة ملفات</h2>
+        <p>حين تطلب من الذكاء الاصطناعي موقعًا، سيعطيك غالبًا ثلاثة ملفات. لكلٍّ وظيفة واحدة، وفهمها هو مفتاح المادة كلها.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>الملف</th><th>وظيفته</th><th>التشبيه</th><th>مثال على ما فيه</th></tr></thead>
+            <tbody>
+              <tr><td><code>index.html</code></td><td><strong>الهيكل</strong>: ما الذي في الصفحة وبأي ترتيب</td><td>العظام</td><td>عنوان، فقرة، صورة، زر</td></tr>
+              <tr><td><code>style.css</code></td><td><strong>الشكل</strong>: الألوان والخطوط والمسافات</td><td>الملابس</td><td>«اجعل العناوين خضراء والخط كبيرًا»</td></tr>
+              <tr><td><code>script.js</code></td><td><strong>الحركة</strong>: ما يحدث حين يضغط الزائر</td><td>العضلات</td><td>«عند الضغط على الزر، أظهر الرسالة»</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>index.html: الهيكل</h3>
+        <p>HTML لغة <em>وسوم</em> (Tags). كل وسم يفتح بـ <code>&lt;اسم&gt;</code> ويغلق بـ <code>&lt;/اسم&gt;</code>، وما بينهما هو المحتوى. الاسم <code>index.html</code> ليس اختياريًا: هو الملف الذي يفتحه المتصفح تلقائيًا حين يزور أحدهم موقعك.</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ar" dir="rtl"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;سارة أحمد | مهندسة برمجيات&lt;/title&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;سارة أحمد&lt;/h1&gt;
+  &lt;p&gt;مهندسة برمجيات مهتمة بواجهات الويب.&lt;/p&gt;
+  &lt;a href="https://wa.me/9665xxxxxxx"&gt;راسلني على واتساب&lt;/a&gt;
+  &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        <p>لاحظ سطرين مهمين: <code>&lt;link rel="stylesheet" href="style.css"&gt;</code> يربط ملف الشكل، و<code>&lt;script src="script.js"&gt;</code> يربط ملف الحركة. بدونهما يبقى الملفان الآخران مهملين. ولاحظ <code>dir="rtl"</code>: هو ما يجعل الصفحة عربية الاتجاه.</p>
+
+        <h3>style.css: الشكل</h3>
+        <p>CSS قواعد بصيغة: <em>اختر عنصرًا</em> ثم <em>صِف شكله</em>.</p>
+<pre><code>body {
+  font-family: "IBM Plex Sans Arabic", sans-serif;
+  background: #ffffff;
+  color: #1c1f16;
+}
+h1 {
+  color: #4a5a1e;
+  font-size: 2rem;
+}
+a {
+  background: #4a5a1e;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+}</code></pre>
+        <p>غيّر <code>#4a5a1e</code> إلى أي لون آخر، احفظ، حدّث الصفحة. هذا التعديل الصغير هو أول تعديل يدوي ستفعله اليوم.</p>
+
+        <h3>script.js: الحركة</h3>
+        <p>JavaScript يجعل الصفحة تستجيب. لن نكتبه بأنفسنا في هذه المادة إلا بجمل بسيطة، لكن يجب أن تعرف شكله لتقرأ ما يكتبه الذكاء الاصطناعي لك.</p>
+<pre><code>// تحية تتغير حسب الوقت
+const hour = new Date().getHours();
+const greeting = hour &lt; 12 ? "صباح الخير" : "مساء الخير";
+document.querySelector("h1").textContent = greeting + "، أنا سارة";</code></pre>
+        <div class="callout callout-note">
+          <div class="callout-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM12 8v4M12 16h.01"/></svg>
+            الفكرة التي تبقى معك
+          </div>
+          <p>إن أردت تغيير <strong>نص</strong>: ابحث في HTML. إن أردت تغيير <strong>لون أو حجم</strong>: ابحث في CSS. إن أردت تغيير <strong>سلوك عند الضغط</strong>: ابحث في JavaScript. بهذه القاعدة وحدها تستطيع تعديل 80% مما يعطيك الذكاء الاصطناعي.</p>
+        </div>
+
+        <h2>الدرجة الثانية: النشر بالسحب والإفلات</h2>
+        <p>في الدرس السابق أعطتك الأداة رابطًا، لكنك لم تملك الملفات. اليوم الملفات على جهازك، وتحتاج مكانًا يعرضها. <strong>Netlify Drop</strong> خدمة تفعل ذلك حرفيًا: تسحب مجلد الموقع إلى المتصفح فتحصل على رابط خلال ثوانٍ.</p>
+        <p>شرطها الوحيد: أن يكون في المجلد ملف اسمه <code>index.html</code> بالضبط. هذا ما يجعل الاسم مهمًا.</p>
+
+        <div class="callout callout-advanced">
+          <div class="callout-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7.1L12 17.3 5.8 21l1.6-7.1L2 9.2l7.1-.6z"/></svg>
+            للمتقدمين
+          </div>
+          <p>افتح كود <strong>هذا الموقع</strong> الذي تقرأ منه الآن: فيه <code>index.html</code> و<code>assets/css/style.css</code> و<code>assets/js/app.js</code>. نفس الملفات الثلاثة، بحجم أكبر فقط. المسار <code>assets/css/</code> يعني «داخل مجلد assets، ثم داخل مجلد css». ستتعلم المسارات في المحاضرة 4.</p>
+        </div>
+
+        <h2>مسرد الدرس</h2>
+        <dl class="terms">
+          <div><dt>HTML <span>HyperText Markup Language</span></dt><dd>لغة هيكل الصفحة: العناوين والفقرات والصور والروابط.</dd></div>
+          <div><dt>CSS <span>Cascading Style Sheets</span></dt><dd>لغة الشكل: الألوان والخطوط والمسافات والتخطيط.</dd></div>
+          <div><dt>JavaScript <span>JS</span></dt><dd>لغة الحركة والتفاعل: ما يحدث حين يضغط الزائر أو يمرّر.</dd></div>
+          <div><dt>وسم <span>Tag</span></dt><dd>وحدة HTML: <code>&lt;h1&gt;</code> عنوان، <code>&lt;p&gt;</code> فقرة، <code>&lt;a&gt;</code> رابط، <code>&lt;img&gt;</code> صورة.</dd></div>
+          <div><dt>index.html <span></span></dt><dd>الصفحة الرئيسية التي يفتحها المتصفح تلقائيًا. الاسم إلزامي.</dd></div>
+          <div><dt>مجلد المشروع <span>Project folder</span></dt><dd>المجلد الذي يحوي كل ملفات الموقع. هو ما تنشره.</dd></div>
+          <div><dt>محرر الكود <span>Code editor</span></dt><dd>برنامج لكتابة الملفات مثل VS Code. المفكرة تكفي في البداية.</dd></div>
+          <div><dt>Netlify Drop <span></span></dt><dd>خدمة نشر بالسحب والإفلات تعطي رابطًا فوريًا للمجلد.</dd></div>
+        </dl>
+      </section>
+
+      <!-- ============ 2. التدريب العملي ============ -->
+      <section id="panel-practice" role="tabpanel" aria-labelledby="tab-practice" class="lesson-body prose" hidden data-print-title="التدريب العملي">
+        <p>مخرج اليوم: <strong>مجلد على جهازك</strong> فيه ثلاثة ملفات لسيرتك الرقمية، عدّلت فيها بيدك، ومنشور على <strong>رابط Netlify</strong>.</p>
+
+        <h2>الجزء الأول: توليد الملفات (25 دقيقة)</h2>
+        <ol class="steps">
+          <li><strong>جهّز محتواك أولًا.</strong><p>اكتب في ملف نصي: اسمك، عنوانك المهني، جملة تعريف، 5 مهارات، مشروعين أو خبرتين، تعليمك، بريدك ورقم واتساب. الذكاء الاصطناعي يبني من هذا، لا من فراغ.</p></li>
+          <li><strong>افتح مساعد محادثة</strong> (ChatGPT أو Claude أو Gemini) واكتب:
+<pre class="rtl"><code>ابنِ لي سيرة ذاتية رقمية من صفحة واحدة بثلاثة ملفات منفصلة:
+index.html و style.css و script.js. اربطهما داخل HTML.
+اللغة عربية والاتجاه RTL. خط عربي واضح من Google Fonts.
+الأقسام بالترتيب: الاسم والعنوان المهني، جملة تعريف، المهارات،
+المشاريع، التعليم، التواصل مع زر واتساب بارز.
+أعطني كل ملف في كتلة كود منفصلة كاملة بلا اختصار.
+البيانات:
+[الصق محتواك هنا]</code></pre>
+          </li>
+          <li><strong>أنشئ مجلد المشروع.</strong><p>على سطح المكتب، مجلد جديد باسم <code>my-card</code> (بالإنجليزية وبلا مسافات).</p></li>
+          <li><strong>أنشئ الملفات الثلاثة.</strong><p>افتح VS Code (أو المفكرة)، أنشئ ملفًا جديدًا، الصق محتوى HTML، واحفظه داخل المجلد باسم <code>index.html</code>. كرّر لـ <code>style.css</code> و<code>script.js</code>. تأكد أن الترميز UTF-8.</p></li>
+          <li><strong>افتح الموقع.</strong><p>اضغط مرتين على <code>index.html</code>. سيفتح في المتصفح. إن ظهر بلا ألوان فالرابط إلى CSS خاطئ. راجع سطر <code>&lt;link&gt;</code>.</p></li>
+        </ol>
+
+        <h2>الجزء الثاني: ثلاثة تعديلات بيدك (20 دقيقة)</h2>
+        <p>الهدف أن تثبت لنفسك أنك تستطيع قراءة الكود وتعديله بلا الذكاء الاصطناعي.</p>
+        <ol class="steps">
+          <li><strong>تعديل نص (HTML).</strong><p>افتح <code>index.html</code>، ابحث عن جملة التعريف، غيّرها. احفظ، ثم حدّث المتصفح بـ <kbd>F5</kbd>.</p></li>
+          <li><strong>تعديل لون (CSS).</strong><p>افتح <code>style.css</code>، ابحث عن لون الزر أو العنوان (يبدأ بـ <code>#</code>)، غيّره إلى <code>#2f4a12</code> أو أي لون. احفظ وحدّث.</p></li>
+          <li><strong>تعديل سلوك (JavaScript).</strong><p>افتح <code>script.js</code>. إن كان فيه نص يظهر عند الضغط أو تحية، غيّر النص. إن كان فارغًا، الصق:</p>
+<pre><code>document.addEventListener("click", function (e) {
+  if (e.target.tagName === "A") console.log("ضغط الزائر على رابط");
+});</code></pre>
+<p>احفظ، حدّث، اضغط <kbd>F12</kbd> ثم تبويب Console، واضغط أي رابط في صفحتك. الرسالة التي تظهر كتبتها أنت.</p></li>
+        </ol>
+
+        <h2>الجزء الثالث: النشر بالسحب والإفلات (15 دقيقة)</h2>
+        <ol class="steps">
+          <li><strong>افتح</strong> <a href="https://app.netlify.com/drop" target="_blank" rel="noopener">app.netlify.com/drop</a> وسجّل حسابًا مجانيًا إن طُلب.</li>
+          <li><strong>اسحب مجلد <code>my-card</code> كاملًا</strong> وأفلته في المنطقة المخصصة. ليس الملفات فرادى، بل المجلد.</li>
+          <li><strong>انسخ الرابط</strong> الذي يظهر (ينتهي بـ <code>.netlify.app</code>). افتحه على جوالك.</li>
+          <li><strong>أرسل الرابط للمدرّب.</strong><p>أنت الآن على الدرجة الثانية من سلّم النشر، والفرق عن الدرس السابق أن الملفات ملكك.</p></li>
+        </ol>
+
+        <div class="callout callout-stuck">
+          <div class="callout-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3l9 16H3l9-16zM12 10v4M12 17h.01"/></svg>
+            إذا تعثّرت
+          </div>
+          <ul>
+            <li><strong>الملف يُفتح كنص لا كصفحة:</strong> اسمه على الأرجح <code>index.html.txt</code>. في المفكرة اختر «كل الملفات» عند الحفظ واكتب الاسم بالامتداد.</li>
+            <li><strong>الحروف العربية تظهر رموزًا غريبة:</strong> احفظ الملف بترميز UTF-8، وتأكد من وجود <code>&lt;meta charset="UTF-8"&gt;</code>.</li>
+            <li><strong>Netlify يقول لا يوجد index.html:</strong> الاسم مختلف (مثل <code>Index.html</code> أو <code>home.html</code>) أو الملف داخل مجلد فرعي. أعد التسمية وضعه في جذر المجلد.</li>
+            <li><strong>الذكاء الاصطناعي أعطاني ملفًا واحدًا فيه كل شيء:</strong> لا بأس اليوم. احفظه <code>index.html</code> وانشره، ثم اطلب منه لاحقًا فصل CSS و JS.</li>
+          </ul>
+        </div>
+
+        <div class="callout callout-advanced">
+          <div class="callout-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7.1L12 17.3 5.8 21l1.6-7.1L2 9.2l7.1-.6z"/></svg>
+            للمتقدمين
+          </div>
+          <ul>
+            <li>في Netlify، غيّر اسم الموقع من العشوائي إلى اسمك: Site settings ثم Change site name.</li>
+            <li>اطلب من الذكاء الاصطناعي إضافة زر وضع ليلي، ثم اقرأ الكود وحدّد أي جزء منه في HTML وأيه في CSS وأيه في JS.</li>
+            <li>أضف زر «تحميل PDF» يفتح نافذة الطباعة: <code>&lt;button onclick="window.print()"&gt;</code>.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ============ 3. النظري والاختبار ============ -->
+      <section id="panel-quiz" role="tabpanel" aria-labelledby="tab-quiz" class="lesson-body prose" hidden data-print-title="التدريب النظري والاختبار">
+        <h2>تلخيص المفاهيم</h2>
+        <ul>
+          <li>الرابط يبقى حيًّا ويتفاعل ويفتح على الجوال، بخلاف ملف PDF المتجمّد.</li>
+          <li>ثلاثة ملفات بثلاث وظائف: <code>index.html</code> الهيكل، <code>style.css</code> الشكل، <code>script.js</code> الحركة.</li>
+          <li>وسم <code>&lt;link&gt;</code> يربط CSS، ووسم <code>&lt;script src&gt;</code> يربط JavaScript. بدونهما لا أثر لهما.</li>
+          <li>الاسم <code>index.html</code> إلزامي: هو ما يفتحه المتصفح ويطلبه Netlify.</li>
+          <li>نص؟ HTML. لون أو حجم؟ CSS. سلوك؟ JavaScript.</li>
+          <li>Netlify Drop: اسحب المجلد، خذ الرابط. الدرجة الثانية من سلّم النشر.</li>
+        </ul>
+
+        <h2>الاختبار</h2>
+        <p>عشرة أسئلة عن قراءة الكود ووظيفة كل ملف. اختر إجابة لترى التصحيح والشرح فورًا.</p>
+        <div id="quiz" class="quiz no-print"></div>
+        <div class="print-quiz"></div>
+      </section>
+
+      <div class="complete-bar" data-complete>
+        <p></p>
+        <button class="btn" type="button">تعليم الدرس كمكتمل</button>
+      </div>
+
+      <nav class="lesson-nav" aria-label="التنقل بين الدروس" data-lesson-nav></nav>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <span>بناء ونشر المواقع بالذكاء الاصطناعي · مادة جامعية</span>
+      <span><button class="btn btn-subtle no-print" type="button" onclick="window.print()">طباعة الدرس</button></span>
+    </div>
+  </footer>
+
+  <script>
+  window.QUIZ_DATA = [
+    {
+      scenario: "قراءة كود",
+      q: "تريد تغيير اسمك في أعلى البطاقة من «سارة» إلى «سارة أحمد». في أي ملف تبحث؟",
+      options: ["style.css", "script.js", "index.html", "أي ملف، كلها متشابهة"],
+      answer: 2,
+      explain: "النصوص الظاهرة في الصفحة جزء من الهيكل، والهيكل في HTML."
+    },
+    {
+      scenario: "قراءة كود",
+      q: "الزر أخضر وتريده أزرق. أين التعديل؟",
+      options: ["index.html", "style.css", "script.js", "في إعدادات المتصفح"],
+      answer: 1,
+      explain: "الألوان والخطوط والمسافات كلها شكل، والشكل في CSS. ابحث عن قيمة تبدأ بـ # وغيّرها."
+    },
+    {
+      scenario: "قراءة كود",
+      q: "عند الضغط على «المزيد» تظهر فقرة مخفية. الملف المسؤول عن هذا السلوك:",
+      options: ["index.html", "style.css", "script.js", "README.md"],
+      answer: 2,
+      explain: "ما يحدث حين يضغط الزائر هو تفاعل، والتفاعل في JavaScript."
+    },
+    {
+      scenario: "تشخيص",
+      q: "فتحت index.html فظهرت الصفحة بلا أي ألوان أو تنسيق، مجرد نص أسود. السبب الأرجح؟",
+      options: ["المتصفح قديم", "سطر <link> إلى ملف CSS مفقود أو المسار خاطئ", "ملف JavaScript فارغ", "الملف كبير جدًا"],
+      answer: 1,
+      explain: "بلا وسم <link rel=\"stylesheet\"> صحيح يعرض المتصفح الهيكل فقط. راجع اسم الملف والمسار في href."
+    },
+    {
+      scenario: "تشخيص",
+      q: "سحبت مجلدك إلى Netlify Drop فأخبرك أنه لا يجد الصفحة الرئيسية. أي اسم ملف كان سيحل المشكلة؟",
+      options: ["home.html", "main.html", "index.html", "Index.HTML"],
+      answer: 2,
+      explain: "index.html بالضبط، بحروف صغيرة، وفي جذر المجلد. هو الملف الذي تطلبه خدمات النشر والمتصفحات تلقائيًا."
+    },
+    {
+      scenario: "قراءة كود",
+      q: "ماذا يفعل السطر التالي في HTML؟ <script src=\"script.js\"><\/script>",
+      options: ["يغيّر لون الصفحة", "يربط ملف JavaScript بالصفحة", "ينشئ زرًا", "يترجم الصفحة"],
+      answer: 1,
+      explain: "وسم script مع src يخبر المتصفح: حمّل هذا الملف ونفّذه. بدونه يبقى script.js على القرص بلا أثر."
+    },
+    {
+      scenario: "قراءة كود",
+      q: "في CSS كُتب: h1 { color: #4a5a1e; }. ماذا يعني؟",
+      options: ["كل الفقرات تصبح بهذا اللون", "كل العناوين الرئيسية h1 تصبح بهذا اللون", "خلفية الصفحة تصبح بهذا اللون", "الروابط تصبح بهذا اللون"],
+      answer: 1,
+      explain: "قاعدة CSS: اختر عنصرًا (h1) ثم صف شكله (color). تطبق على كل عناصر h1 في الصفحة."
+    },
+    {
+      scenario: "مفهوم",
+      q: "لماذا يُفضَّل رابط للسيرة الذاتية على ملف PDF مُرسَل؟",
+      options: ["الرابط أجمل شكلًا", "الرابط يُحدَّث ويتفاعل ويفتح على الجوال بلا تنزيل", "ملف PDF ممنوع في التوظيف", "الرابط لا يحتاج إنترنت"],
+      answer: 1,
+      explain: "الملف يتجمّد لحظة إرساله. الرابط يبقى حيًّا، ويحمل أزرار تواصل ومشاريع قابلة للنقر، ويفتح فورًا على أي جهاز."
+    },
+    {
+      scenario: "قراءة كود",
+      q: "تريد أن تظهر الصفحة من اليمين إلى اليسار. أي إضافة في HTML تفعل ذلك؟",
+      options: ["<html lang=\"ar\" dir=\"rtl\">", "<body rtl>", "direction: عربي في CSS", "لا شيء، المتصفح يعرف تلقائيًا"],
+      answer: 0,
+      explain: "الخاصية dir=\"rtl\" على وسم html تقلب اتجاه الصفحة كلها. lang=\"ar\" تخبر المتصفح باللغة أيضًا."
+    },
+    {
+      scenario: "سلّم النشر",
+      q: "ما الفرق الجوهري بين نشر الدرس الأول (رابط الأداة) ونشر اليوم (Netlify Drop)؟",
+      options: ["لا فرق، كلاهما رابط", "اليوم الملفات على جهازك وأنت من يرفعها", "اليوم الموقع ديناميكي", "اليوم يحتاج دومينًا مدفوعًا"],
+      answer: 1,
+      explain: "في الدرس الأول كانت الملفات عند الأداة. اليوم تملك المجلد، تعدّله بيدك، وترفعه بنفسك. هذا معنى الصعود درجة في السلّم."
+    }
+  ];
+  </script>
+  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/quiz.js"></script>
+</body>
+</html>

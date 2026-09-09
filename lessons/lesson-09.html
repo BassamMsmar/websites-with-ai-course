@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-root="../">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>الدرس 9 · موقع باسمي: الدومين الخاص | بناء ونشر المواقع بالذكاء الاصطناعي</title>
+  <meta name="description" content="اختيار وشراء الدومين وربطه بالاستضافة، Cloudflare: النيمسيرفر و CDN و SSL والكاش والحماية، وأساسيات SEO والتحليلات.">
+  <script>(function(){try{var t=localStorage.getItem('bnm-theme');if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}})();</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%234a5a1e'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='monospace' font-size='14' font-weight='700' fill='white'%3E%3C/%3E%3C/text%3E%3C/svg%3E">
+</head>
+<body data-lesson="9">
+  <a class="skip-link" href="#main">تخطّ إلى المحتوى</a>
+
+  <header class="topbar">
+    <div class="container">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark" aria-hidden="true">&lt;/&gt;</span>
+        <span>بناء ونشر المواقع<span class="brand-sub">بالذكاء الاصطناعي</span></span>
+      </a>
+      <nav class="nav" id="nav" aria-label="الأقسام">
+        <a href="../index.html">الرئيسية</a>
+        <a href="../index.html#lessons" aria-current="page">الدروس</a>
+        <a href="../pages/glossary.html">المسرد</a>
+        <a href="../pages/resources.html">الموارد</a>
+        <a href="../pages/about.html">عن المادة</a>
+      </nav>
+      <div class="topbar-tools">
+        <div class="ring" role="img" aria-label="نسبة الإنجاز"><span>0%</span></div>
+        <button class="icon-btn" type="button" data-theme-toggle aria-label="التبديل إلى الوضع الليلي">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+        <button class="icon-btn nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="القائمة">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container lesson-layout">
+    <aside class="sidebar" aria-label="قائمة الدروس">
+      <details>
+        <summary>قائمة الدروس</summary>
+        <h2>المحاضرات</h2>
+        <ul class="side-list" data-side-list></ul>
+      </details>
+      <div class="side-progress">
+        <div class="row"><span>تقدّمك</span><strong data-progress-percent>0%</strong></div>
+        <div class="bar" aria-hidden="true"><i data-progress-bar></i></div>
+        <div class="row"><span>دروس مكتملة</span><span data-progress-text>0 / 10</span></div>
+      </div>
+    </aside>
+
+    <main id="main">
+      <header class="lesson-head">
+        <div class="kicker">
+          <span class="num-big">المحاضرة 09</span>
+          <span class="badge">90 دقيقة</span>
+          <span class="badge badge-project">درجة النشر 5: Cloudflare</span>
+        </div>
+        <h1>موقع باسمي: الدومين الخاص</h1>
+        <p class="meta">
+          <span>اختيار الدومين وشراؤه وربطه</span>
+          <span>Cloudflare: CDN و SSL والحماية</span>
+          <span>أن يجدك Google وتعرف من زارك</span>
+        </p>
+      </header>
+
+      <div class="tabs" role="tablist" aria-label="أقسام الدرس">
+        <button class="tab" role="tab" id="tab-content" aria-controls="panel-content" aria-selected="true" data-tab="content"><span class="n">1</span><span class="long">محتوى الدرس</span><span class="short">المحتوى</span></button>
+        <button class="tab" role="tab" id="tab-practice" aria-controls="panel-practice" aria-selected="false" data-tab="practice" tabindex="-1"><span class="n">2</span><span class="long">التدريب العملي</span><span class="short">العملي</span></button>
+        <button class="tab" role="tab" id="tab-quiz" aria-controls="panel-quiz" aria-selected="false" data-tab="quiz" tabindex="-1"><span class="n">3</span><span class="long">التدريب النظري والاختبار</span><span class="short">الاختبار</span></button>
+      </div>
+
+      <!-- ============ 1. المحتوى ============ -->
+      <section id="panel-content" role="tabpanel" aria-labelledby="tab-content" class="lesson-body prose" data-print-title="محتوى الدرس">
+        <h2>الدرجة الأخيرة</h2>
+        <p>حتى الآن كانت روابطك تحمل اسم غيرك: <code>netlify.app</code>، <code>github.io</code>، أو دومين المدرّب. اليوم يصبح الرابط باسمك أنت، ومعه بريد باسمك، وطبقة حماية وسرعة اسمها Cloudflare. هذه الدرجة الخامسة، وبعدها لا تحتاج أحدًا لتنشر.</p>
+
+        <h2>اختيار الدومين: خمس قواعد</h2>
+        <ol>
+          <li><strong>قصير ويُنطق كما يُكتب.</strong> إن اضطررت لتهجئته في الهاتف فهو طويل. <code>waha-cafe.com</code> أفضل من <code>thewahacoffeehouse-official.com</code>.</li>
+          <li><strong>بلا أرقام ولا شرطات</strong> إن أمكن. «هل هو رقم 4 أم كلمة for؟» سؤال يخسّرك زوارًا.</li>
+          <li><strong>الامتداد حسب الجمهور:</strong> <code>.com</code> للعالم والافتراضي، <code>.sa</code> أو <code>.com.sa</code> للجهات السعودية الرسمية (يحتاج سجلًا تجاريًا)، <code>.net</code> و<code>.org</code> بدائل مقبولة، والباقي (<code>.xyz</code>، <code>.site</code>) رخيص لكنه يبدو مؤقتًا.</li>
+          <li><strong>افحص الاسم على وسائل التواصل</strong> قبل الشراء: إن كان <code>@wahacafe</code> محجوزًا في إنستغرام فاختر غيره ليتطابق كل شيء.</li>
+          <li><strong>احجز الامتدادين</strong> إن كان المشروع جادًا: <code>.com</code> و<code>.sa</code> مثلًا، ووجّه أحدهما للآخر.</li>
+        </ol>
+
+        <h3>الشراء: ما تدفعه وما تنتبه له</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>البند</th><th>التفصيل</th></tr></thead>
+            <tbody>
+              <tr><td><strong>السعر</strong></td><td>10 إلى 15 دولارًا سنويًا لـ .com. السنة الأولى قد تكون أرخص، والتجديد بالسعر الكامل. اقرأ سعر التجديد قبل الشراء.</td></tr>
+              <tr><td><strong>من أين</strong></td><td>مسجّل نطاقات (Namecheap، Cloudflare Registrar، GoDaddy) أو شركة الاستضافة نفسها. الفصل بينهما أفضل: إن تركت الاستضافة يبقى الدومين معك.</td></tr>
+              <tr><td><strong>الخصوصية (WHOIS Privacy)</strong></td><td>تُخفي اسمك وبريدك من السجل العام. مجانية عند معظم المسجّلين. فعّلها.</td></tr>
+              <tr><td><strong>التجديد التلقائي</strong></td><td>فعّله. الدومين المنتهي يُباع لغيرك خلال أسابيع، وصلني كثير من «موقعي اختفى» سببها هذا.</td></tr>
+              <tr><td><strong>الملكية</strong></td><td>الحساب باسم صاحب المشروع لا باسمك أنت. إن بنيت لعميل، أنشئ الحساب ببريده وأعطه كلمة المرور.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>الربط: طريقتان</h2>
+        <p>من الدرس 7 تعرف الأداة: سجلات DNS. الفرق فقط في وجهة السجل.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>الوجهة</th><th>ماذا تكتب في DNS</th><th>ماذا تفعل عند الوجهة</th></tr></thead>
+            <tbody>
+              <tr><td><strong>استضافة مشتركة</strong> (الدرس 7)</td><td>وجّه Nameservers إلى الاستضافة، أو أضف سجل A إلى IP الاستضافة</td><td>أضف الدومين في hPanel ← Domains، وارفع الملفات إلى public_html الخاص به</td></tr>
+              <tr><td><strong>GitHub Pages</strong> (الدرس 6)</td><td>سجل CNAME: <code>www → اسمك.github.io</code>، وأربعة سجلات A للجذر إلى عناوين GitHub الأربعة</td><td>Settings ← Pages ← Custom domain: اكتب الدومين، وفعّل Enforce HTTPS</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>أيهما؟ إن كان الموقع ثابتًا ولا تحتاج بريدًا من الاستضافة: GitHub Pages مجاني وأسرع تحديثًا. إن اشترى العميل حزمة استضافة: استخدمها. وفي الحالتين يمكن وضع Cloudflare أمامه.</p>
+
+        <h2>Cloudflare: طبقة أمام موقعك</h2>
+        <p>Cloudflare خدمة تضع نفسها <em>بين</em> الزائر وموقعك. الزائر يتصل بـ Cloudflare، وCloudflare يتصل بموقعك عند الحاجة. لماذا تريد وسيطًا؟ لأربعة أشياء تحصل عليها مجانًا:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>الميزة</th><th>ما تعنيه</th><th>الأثر الذي تراه</th></tr></thead>
+            <tbody>
+              <tr><td><strong>CDN</strong> (شبكة توزيع)</td><td>نسخ من ملفاتك في مئات المدن حول العالم. الزائر في الرياض يأخذها من الرياض لا من أوروبا</td><td>الموقع أسرع، خصوصًا الصور</td></tr>
+              <tr><td><strong>SSL</strong></td><td>شهادة https تلقائية بين الزائر وCloudflare، بغض النظر عن الاستضافة</td><td>القفل دائمًا، حتى لو تعطلت شهادة الاستضافة</td></tr>
+              <tr><td><strong>الكاش (Cache)</strong></td><td>يحتفظ بنسخة من صفحاتك ويقدّمها بلا الرجوع للاستضافة</td><td>أسرع، وأقل حملًا. لكن بعد التحديث قد ترى النسخة القديمة: اضغط Purge Cache</td></tr>
+              <tr><td><strong>الحماية</strong></td><td>يوقف الهجمات الآلية والروبوتات المزعجة قبل وصولها</td><td>موقعك يبقى يعمل حين يُضرب</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>كيف تفعّله بثلاث خطوات</h3>
+        <ol>
+          <li>أنشئ حسابًا في <a href="https://dash.cloudflare.com/sign-up" target="_blank" rel="noopener">Cloudflare</a> وأضف دومينك. سيقرأ سجلات DNS الحالية تلقائيًا ويعرضها.</li>
+          <li>يعطيك <strong>Nameservers</strong> اثنين (مثل <code>ada.ns.cloudflare.com</code>). اذهب إلى مسجّل الدومين وبدّل الـ Nameservers القديمة بهما. الآن دفتر الهواتف عند Cloudflare.</li>
+          <li>في SSL/TLS اختر <strong>Full</strong> (إن كانت الاستضافة لها شهادة) أو <strong>Flexible</strong> (إن لم يكن). انتظر الانتشار.</li>
+        </ol>
+        <div class="callout callout-warn">
+          <div class="callout-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3l9 16H3l9-16zM12 10v4M12 17h.01"/></svg>
+            السحابة البرتقالية
+          </div>
+          <p>بجانب كل سجل DNS في Cloudflare سحابة: <strong>برتقالية</strong> تعني «مرّ عبر Cloudflare» (CDN وحماية)، و<strong>رمادية</strong> تعني «DNS فقط». اجعل سجل الموقع برتقاليًا، وسجل البريد (MX) رماديًا دائمًا وإلا انقطع البريد. هذا أشهر خطأ عند تفعيل Cloudflare.</p>
+        </div>
+
+        <h2>أن يجدك Google: أساسيات SEO</h2>
+        <p>تحسين محركات البحث (SEO) موضوع كامل، لكن 80% من نتيجته تأتي من ستة أشياء في يدك منذ الدرس 2:</p>
+        <ol>
+          <li><strong>عنوان الصفحة</strong> <code>&lt;title&gt;</code>: 50 إلى 60 حرفًا، الكلمة التي يبحث عنها الناس أولًا: «عيادة أسنان في الدمام | اسم العيادة».</li>
+          <li><strong>الوصف</strong> <code>&lt;meta name="description"&gt;</code>: جملتان تظهران تحت العنوان في نتائج البحث. مقنعتان لا محشوتان.</li>
+          <li><strong>عنوان رئيسي واحد</strong> <code>&lt;h1&gt;</code> في كل صفحة، وعناوين فرعية <code>&lt;h2&gt;</code> بترتيب منطقي.</li>
+          <li><strong>نص بديل للصور</strong> <code>alt</code>: Google لا يرى الصور، يقرأ الوصف.</li>
+          <li><strong>السرعة والجوال</strong>: ما فعلته في الدرسين 3 و4. Google يرتّب النسخة الجوالة.</li>
+          <li><strong>أخبر Google بوجودك</strong>: <a href="https://search.google.com/search-console" target="_blank" rel="noopener">Search Console</a>، أضف الدومين، أثبت الملكية بسجل TXT (تذكره من الدرس 7)، وأرسل رابط الموقع. خلال أيام تظهر في البحث.</li>
+        </ol>
+        <p>ما لا ينفع: حشو الكلمات، شراء روابط، أو كتابة نص مخفي. Google يعاقب عليها.</p>
+
+        <h2>من زارك؟ التحليلات</h2>
+        <p>التحليلات تجيب: كم زائرًا، من أي مدينة، من الجوال أم الحاسب، وأي صفحة تُقرأ. خياران:</p>
+        <ul>
+          <li><strong>Cloudflare Web Analytics</strong>: مجاني، بلا كوكيز، بلا لافتة موافقة، ويكفي معظم المواقع الصغيرة. يُفعَّل بنقرة من لوحة Cloudflare.</li>
+          <li><strong>Google Analytics</strong>: أعمق وأعقد، ويحتاج سطر كود في <code>&lt;head&gt;</code> ولافتة كوكيز في بعض الدول. للمواقع التي تبيع أو تعلن.</li>
+        </ul>
+
+        <div class="callout callout-advanced">
+          <div class="callout-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7.1L12 17.3 5.8 21l1.6-7.1L2 9.2l7.1-.6z"/></svg>
+            للمتقدمين
+          </div>
+          <p>Cloudflare يستضيف المواقع الثابتة أيضًا: <strong>Cloudflare Pages</strong>. اربطه بمستودع GitHub وسينشر مع كل push مثل GitHub Pages، لكن على شبكة CDN مباشرة وبدومينك بلا خطوة الربط. وفي Cloudflare جرّب <strong>Page Rules</strong> لتحويل <code>www</code> إلى الجذر أو العكس بقاعدة واحدة.</p>
+        </div>
+
+        <h2>مسرد الدرس</h2>
+        <dl class="terms">
+          <div><dt>مسجّل النطاقات <span>Registrar</span></dt><dd>الشركة التي تستأجر منها الدومين. يُفضَّل فصلها عن الاستضافة.</dd></div>
+          <div><dt>خصوصية WHOIS <span>WHOIS Privacy</span></dt><dd>إخفاء بيانات المالك من السجل العام للدومينات.</dd></div>
+          <div><dt>Cloudflare <span></span></dt><dd>خدمة تقف بين الزائر وموقعك وتعطي CDN و SSL وكاش وحماية مجانًا.</dd></div>
+          <div><dt>CDN <span>Content Delivery Network</span></dt><dd>نسخ من ملفاتك في مدن كثيرة ليأخذها الزائر من الأقرب إليه.</dd></div>
+          <div><dt>الكاش <span>Cache</span></dt><dd>نسخة محفوظة من الصفحة تُقدَّم بسرعة. بعد التحديث: Purge Cache.</dd></div>
+          <div><dt>السحابة البرتقالية <span>Proxied</span></dt><dd>السجل يمر عبر Cloudflare. الرمادية DNS فقط. البريد رمادي دائمًا.</dd></div>
+          <div><dt>SEO <span>Search Engine Optimization</span></dt><dd>جعل الموقع مفهومًا لمحركات البحث: عنوان، وصف، h1، alt، سرعة، جوال.</dd></div>
+          <div><dt>Search Console <span></span></dt><dd>أداة Google المجانية لتسجيل موقعك ومتابعة ظهوره في البحث.</dd></div>
+          <div><dt>التحليلات <span>Analytics</span></dt><dd>أرقام الزيارات: كم، من أين، بأي جهاز، وأي صفحة.</dd></div>
+        </dl>
+      </section>
+
+      <!-- ============ 2. التدريب العملي ============ -->
+      <section id="panel-practice" role="tabpanel" aria-labelledby="tab-practice" class="lesson-body prose" hidden data-print-title="التدريب العملي">
+        <p>مخرج اليوم: <strong>أحد مشاريعك على دومين باسمك</strong>، خلف Cloudflare بقفل https، مسجّل في Search Console، وله بريد باسم النطاق.</p>
+        <div class="callout callout-note">
+          <div class="callout-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM12 8v4M12 16h.01"/></svg>
+            الدومين الحقيقي
+          </div>
+          <p>شراء دومين يكلف نحو 10 دولارات. المدرّب يحدد: إلزامي للجميع، أم اختياري مع بديل. البديل المجاني في صندوق «إذا تعثّرت». لا تشترِ قبل أن يقول المدرّب.</p>
+        </div>
+
+        <h2>الجزء الأول: اختر واشترِ (20 دقيقة)</h2>
+        <ol class="steps">
+          <li><strong>اكتب ثلاثة أسماء مرشحة</strong> بالقواعد الخمس. افحصها في <a href="https://www.namecheap.com/domains/domain-name-search/" target="_blank" rel="noopener">أداة بحث النطاقات</a> وفي إنستغرام وتويتر. اختر ما يتوفر في كلها.</li>
+          <li><strong>اشترِ من مسجّل</strong> (Namecheap أو Cloudflare Registrar) لا من الاستضافة. فعّل WHOIS Privacy والتجديد التلقائي. سجّل سعر التجديد في ملاحظاتك.</li>
+          <li><strong>لا تلمس DNS بعد.</strong> سنفعل ذلك من Cloudflare.</li>
+        </ol>
+
+        <h2>الجزء الثاني: Cloudflare والربط (35 دقيقة)</h2>
+        <ol class="steps">
+          <li><strong>أضف الدومين في Cloudflare</strong> (الخطة المجانية). سيعرض السجلات التي وجدها. احذف ما لا تعرفه من سجلات الحجز الافتراضية (Parking).</li>
+          <li><strong>بدّل الـ Nameservers</strong> عند المسجّل بالاثنين اللذين أعطاك Cloudflare. احفظ. سيصلك بريد من Cloudflare حين ينشط الدومين (دقائق إلى ساعات).</li>
+          <li><strong>أضف سجلات الموقع.</strong><p>إن كانت الوجهة GitHub Pages: سجل CNAME لـ <code>www</code> إلى <code>اسمك.github.io</code>، وأربعة سجلات A للجذر (<code>@</code>) إلى عناوين GitHub الأربعة المذكورة في <a href="https://docs.github.com/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site" target="_blank" rel="noopener">توثيق GitHub</a>. إن كانت استضافة مشتركة: سجل A إلى IP الاستضافة كما في hPanel.</p></li>
+          <li><strong>أخبر الوجهة بالدومين.</strong><p>GitHub: Settings ← Pages ← Custom domain ← اكتب الدومين ← Save، ثم فعّل Enforce HTTPS بعد دقائق. hPanel: Domains ← Add domain.</p></li>
+          <li><strong>SSL/TLS في Cloudflare: Full.</strong> ثم في Edge Certificates فعّل Always Use HTTPS.</li>
+          <li><strong>افتح الدومين</strong> من جوالك ببيانات الشبكة. القفل موجود؟ الموقع يظهر؟ إن ظهرت نسخة قديمة أو صفحة الحجز: Caching ← Purge Everything.</li>
+          <li><strong>فعّل Web Analytics</strong> من لوحة Cloudflare بنقرة، وزر موقعك عشر مرات من أجهزة مختلفة لترى الأرقام تتحرك.</li>
+        </ol>
+
+        <h2>الجزء الثالث: البريد وGoogle (35 دقيقة)</h2>
+        <ol class="steps">
+          <li><strong>بريد باسم النطاق.</strong><p>الخيار المجاني: <strong>Cloudflare Email Routing</strong>: يحوّل <code>info@دومينك</code> إلى بريدك الشخصي. Email ← Email Routing ← أضف العنوان والوجهة. سيضيف سجلات MX تلقائيًا (رمادية). أرسل رسالة تجريبية إلى العنوان الجديد.</p></li>
+          <li><strong>سجّل في Search Console.</strong><p>أضف الدومين (نوع Domain)، انسخ سجل TXT الذي يطلبه، أضفه في DNS في Cloudflare، ثم Verify. قد يحتاج دقائق.</p></li>
+          <li><strong>راجع SEO الصفحة الرئيسية.</strong><p>افتح <code>index.html</code>: هل <code>&lt;title&gt;</code> يحمل ما يبحث عنه الناس؟ هل يوجد <code>meta description</code>؟ هل <code>h1</code> واحد فقط؟ هل لكل صورة alt؟ أصلح، لقطة، push.</p></li>
+          <li><strong>افحص السرعة</strong> في <a href="https://pagespeed.web.dev" target="_blank" rel="noopener">PageSpeed Insights</a> بالدومين الجديد. قارن الرقم مع فحص الدرس 4 إن كنت فعلته: هذا أثر CDN.</li>
+          <li><strong>أرسل للمدرّب:</strong> الدومين، لقطة شاشة من Cloudflare تُظهر السجلات، ولقطة من Search Console بعد التحقق.</li>
+        </ol>
+
+        <div class="callout callout-stuck">
+          <div class="callout-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3l9 16H3l9-16zM12 10v4M12 17h.01"/></svg>
+            إذا تعثّرت
+          </div>
+          <ul>
+            <li><strong>لا أستطيع شراء دومين:</strong> نفّذ كل شيء على نطاق GitHub Pages المجاني: SEO في الصفحة، Search Console بنوع «URL prefix» (يقبل رابط github.io)، وPageSpeed. أما Cloudflare فتابع زميلًا يملك دومينًا وسجّل الخطوات. تُقبل هذه النسخة كاملة.</li>
+            <li><strong>Cloudflare يقول Pending منذ ساعات:</strong> الـ Nameservers لم تُحفظ عند المسجّل، أو لم تنتشر. تأكد من الحفظ ثم انتظر.</li>
+            <li><strong>الموقع يظهر «Too many redirects»:</strong> اخترت Flexible والاستضافة تفرض https. بدّل إلى Full.</li>
+            <li><strong>البريد توقف بعد Cloudflare:</strong> سجل MX صار برتقاليًا. اجعله رماديًا.</li>
+            <li><strong>GitHub يقول Domain is not properly configured:</strong> سجلات A الأربعة ناقصة أو CNAME خاطئ. انتظر دقائق بعد التصحيح ثم Check again.</li>
+          </ul>
+        </div>
+
+        <div class="callout callout-advanced">
+          <div class="callout-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7.1L12 17.3 5.8 21l1.6-7.1L2 9.2l7.1-.6z"/></svg>
+            للمتقدمين
+          </div>
+          <ul>
+            <li>انشر المشروع نفسه على Cloudflare Pages من مستودع GitHub، وقارن: أي الاثنين أسهل ربطًا بالدومين؟</li>
+            <li>أضف نطاقًا فرعيًا لكل مشروع: <code>card.دومينك</code>، <code>portfolio.دومينك</code>، <code>slides.دومينك</code>. كل واحد سجل CNAME.</li>
+            <li>أنشئ ملف <code>sitemap.xml</code> بروابط صفحاتك وأرسله في Search Console.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ============ 3. النظري والاختبار ============ -->
+      <section id="panel-quiz" role="tabpanel" aria-labelledby="tab-quiz" class="lesson-body prose" hidden data-print-title="التدريب النظري والاختبار">
+        <h2>تلخيص المفاهيم</h2>
+        <ul>
+          <li>الدومين: قصير، يُنطق كما يُكتب، بلا أرقام، امتداد حسب الجمهور، متطابق مع حسابات التواصل. اشترِ من مسجّل مستقل، فعّل الخصوصية والتجديد التلقائي، والحساب باسم صاحب المشروع.</li>
+          <li>الربط بسجلات DNS: A إلى IP الاستضافة، أو CNAME + أربعة A إلى GitHub Pages، ثم أخبر الوجهة بالدومين.</li>
+          <li>Cloudflare طبقة أمام الموقع: CDN للسرعة، SSL تلقائي، كاش (Purge بعد التحديث)، وحماية. يُفعَّل بتبديل Nameservers.</li>
+          <li>السحابة البرتقالية للموقع، الرمادية للبريد. Full لا Flexible إن كانت الاستضافة لها شهادة.</li>
+          <li>SEO: title، description، h1 واحد، alt، سرعة وجوال، وتسجيل في Search Console بسجل TXT.</li>
+          <li>التحليلات: Cloudflare Web Analytics بلا كوكيز يكفي المواقع الصغيرة.</li>
+        </ul>
+
+        <h2>الاختبار</h2>
+        <p>عشرة أسئلة عن DNS و SSL و Cloudflare. اختر إجابة لترى التصحيح والشرح فورًا.</p>
+        <div id="quiz" class="quiz no-print"></div>
+        <div class="print-quiz"></div>
+      </section>
+
+      <div class="complete-bar" data-complete>
+        <p></p>
+        <button class="btn" type="button">تعليم الدرس كمكتمل</button>
+      </div>
+
+      <nav class="lesson-nav" aria-label="التنقل بين الدروس" data-lesson-nav></nav>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <span>بناء ونشر المواقع بالذكاء الاصطناعي · مادة جامعية</span>
+      <span><button class="btn btn-subtle no-print" type="button" onclick="window.print()">طباعة الدرس</button></span>
+    </div>
+  </footer>
+
+  <script>
+  window.QUIZ_DATA = [
+    {
+      scenario: "اختيار الدومين",
+      q: "أي دومين أفضل لمقهى اسمه «الواحة»؟",
+      options: ["the-waha-coffee-house-2024.com", "wahacafe.com", "waha4u.xyz", "الواحة.com"],
+      answer: 1,
+      explain: "قصير، يُنطق كما يُكتب، بلا أرقام ولا شرطات، وامتداد .com الافتراضي. الأرقام والشرطات والامتدادات الغريبة تخسّر زوارًا."
+    },
+    {
+      scenario: "الشراء",
+      q: "بنيت موقعًا لعميل واشتريت الدومين بحسابك الشخصي. ما المشكلة؟",
+      options: ["لا مشكلة", "الدومين ملك حسابك لا العميل، وإن اختفيت أو اختلفتما يفقد موقعه", "السعر أعلى", "لا يمكن ربطه بـ Cloudflare"],
+      answer: 1,
+      explain: "الدومين أصل يملكه صاحب المشروع. الحساب ببريده، وأنت تدير منه. هذا يحميه ويحميك."
+    },
+    {
+      scenario: "Cloudflare",
+      q: "ما الذي يجعل Cloudflare يعمل فعليًا أمام موقعك؟",
+      options: ["تثبيت برنامج على الاستضافة", "تبديل Nameservers عند المسجّل إلى Nameservers الخاصة بـ Cloudflare", "إضافة سطر في index.html", "شراء خطة مدفوعة"],
+      answer: 1,
+      explain: "بتبديل Nameservers يصبح دفتر الهواتف عند Cloudflare، فيمر كل زائر عبره أولًا. بلا هذه الخطوة لا شيء يتغير."
+    },
+    {
+      scenario: "تشخيص",
+      q: "بعد تفعيل Cloudflare توقف بريد info@دومينك عن الوصول. السبب الأرجح؟",
+      options: ["انتهى الدومين", "سجل MX صار برتقاليًا (يمر عبر Cloudflare) بدل رمادي", "SSL معطل", "الكاش قديم"],
+      answer: 1,
+      explain: "البريد لا يمر عبر وسيط الويب. سجل MX (وأي سجل بريد) يجب أن يكون رماديًا: DNS فقط. أشهر خطأ عند تفعيل Cloudflare."
+    },
+    {
+      scenario: "تشخيص",
+      q: "حدّثت الموقع وعملت push، لكن الزوار يرون النسخة القديمة رغم أن GitHub يعرض الجديدة. ما الحل؟",
+      options: ["إعادة شراء الدومين", "Purge Cache في Cloudflare", "تغيير Nameservers", "حذف المستودع"],
+      answer: 1,
+      explain: "الكاش يحتفظ بنسخة قديمة ويقدّمها بسرعة. بعد كل تحديث مهم: Caching ← Purge Everything."
+    },
+    {
+      scenario: "SSL",
+      q: "الموقع يعرض «Too many redirects» بعد تفعيل Cloudflare. الاستضافة تفرض https. ما الإعداد الصحيح؟",
+      options: ["SSL/TLS: Flexible", "SSL/TLS: Full", "إيقاف SSL في الاستضافة", "إيقاف Cloudflare"],
+      answer: 1,
+      explain: "Flexible يجعل Cloudflare يتصل بالاستضافة بلا تشفير، والاستضافة تعيده إلى https، فتدور الحلقة. Full يستخدم شهادة الاستضافة ويحل المشكلة."
+    },
+    {
+      scenario: "DNS",
+      q: "تريد ربط دومينك بمستودع GitHub Pages. أي سجلات تضيف؟",
+      options: ["سجل MX فقط", "سجل CNAME لـ www إلى اسمك.github.io وأربعة سجلات A للجذر إلى عناوين GitHub", "سجل TXT فقط", "لا شيء، GitHub يكتشف الدومين وحده"],
+      answer: 1,
+      explain: "CNAME للاسم الفرعي www، وA للجذر لأن الجذر لا يقبل CNAME. ثم تكتب الدومين في إعدادات Pages."
+    },
+    {
+      scenario: "SEO",
+      q: "أي إجراء يؤثر فعليًا في ظهور موقع عيادة في بحث Google؟",
+      options: ["كتابة كلمة «أسنان» مئة مرة بلون أبيض مخفي", "عنوان صفحة واضح مثل «عيادة أسنان في الدمام | اسم العيادة» ووصف meta وh1 واحد وalt للصور", "شراء روابط من مواقع أجنبية", "تغيير الخط"],
+      answer: 1,
+      explain: "العناصر الأساسية في HTML هي ما يقرؤه Google. الحشو والنص المخفي والروابط المشتراة تُعاقَب."
+    },
+    {
+      scenario: "Search Console",
+      q: "طلب Search Console إثبات ملكية الدومين. كيف؟",
+      options: ["إرسال صورة الهوية", "إضافة سجل TXT بالقيمة التي أعطاك إياها في DNS ثم Verify", "دفع رسوم", "تغيير الاستضافة"],
+      answer: 1,
+      explain: "سجل TXT هو ملاحظة نصية في DNS لا يستطيع إضافتها إلا مالك الدومين. تعلّمته في الدرس 7 وهذا استخدامه الأشهر."
+    },
+    {
+      scenario: "CDN",
+      q: "ما الذي يفعله CDN تحديدًا؟",
+      options: ["يشفّر الاتصال", "يحفظ نسخًا من ملفاتك في مدن كثيرة ليأخذها الزائر من الأقرب إليه", "يحوّل الاسم إلى رقم", "يرسل البريد"],
+      answer: 1,
+      explain: "شبكة توزيع المحتوى: الزائر في الرياض يأخذ الصور من الرياض لا من أوروبا. التشفير SSL، والاسم إلى رقم DNS."
+    }
+  ];
+  </script>
+  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/quiz.js"></script>
+</body>
+</html>

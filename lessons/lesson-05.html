@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-root="../">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>الدرس 5 · موقع العروض التقديمية | بناء ونشر المواقع بالذكاء الاصطناعي</title>
+  <meta name="description" content="الموقع بديلًا لملف العرض: شرائح تفتح من المتصفح، تنقّل بالكيبورد، وضع العرض والطباعة PDF، ومقارنة صريحة مع PowerPoint.">
+  <script>(function(){try{var t=localStorage.getItem('bnm-theme');if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}})();</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%234a5a1e'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='monospace' font-size='14' font-weight='700' fill='white'%3E%3C/%3E%3C/text%3E%3C/svg%3E">
+</head>
+<body data-lesson="5">
+  <a class="skip-link" href="#main">تخطّ إلى المحتوى</a>
+
+  <header class="topbar">
+    <div class="container">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark" aria-hidden="true">&lt;/&gt;</span>
+        <span>بناء ونشر المواقع<span class="brand-sub">بالذكاء الاصطناعي</span></span>
+      </a>
+      <nav class="nav" id="nav" aria-label="الأقسام">
+        <a href="../index.html">الرئيسية</a>
+        <a href="../index.html#lessons" aria-current="page">الدروس</a>
+        <a href="../pages/glossary.html">المسرد</a>
+        <a href="../pages/resources.html">الموارد</a>
+        <a href="../pages/about.html">عن المادة</a>
+      </nav>
+      <div class="topbar-tools">
+        <div class="ring" role="img" aria-label="نسبة الإنجاز"><span>0%</span></div>
+        <button class="icon-btn" type="button" data-theme-toggle aria-label="التبديل إلى الوضع الليلي">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+        <button class="icon-btn nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="القائمة">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container lesson-layout">
+    <aside class="sidebar" aria-label="قائمة الدروس">
+      <details>
+        <summary>قائمة الدروس</summary>
+        <h2>المحاضرات</h2>
+        <ul class="side-list" data-side-list></ul>
+      </details>
+      <div class="side-progress">
+        <div class="row"><span>تقدّمك</span><strong data-progress-percent>0%</strong></div>
+        <div class="bar" aria-hidden="true"><i data-progress-bar></i></div>
+        <div class="row"><span>دروس مكتملة</span><span data-progress-text>0 / 10</span></div>
+      </div>
+    </aside>
+
+    <main id="main">
+      <header class="lesson-head">
+        <div class="kicker">
+          <span class="num-big">المحاضرة 05</span>
+          <span class="badge">90 دقيقة</span>
+          <span class="badge badge-project">مشروع 4</span>
+        </div>
+        <h1>موقع العروض التقديمية</h1>
+        <p class="meta">
+          <span>الموقع بديلًا لملف العرض</span>
+          <span>تنقّل بالكيبورد ووضع العرض</span>
+          <span>متى الموقع أفضل ومتى الملف</span>
+        </p>
+      </header>
+
+      <div class="tabs" role="tablist" aria-label="أقسام الدرس">
+        <button class="tab" role="tab" id="tab-content" aria-controls="panel-content" aria-selected="true" data-tab="content"><span class="n">1</span><span class="long">محتوى الدرس</span><span class="short">المحتوى</span></button>
+        <button class="tab" role="tab" id="tab-practice" aria-controls="panel-practice" aria-selected="false" data-tab="practice" tabindex="-1"><span class="n">2</span><span class="long">التدريب العملي</span><span class="short">العملي</span></button>
+        <button class="tab" role="tab" id="tab-quiz" aria-controls="panel-quiz" aria-selected="false" data-tab="quiz" tabindex="-1"><span class="n">3</span><span class="long">التدريب النظري والاختبار</span><span class="short">الاختبار</span></button>
+      </div>
+
+      <!-- ============ 1. المحتوى ============ -->
+      <section id="panel-content" role="tabpanel" aria-labelledby="tab-content" class="lesson-body prose" data-print-title="محتوى الدرس">
+        <h2>موقف تعرفه</h2>
+        <p>تصل إلى القاعة بملف PowerPoint على فلاشة. الحاسوب هناك نسخته أقدم فتنكسر الخطوط، أو الفلاشة لا تُقرأ، أو الفيديو المضمّن لا يعمل. تضيع خمس دقائق أمام الجميع.</p>
+        <p>البديل: <strong>رابط</strong>. تفتحه من أي متصفح على أي جهاز، حتى من جوالك موصولًا بالشاشة. لا برامج، لا نسخ، لا خطوط مكسورة. هذا هو موقع العروض التقديمية: <strong>صفحة واحدة، كل قسم فيها شريحة، والأسهم تنقلك بينها.</strong></p>
+
+        <h2>كيف يعمل من الداخل</h2>
+        <p>لا سحر. ثلاثة أشياء تعلّمتها سابقًا:</p>
+        <ol>
+          <li><strong>HTML:</strong> كل شريحة وسم <code>&lt;section&gt;</code>.</li>
+          <li><strong>CSS:</strong> كل شريحة بارتفاع الشاشة كاملًا (<code>100vh</code>)، وتظهر واحدة فقط في كل مرة.</li>
+          <li><strong>JavaScript:</strong> يستمع للأسهم ويبدّل الشريحة الظاهرة.</li>
+        </ol>
+<pre><code>&lt;!-- HTML: ثلاث شرائح --&gt;
+&lt;section class="slide"&gt;&lt;h1&gt;بناء ونشر المواقع&lt;/h1&gt;&lt;/section&gt;
+&lt;section class="slide" hidden&gt;&lt;h2&gt;لماذا رابط بدل ملف؟&lt;/h2&gt;&lt;/section&gt;
+&lt;section class="slide" hidden&gt;&lt;h2&gt;شكرًا&lt;/h2&gt;&lt;/section&gt;
+
+/* CSS: الشريحة تملأ الشاشة */
+.slide { height: 100vh; display: grid; place-items: center; }
+
+// JavaScript: الأسهم تبدّل الشريحة
+const slides = document.querySelectorAll(".slide");
+let i = 0;
+document.addEventListener("keydown", (e) =&gt; {
+  if (e.key === "ArrowLeft"  &amp;&amp; i &lt; slides.length - 1) i++;  // في RTL السهم الأيسر يتقدّم
+  if (e.key === "ArrowRight" &amp;&amp; i &gt; 0) i--;
+  slides.forEach((s, n) =&gt; s.hidden = n !== i);
+});</code></pre>
+        <p>عشرون سطرًا. ما يكتبه الذكاء الاصطناعي لك سيكون أطول (انتقالات، أرقام شرائح، شريط تقدّم) لكن هيكله هو هذا. وحين تفهم الهيكل تستطيع إصلاح أي شيء.</p>
+        <div class="callout callout-note">
+          <div class="callout-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM12 8v4M12 16h.01"/></svg>
+            خيار جاهز: reveal.js
+          </div>
+          <p>مكتبة مفتوحة المصدر تفعل كل هذا وأكثر (ملاحظات المتحدث، عرض جانبي، انتقالات). اطلب من الذكاء الاصطناعي «استخدم reveal.js من CDN» وستحصل على عرض احترافي بملف واحد. ما زال موقعًا ثابتًا تمامًا.</p>
+        </div>
+
+        <h2>وضع العرض والطباعة</h2>
+        <ul>
+          <li><strong>ملء الشاشة:</strong> <kbd>F11</kbd> في أي متصفح. يختفي كل شيء إلا الشريحة.</li>
+          <li><strong>الشاشة الخارجية:</strong> وصّل الجهاز، اضغط <kbd>Win</kbd>+<kbd>P</kbd> واختر «تكرار». على الجوال: كابل أو Cast.</li>
+          <li><strong>الطباعة PDF:</strong> قاعدة CSS واحدة تجعل كل شريحة صفحة، ثم <kbd>Ctrl</kbd>+<kbd>P</kbd> واختر «حفظ كـ PDF». الآن لديك ملف لمن يريده:</li>
+        </ul>
+<pre><code>@media print {
+  .slide { display: grid !important; height: auto; page-break-after: always; }
+}</code></pre>
+
+        <h2>مقارنة صريحة مع PowerPoint</h2>
+        <p>الموقع ليس أفضل دائمًا. الصدق مع نفسك هنا يوفر عليك إحراجًا لاحقًا.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>المعيار</th><th>موقع شرائح</th><th>ملف PowerPoint</th></tr></thead>
+            <tbody>
+              <tr><td>الفتح على أي جهاز</td><td><strong>رابط، بلا برامج</strong></td><td>يحتاج البرنامج أو نسخة متوافقة</td></tr>
+              <tr><td>المشاركة</td><td><strong>رابط واحد يتحدّث تلقائيًا</strong></td><td>ملف يُرسل كل مرة، ونسخ متعددة</td></tr>
+              <tr><td>الخطوط والتنسيق</td><td><strong>مضمونة كما صممتها</strong></td><td>تنكسر بين الأجهزة والنسخ</td></tr>
+              <tr><td>فيديو ومحتوى تفاعلي</td><td><strong>يوتيوب وخرائط ونماذج مضمّنة</strong></td><td>ممكن لكن هش</td></tr>
+              <tr><td>الرسوم البيانية المعقدة</td><td>تحتاج أدوات إضافية</td><td><strong>جاهزة وسهلة</strong></td></tr>
+              <tr><td>التعديل بلا كود</td><td>يحتاج تعديل HTML أو الذكاء الاصطناعي</td><td><strong>أي شخص يعدّل</strong></td></tr>
+              <tr><td>العمل بلا إنترنت</td><td>يعمل إن حفظت الملفات محليًا</td><td><strong>يعمل دائمًا</strong></td></tr>
+              <tr><td>ملاحظات المتحدث</td><td>reveal.js يوفرها</td><td><strong>مدمجة</strong></td></tr>
+              <tr><td>قوالب جاهزة</td><td>قليلة</td><td><strong>آلاف</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>متى تختار ماذا؟</h2>
+        <h3>الموقع أفضل حين:</h3>
+        <ul>
+          <li>ستعرض على جهاز لا تملكه (قاعة، عميل، مؤتمر).</li>
+          <li>الجمهور سيحتاج الرابط بعد العرض (دورة، ورشة، محاضرة).</li>
+          <li>العرض يتضمن فيديو أو موقعًا حيًا أو نموذجًا تفاعليًا.</li>
+          <li>ستحدّث المحتوى مرارًا ولا تريد إرسال نسخ جديدة.</li>
+        </ul>
+        <h3>الملف أفضل حين:</h3>
+        <ul>
+          <li>سيعدّل العرض أشخاص لا يعرفون الكود (فريق، مدير).</li>
+          <li>العرض مليء بالرسوم البيانية والجداول المعقدة.</li>
+          <li>القاعة بلا إنترنت مضمون ولا تستطيع تجهيز نسخة محلية.</li>
+          <li>المطلوب قالب مؤسسي رسمي يجب الالتزام به.</li>
+        </ul>
+        <p>القاعدة الذهبية: <strong>ابنِ الموقع واطبع منه PDF.</strong> بذلك تملك الاثنين: رابطًا للعرض والمشاركة، وملفًا لمن يطلبه.</p>
+
+        <div class="callout callout-advanced">
+          <div class="callout-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7.1L12 17.3 5.8 21l1.6-7.1L2 9.2l7.1-.6z"/></svg>
+            للمتقدمين
+          </div>
+          <p>كل شريحة يمكن أن يكون لها رابط خاص: <code>slides.html#5</code> يفتح الشريحة الخامسة مباشرة. الفكرة نفسها التي استخدمناها في هذا الموقع لفتح تبويب معيّن (<code>#quiz</code>). اطلب من الذكاء الاصطناعي: «اجعل رقم الشريحة يظهر في الرابط وافتح الشريحة المطلوبة عند التحميل».</p>
+        </div>
+
+        <h2>مسرد الدرس</h2>
+        <dl class="terms">
+          <div><dt>شريحة <span>Slide</span></dt><dd>قسم واحد من العرض. في الموقع: وسم <code>&lt;section&gt;</code> بارتفاع الشاشة.</dd></div>
+          <div><dt>ارتفاع الشاشة <span>100vh</span></dt><dd>وحدة CSS تساوي ارتفاع منطقة العرض كاملة. تجعل الشريحة تملأ الشاشة.</dd></div>
+          <div><dt>تنقّل بالكيبورد <span>Keyboard navigation</span></dt><dd>JavaScript يستمع لضغطات الأسهم ويبدّل الشريحة الظاهرة.</dd></div>
+          <div><dt>ملء الشاشة <span>Fullscreen</span></dt><dd>وضع في المتصفح يخفي كل شيء إلا الصفحة. مفتاح <kbd>F11</kbd>.</dd></div>
+          <div><dt>reveal.js <span></span></dt><dd>مكتبة مفتوحة المصدر لعروض HTML مع انتقالات وملاحظات متحدث.</dd></div>
+          <div><dt>CDN <span>Content Delivery Network</span></dt><dd>شبكة توزيع تعطيك المكتبة برابط جاهز بلا تنزيل. تفاصيلها في المحاضرة 9.</dd></div>
+          <div><dt>تنسيق الطباعة <span>Print stylesheet</span></dt><dd>قواعد CSS داخل <code>@media print</code> تعمل عند الطباعة فقط.</dd></div>
+          <div><dt>فاصل صفحة <span>page-break-after</span></dt><dd>خاصية CSS تجبر الطابعة على بدء صفحة جديدة بعد العنصر.</dd></div>
+        </dl>
+      </section>
+
+      <!-- ============ 2. التدريب العملي ============ -->
+      <section id="panel-practice" role="tabpanel" aria-labelledby="tab-practice" class="lesson-body prose" hidden data-print-title="التدريب العملي">
+        <p>مخرج اليوم: <strong>عرض تقديمي حقيقي حُوِّل إلى موقع شرائح</strong>، يعمل بالأسهم وملء الشاشة، له نسخة PDF، ومنشور برابط تفتحه من جوالك.</p>
+
+        <h2>الجزء الأول: اختزل العرض (20 دقيقة)</h2>
+        <ol class="steps">
+          <li><strong>اختر عرضًا حقيقيًا</strong> قدّمته أو ستقدّمه في مادة أخرى. 8 إلى 12 شريحة. أكثر من ذلك يؤجَّل.</li>
+          <li><strong>استخرج المخطط في ملف نصي.</strong><p>لكل شريحة: عنوان + 3 نقاط كحد أقصى. إن كانت الشريحة الأصلية تحوي فقرة كاملة، لخّصها. الشاشة ليست ورقة.</p>
+<pre class="rtl"><code>1. عنوان العرض | اسمي | المادة
+2. المشكلة | نقطة | نقطة | نقطة
+3. ...
+12. شكرًا | رابط الموقع | بريدي</code></pre></li>
+          <li><strong>حدّد ما يحتاج تفاعلًا:</strong> فيديو يوتيوب؟ رابط موقع حي؟ صورة كبيرة؟ ضع علامة عند الشريحة.</li>
+        </ol>
+
+        <h2>الجزء الثاني: البناء (35 دقيقة)</h2>
+        <ol class="steps">
+          <li><strong>اطلب البناء.</strong>
+<pre class="rtl"><code>ابنِ عرضًا تقديميًا كموقع ثابت في ملف index.html واحد (مع style.css و slides.js).
+كل شريحة &lt;section class="slide"&gt; تملأ الشاشة، تظهر واحدة في كل مرة.
+التنقل: الأسهم يمين/يسار والمسافة، وأزرار تالي/سابق على الشاشة للجوال.
+رقم الشريحة الحالية من الإجمالي في الزاوية، وشريط تقدّم رفيع في الأسفل.
+انتقال بسيط (تلاشٍ 200ms). عربي RTL، خط [الخط]، لون أساسي [#......].
+عند الطباعة: كل شريحة صفحة مستقلة.
+الشرائح:
+[الصق المخطط]</code></pre></li>
+          <li><strong>افتح الملف واختبر الأسهم.</strong><p>تقدّم للشريحة الأخيرة وارجع للأولى. هل السهم الأيسر يتقدّم (لأننا في RTL)؟ إن كان معكوسًا اطلب: «في RTL السهم الأيسر يتقدّم والأيمن يرجع».</p></li>
+          <li><strong>أضف المحتوى التفاعلي.</strong><p>لشريحة الفيديو: من يوتيوب اختر Share ثم Embed وأعطِ الكود للذكاء الاصطناعي ليضعه في الشريحة المحددة. لرابط موقع حي: زر يفتحه في تبويب جديد.</p></li>
+          <li><strong>جرّب ملء الشاشة</strong> بـ <kbd>F11</kbd>. هل النص كبير بما يكفي ليُقرأ من آخر القاعة؟ القاعدة: أصغر خط في الشريحة 28px على الأقل.</li>
+        </ol>
+
+        <h2>الجزء الثالث: PDF والنشر والعرض (35 دقيقة)</h2>
+        <ol class="steps">
+          <li><strong>اطبع إلى PDF.</strong><p><kbd>Ctrl</kbd>+<kbd>P</kbd>، الوجهة «حفظ كـ PDF»، الاتجاه أفقي. تصفّح الناتج: شريحة في كل صفحة؟ إن تداخلت فراجع قاعدة <code>@media print</code>.</p></li>
+          <li><strong>انشر على Netlify Drop</strong> وافتح الرابط على جوالك. جرّب أزرار تالي/سابق بالإبهام.</li>
+          <li><strong>قدّم دقيقتين أمام زميل</strong> من جوالك أو من جهازه، بالرابط فقط، بلا فلاشة. هذا هو الاختبار الحقيقي.</li>
+          <li><strong>أرسل للمدرّب:</strong> الرابط + ملف PDF. لديك الآن الاثنان.</li>
+        </ol>
+
+        <div class="callout callout-stuck">
+          <div class="callout-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3l9 16H3l9-16zM12 10v4M12 17h.01"/></svg>
+            إذا تعثّرت
+          </div>
+          <ul>
+            <li><strong>الأسهم لا تعمل:</strong> اضغط داخل الصفحة أولًا (التركيز على الصفحة). إن استمر، افتح <kbd>F12</kbd> ثم Console وأرسل الخطأ الأحمر إلى الذكاء الاصطناعي كما هو.</li>
+            <li><strong>كل الشرائح تظهر فوق بعضها:</strong> ملف <code>slides.js</code> غير مربوط، أو المسار خاطئ. راجع الدرس 4.</li>
+            <li><strong>الطباعة تُخرج صفحة واحدة فارغة:</strong> الشرائح مخفية بـ <code>display:none</code> وقاعدة الطباعة لا تُظهرها. اطلب: «في @media print أظهر كل الشرائح وكل واحدة في صفحة».</li>
+            <li><strong>ليس لدي عرض جاهز:</strong> استخدم مخطط هذا الدرس نفسه: 8 شرائح عن «لماذا رابط بدل ملف».</li>
+          </ul>
+        </div>
+
+        <div class="callout callout-advanced">
+          <div class="callout-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7.1L12 17.3 5.8 21l1.6-7.1L2 9.2l7.1-.6z"/></svg>
+            للمتقدمين
+          </div>
+          <ul>
+            <li>أعد بناء العرض بـ reveal.js من CDN وقارن: ما الذي كسبته وما الذي فقدته من التحكم؟</li>
+            <li>أضف ملاحظات المتحدث تظهر لك فقط بضغطة <kbd>S</kbd> في نافذة منفصلة.</li>
+            <li>اجعل رقم الشريحة في الرابط (<code>#5</code>) ليُفتح العرض من شريحة محددة.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ============ 3. النظري والاختبار ============ -->
+      <section id="panel-quiz" role="tabpanel" aria-labelledby="tab-quiz" class="lesson-body prose" hidden data-print-title="التدريب النظري والاختبار">
+        <h2>تلخيص المفاهيم</h2>
+        <ul>
+          <li>موقع الشرائح: صفحة واحدة، كل <code>&lt;section&gt;</code> شريحة بارتفاع الشاشة، وJavaScript يبدّلها بالأسهم.</li>
+          <li>يفتح من رابط على أي جهاز بلا برامج، بخطوط مضمونة، ويقبل فيديو ومواقع حية مضمّنة.</li>
+          <li>ملء الشاشة بـ <kbd>F11</kbd>، والطباعة PDF بقاعدة <code>@media print</code> تجعل كل شريحة صفحة.</li>
+          <li>PowerPoint يفوز في: الرسوم البيانية المعقدة، التعديل بلا كود، القوالب، العمل بلا إنترنت.</li>
+          <li>الموقع يفوز في: جهاز لا تملكه، جمهور يحتاج الرابط لاحقًا، محتوى تفاعلي، تحديث متكرر.</li>
+          <li>القاعدة الذهبية: ابنِ الموقع واطبع منه PDF، فتملك الاثنين.</li>
+        </ul>
+
+        <h2>الاختبار</h2>
+        <p>عشرة أسئلة: متى الموقع أفضل ومتى الملف أفضل. اختر إجابة لترى التصحيح والشرح فورًا.</p>
+        <div id="quiz" class="quiz no-print"></div>
+        <div class="print-quiz"></div>
+      </section>
+
+      <div class="complete-bar" data-complete>
+        <p></p>
+        <button class="btn" type="button">تعليم الدرس كمكتمل</button>
+      </div>
+
+      <nav class="lesson-nav" aria-label="التنقل بين الدروس" data-lesson-nav></nav>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <span>بناء ونشر المواقع بالذكاء الاصطناعي · مادة جامعية</span>
+      <span><button class="btn btn-subtle no-print" type="button" onclick="window.print()">طباعة الدرس</button></span>
+    </div>
+  </footer>
+
+  <script>
+  window.QUIZ_DATA = [
+    {
+      scenario: "قرار",
+      q: "ستقدّم ورشة في قاعة مؤتمر بحاسوبها الخاص، وسيطلب الحضور المادة بعد الورشة. ما الأنسب؟",
+      options: ["ملف PowerPoint على فلاشة", "موقع شرائح برابط، مع PDF لمن يطلبه", "طباعة ورقية للجميع", "إرسال الملف بالبريد قبل يوم"],
+      answer: 1,
+      explain: "جهاز لا تملكه وجمهور يحتاج الرابط لاحقًا: حالتان يفوز فيهما الموقع. وPDF المطبوع منه يغطي من يريد ملفًا."
+    },
+    {
+      scenario: "قرار",
+      q: "فريق تسويق من 5 أشخاص لا يعرفون الكود يعدّلون عرضًا مبيعات أسبوعيًا، وهو مليء بالرسوم البيانية. ما الأنسب؟",
+      options: ["موقع شرائح", "ملف PowerPoint", "موقع بـ reveal.js", "صور على واتساب"],
+      answer: 1,
+      explain: "تعديل متكرر من غير مبرمجين + رسوم بيانية معقدة: نقطتا قوة الملف. الموقع هنا يعقّد الحياة بلا مكسب."
+    },
+    {
+      scenario: "فهم داخلي",
+      q: "في موقع الشرائح، ماذا يمثل كل وسم <section class=\"slide\">؟",
+      options: ["صفحة HTML منفصلة", "شريحة واحدة", "قائمة التنقل", "الملف كاملًا"],
+      answer: 1,
+      explain: "الموقع صفحة واحدة، وكل section شريحة. CSS يجعلها بارتفاع الشاشة وJavaScript يظهر واحدة فقط."
+    },
+    {
+      scenario: "قراءة كود",
+      q: "ماذا تعني القاعدة: .slide { height: 100vh; }",
+      options: ["الشريحة بعرض 100 بكسل", "الشريحة بارتفاع الشاشة كاملة", "الشريحة مخفية", "الشريحة تطبع 100 مرة"],
+      answer: 1,
+      explain: "vh وحدة تساوي 1% من ارتفاع منطقة العرض. 100vh يعني الارتفاع كاملًا، فتملأ الشريحة الشاشة."
+    },
+    {
+      scenario: "تشخيص",
+      q: "فتحت العرض فظهرت كل الشرائح فوق بعضها في صفحة طويلة. السبب الأرجح؟",
+      options: ["الخط غير مربوط", "ملف JavaScript غير مربوط أو مساره خاطئ", "الصور كبيرة", "المتصفح لا يدعم العروض"],
+      answer: 1,
+      explain: "JavaScript هو ما يخفي كل الشرائح إلا الحالية. بدونه يعرض HTML كل شيء بالترتيب."
+    },
+    {
+      scenario: "الطباعة",
+      q: "تريد PDF فيه شريحة في كل صفحة. أي أداة تحقق ذلك؟",
+      options: ["برنامج تحويل خارجي", "قاعدة @media print مع page-break-after ثم حفظ كـ PDF من المتصفح", "التقاط صورة لكل شريحة", "لا يمكن طباعة موقع"],
+      answer: 1,
+      explain: "تنسيق الطباعة يُظهر كل الشرائح ويضع فاصل صفحة بعد كل واحدة. المتصفح نفسه يحفظ PDF."
+    },
+    {
+      scenario: "قرار",
+      q: "عرضك يتضمن فيديو يوتيوب وتجربة حية لموقع بنيته. أي خيار يخدم ذلك أفضل؟",
+      options: ["ملف PowerPoint", "موقع شرائح بمحتوى مضمّن", "ملف PDF", "ملف Word"],
+      answer: 1,
+      explain: "التضمين (فيديو، خرائط، مواقع حية) طبيعي في صفحة ويب وهش في الملف. هذه نقطة قوة الموقع."
+    },
+    {
+      scenario: "قاعة بلا إنترنت",
+      q: "القاعة بلا إنترنت مضمون. هل يعني هذا أن موقع الشرائح مستحيل؟",
+      options: ["نعم، الموقع يحتاج إنترنت دائمًا", "لا، إن حفظت الملفات محليًا وفتحت index.html يعمل بلا إنترنت (عدا المحتوى المضمّن من الخارج)", "نعم إلا إن كان reveal.js", "لا، لأن Netlify يعمل بلا إنترنت"],
+      answer: 1,
+      explain: "الموقع الثابت ملفات. افتحها من الجهاز مباشرة وتعمل. ما لا يعمل هو فيديو يوتيوب أو خط Google Fonts القادم من الإنترنت."
+    },
+    {
+      scenario: "اتجاه",
+      q: "في عرض عربي RTL، أي سهم يجب أن يتقدّم للشريحة التالية؟",
+      options: ["السهم الأيمن", "السهم الأيسر", "السهم لأعلى", "لا فرق"],
+      answer: 1,
+      explain: "القراءة العربية تتقدّم إلى اليسار، فالسهم الأيسر يتقدّم والأيمن يرجع. هذا ما يطبّقه هذا الموقع في التبويبات أيضًا."
+    },
+    {
+      scenario: "القاعدة الذهبية",
+      q: "ما أفضل ممارسة لتغطية كل الحالات؟",
+      options: ["ابنِ ملفًا واحفظ نسخة PDF", "ابنِ الموقع واطبع منه PDF", "ابنِ الاثنين من الصفر منفصلين", "أرسل الرابط فقط وارفض إعطاء ملف"],
+      answer: 1,
+      explain: "الموقع يعطيك الرابط والتفاعل والخطوط المضمونة، والطباعة منه تعطيك الملف لمن يطلبه. عمل واحد، منتجان."
+    }
+  ];
+  </script>
+  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/quiz.js"></script>
+</body>
+</html>

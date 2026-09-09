@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-root="../">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>الدرس 10 · المشروع الختامي | بناء ونشر المواقع بالذكاء الاصطناعي</title>
+  <meta name="description" content="من الفكرة إلى الإطلاق: المواصفات، البناء، التفاعل بلا خادم (واتساب، بريد، خريطة، نموذج جاهز)، النشر، الصيانة والتحديث، والعرض أمام المجموعة.">
+  <script>(function(){try{var t=localStorage.getItem('bnm-theme');if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}})();</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%234a5a1e'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='monospace' font-size='14' font-weight='700' fill='white'%3E%3C/%3E%3C/text%3E%3C/svg%3E">
+</head>
+<body data-lesson="10">
+  <a class="skip-link" href="#main">تخطّ إلى المحتوى</a>
+
+  <header class="topbar">
+    <div class="container">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark" aria-hidden="true">&lt;/&gt;</span>
+        <span>بناء ونشر المواقع<span class="brand-sub">بالذكاء الاصطناعي</span></span>
+      </a>
+      <nav class="nav" id="nav" aria-label="الأقسام">
+        <a href="../index.html">الرئيسية</a>
+        <a href="../index.html#lessons" aria-current="page">الدروس</a>
+        <a href="../pages/glossary.html">المسرد</a>
+        <a href="../pages/resources.html">الموارد</a>
+        <a href="../pages/about.html">عن المادة</a>
+      </nav>
+      <div class="topbar-tools">
+        <div class="ring" role="img" aria-label="نسبة الإنجاز"><span>0%</span></div>
+        <button class="icon-btn" type="button" data-theme-toggle aria-label="التبديل إلى الوضع الليلي">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+        <button class="icon-btn nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="القائمة">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container lesson-layout">
+    <aside class="sidebar" aria-label="قائمة الدروس">
+      <details>
+        <summary>قائمة الدروس</summary>
+        <h2>المحاضرات</h2>
+        <ul class="side-list" data-side-list></ul>
+      </details>
+      <div class="side-progress">
+        <div class="row"><span>تقدّمك</span><strong data-progress-percent>0%</strong></div>
+        <div class="bar" aria-hidden="true"><i data-progress-bar></i></div>
+        <div class="row"><span>دروس مكتملة</span><span data-progress-text>0 / 10</span></div>
+      </div>
+    </aside>
+
+    <main id="main">
+      <header class="lesson-head">
+        <div class="kicker">
+          <span class="num-big">المحاضرة 10</span>
+          <span class="badge">90 دقيقة</span>
+          <span class="badge badge-project">مشروع 5</span>
+        </div>
+        <h1>المشروع الختامي</h1>
+        <p class="meta">
+          <span>من الفكرة إلى الإطلاق</span>
+          <span>التفاعل بلا خادم</span>
+          <span>العرض أمام المجموعة</span>
+        </p>
+      </header>
+
+      <div class="tabs" role="tablist" aria-label="أقسام الدرس">
+        <button class="tab" role="tab" id="tab-content" aria-controls="panel-content" aria-selected="true" data-tab="content"><span class="n">1</span><span class="long">محتوى الدرس</span><span class="short">المحتوى</span></button>
+        <button class="tab" role="tab" id="tab-practice" aria-controls="panel-practice" aria-selected="false" data-tab="practice" tabindex="-1"><span class="n">2</span><span class="long">التدريب العملي</span><span class="short">العملي</span></button>
+        <button class="tab" role="tab" id="tab-quiz" aria-controls="panel-quiz" aria-selected="false" data-tab="quiz" tabindex="-1"><span class="n">3</span><span class="long">التدريب النظري والاختبار</span><span class="short">الاختبار</span></button>
+      </div>
+
+      <!-- ============ 1. المحتوى ============ -->
+      <section id="panel-content" role="tabpanel" aria-labelledby="tab-content" class="lesson-body prose" data-print-title="محتوى الدرس">
+        <h2>هذه المرة بلا أمر جاهز</h2>
+        <p>في تسعة دروس بنيت أربعة مواقع بأوامر أعطيناك هيكلها، ونشرت على خمس درجات. المشروع الختامي يختلف في شيء واحد: <strong>لا أحد يعطيك شيئًا</strong>. عميل حقيقي (أو فكرتك أنت)، مواصفات تكتبها، بناء تقوده، تفاعل تختاره، نشر على دومين، وعرض أمام المجموعة. هذا بالضبط ما ستفعله بعد المادة، فنتدرّب عليه الآن بوجود من يساعد.</p>
+        <p>الرحلة خمس مراحل، وكل مرحلة تعلّمتها في درس سابق. هذا الدرس يرتّبها فقط.</p>
+
+        <h2>المرحلة 1: المواصفات في صفحة واحدة</h2>
+        <p>أكثر المشاريع التي تفشل تفشل هنا: يبدأ الطالب بالبناء قبل أن يعرف ماذا يبني. ورقة المواصفات (Brief) صفحة واحدة تجيب عن سبعة أسئلة، وهي الأمر الذي تعلّمته في الدرس 3 بصيغة أوسع:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>السؤال</th><th>مثال: عيادة تغذية</th></tr></thead>
+            <tbody>
+              <tr><td><strong>1. الهدف بجملة</strong>: ما الفعل الواحد الذي نريده من الزائر؟</td><td>أن يحجز استشارة عبر واتساب</td></tr>
+              <tr><td><strong>2. الجمهور</strong>: من هو وما الذي يقلقه؟</td><td>نساء 25 إلى 45، يبحثن عن حل صحي لا حمية قاسية</td></tr>
+              <tr><td><strong>3. الصفحات والأقسام</strong>: كم صفحة وما في كل واحدة بالترتيب؟</td><td>الرئيسية، الخدمات، عنّا، تواصل. الرئيسية: ترحيب، 3 خدمات، قصص نجاح، زر واتساب</td></tr>
+              <tr><td><strong>4. مصدر المحتوى</strong>: من يكتب النصوص ومن يعطي الصور؟</td><td>العميلة تعطي النبذة والصور، والذكاء الاصطناعي يصيغ الباقي للمراجعة</td></tr>
+              <tr><td><strong>5. التفاعل بلا خادم</strong>: أي أدوات من الجدول أدناه؟</td><td>واتساب برسالة جاهزة، خريطة، نموذج استفسار</td></tr>
+              <tr><td><strong>6. الهوية</strong>: لون وخط ومرجع</td><td>أخضر هادئ #3f6b4a، خط Readex Pro، بساطة مثل ...</td></tr>
+              <tr><td><strong>7. النشر والملكية</strong>: أين، وباسم من الدومين والحسابات؟</td><td>GitHub Pages + دومين باسم العميلة + Cloudflare</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout callout-note">
+          <div class="callout-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM12 8v4M12 16h.01"/></svg>
+            الفحص قبل البدء
+          </div>
+          <p>مرّر المواصفات على سؤال الدرس 8: هل يحتاج المشروع أن يتذكّر كل مستخدم؟ إن كان نعم فالمشروع ليس مناسبًا للمادة. اختر غيره، أو ابنِ الجزء التعريفي منه فقط واكتب ذلك صراحة في المواصفات.</p>
+        </div>
+
+        <h2>المرحلة 2: البناء بانضباط</h2>
+        <p>ما تعلّمته، مرتّبًا بالتسلسل الذي يوفّر عليك أكبر وقت:</p>
+        <ol>
+          <li><code>git init</code> ولقطة أولى <em>قبل</em> أول سطر (الدرس 6).</li>
+          <li>الهيكل والمجلدات أولًا: <code>assets/css</code>، <code>assets/js</code>، <code>assets/images</code> (الدرس 4).</li>
+          <li>أمر بناء بالعناصر الخمسة من المواصفات (الدرس 3). لقطة.</li>
+          <li>الهوية: لون واحد، خط واحد، RTL بالخصائص المنطقية (الدرس 3). لقطة.</li>
+          <li>الصور مضغوطة بأسماء صحيحة ومسارات نسبية (الدرس 4). لقطة.</li>
+          <li>الجوال أولًا في المتصفح ثم على جهاز حقيقي (الدرس 3). لقطة.</li>
+          <li>SEO الأساسي: title، description، h1، alt (الدرس 9). لقطة.</li>
+        </ol>
+        <p>القاعدة: <strong>تعديل واحد في كل طلب، ولقطة بعد كل نجاح.</strong> من يلتزم بها ينهي المشروع في ربع الوقت الذي يحتاجه من لا يلتزم.</p>
+
+        <h2>المرحلة 3: التفاعل بلا خادم</h2>
+        <p>هذا ما يجعل الموقع الثابت يبدو حيًّا: أزرار تفعل شيئًا حقيقيًا، بلا حسابات ولا تخزين عندك. خمس أدوات تغطي معظم الطلبات، وكل واحدة سطر أو سطران:</p>
+        <h3>1. واتساب برسالة جاهزة</h3>
+        <p>الرابط يفتح المحادثة مع الرقم <em>ونص مكتوب مسبقًا</em>، فيرسل الزائر بضغطة. النص يُرمَّز (المسافة تصبح <code>%20</code>)، والذكاء الاصطناعي يفعل ذلك لك إن طلبت:</p>
+<pre><code>&lt;a href="https://wa.me/9665XXXXXXXX?text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%AD%D8%AC%D8%B2%20%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A9"
+   class="btn"&gt;احجز استشارة عبر واتساب&lt;/a&gt;</code></pre>
+        <h3>2. بريد بعنوان وموضوع جاهزين</h3>
+<pre><code>&lt;a href="mailto:info@example.com?subject=%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1"&gt;راسلنا&lt;/a&gt;</code></pre>
+        <h3>3. خريطة مضمّنة</h3>
+        <p>من خرائط Google: Share ← Embed a map ← انسخ الكود. سطر <code>&lt;iframe&gt;</code> واحد يعرض الموقع بزر «الاتجاهات»:</p>
+<pre><code>&lt;iframe src="https://www.google.com/maps/embed?pb=..." width="100%" height="320"
+        style="border:0" loading="lazy" title="موقع العيادة"&gt;&lt;/iframe&gt;</code></pre>
+        <h3>4. نموذج تواصل عبر خدمة جاهزة</h3>
+        <p>النموذج العادي في HTML لا يرسل إلى أي مكان بلا خادم. الحل: خدمة مثل <a href="https://formspree.io" target="_blank" rel="noopener">Formspree</a> تعطيك رابطًا، تضعه في <code>action</code>، فتصل الرسائل إلى بريدك:</p>
+<pre><code>&lt;form action="https://formspree.io/f/xxxxxxxx" method="POST"&gt;
+  &lt;label&gt;الاسم &lt;input name="name" required&gt;&lt;/label&gt;
+  &lt;label&gt;الجوال &lt;input name="phone" type="tel" required&gt;&lt;/label&gt;
+  &lt;label&gt;رسالتك &lt;textarea name="message"&gt;&lt;/textarea&gt;&lt;/label&gt;
+  &lt;button type="submit"&gt;إرسال&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+        <h3>5. حجز مواعيد مضمّن</h3>
+        <p>خدمات مثل Calendly أو Cal.com تعطيك كود تضمين يعرض تقويمًا يختار منه الزائر موعدًا ويصله تأكيد. التخزين عندهم لا عندك، فالموقع يبقى ثابتًا (الدرس 8).</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>الطلب</th><th>الأداة</th><th>ما تحتاجه</th></tr></thead>
+            <tbody>
+              <tr><td>تواصل فوري</td><td>واتساب برسالة جاهزة</td><td>الرقم بصيغة دولية بلا صفر أو +</td></tr>
+              <tr><td>تواصل رسمي</td><td>mailto</td><td>البريد الرسمي من الدرس 9</td></tr>
+              <tr><td>الوصول للمكان</td><td>خريطة مضمّنة</td><td>كود التضمين من Google Maps</td></tr>
+              <tr><td>استفسار مكتوب</td><td>نموذج عبر Formspree</td><td>حساب مجاني ورابط النموذج</td></tr>
+              <tr><td>حجز موعد</td><td>Calendly أو Cal.com</td><td>حساب وكود التضمين</td></tr>
+              <tr><td>دفع أو تبرع</td><td>رابط بوابة دفع</td><td>حساب العميل في البوابة</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>المرحلة 4: النشر بقائمة فحص</h2>
+        <p>لا تنشر بالشعور. انشر بقائمة. كل بند فيها جواب لخطأ رأيته في درس سابق:</p>
+        <ul>
+          <li>☐ <code>index.html</code> في الجذر، وكل الأسماء بأحرف صغيرة (الدرسان 2 و4).</li>
+          <li>☐ كل الروابط الداخلية والأزرار مضغوطة ومجرّبة في كل صفحة.</li>
+          <li>☐ زر واتساب يفتح الرقم الصحيح <em>من جوال حقيقي</em>.</li>
+          <li>☐ النموذج يرسل فعليًا ووصلت رسالة تجريبية.</li>
+          <li>☐ الصور أقل من 200 كيلوبايت ولها alt.</li>
+          <li>☐ الجوال: لا نص يخرج من الإطار، ولا تمدّد أفقي.</li>
+          <li>☐ title و description لكل صفحة.</li>
+          <li>☐ https بقفل، وwww والجذر كلاهما يعملان.</li>
+          <li>☐ README في المستودع برابط الموقع الحي.</li>
+          <li>☐ الدومين والحسابات باسم صاحب المشروع، والتجديد التلقائي مفعّل.</li>
+        </ul>
+
+        <h2>المرحلة 5: الصيانة والتحديث</h2>
+        <p>الموقع الثابت لا يحتاج صيانة تقنية، لكنه يحتاج <em>تحديثًا</em>. ثلاثة أشياء تتفق عليها مع العميل قبل التسليم:</p>
+        <ul>
+          <li><strong>كيف يُحدَّث:</strong> تعديل في الملفات ← لقطة ← push ← يظهر خلال دقيقة. إن كان العميل لا يعرف الكود، اتفق على «تعديلات صغيرة شهريًا» بمقابل، أو علّمه تعديل النصوص في HTML (هو أسهل مما يظن).</li>
+          <li><strong>ما يتجدد سنويًا:</strong> الدومين. ضع تذكيرًا قبل شهر من انتهائه. لا شيء آخر ينتهي في موقع ثابت على GitHub Pages.</li>
+          <li><strong>فحص ربع سنوي:</strong> افتح الموقع من الجوال، اضغط كل زر، راجع أرقام التحليلات، وتأكد أن النموذج ما زال يرسل (الخدمات المجانية تغيّر شروطها).</li>
+        </ul>
+
+        <h2>العرض: دقيقتان تكفيان</h2>
+        <p>ستعرض مشروعك أمام المجموعة. هيكل ثابت يحميك من الارتباك:</p>
+        <ol>
+          <li><strong>من ولماذا</strong> (15 ثانية): «هذا موقع لـ [العميل]، هدفه أن [الفعل الواحد].»</li>
+          <li><strong>افتح الرابط من جوالك</strong> (60 ثانية): الرئيسية، اضغط زر التفاعل الأساسي أمامهم، أظهر صفحة واحدة أخرى.</li>
+          <li><strong>قرار واحد صعب</strong> (30 ثانية): «العميل أراد X، واخترت Y لأن ...». هذا ما يميّز المهني عن المنفّذ.</li>
+          <li><strong>ماذا كنت ستغيّر</strong> (15 ثانية): جملة صادقة.</li>
+        </ol>
+        <p>لا شرائح، لا كود على الشاشة، لا اعتذارات. الموقع نفسه هو العرض.</p>
+
+        <div class="callout callout-advanced">
+          <div class="callout-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7.1L12 17.3 5.8 21l1.6-7.1L2 9.2l7.1-.6z"/></svg>
+            بعد المادة
+          </div>
+          <p>لديك الآن خمسة مواقع منشورة وحساب GitHub ودومين. اجمعها في معرض أعمالك (الدرس 4) بروابطها الحية، واكتب تحت كل واحد سطرًا بصيغة المشكلة والحل والنتيجة. أول عميل حقيقي يأتي غالبًا من هذا المعرض، لا من الشهادة.</p>
+        </div>
+
+        <h2>مسرد الدرس</h2>
+        <dl class="terms">
+          <div><dt>ورقة المواصفات <span>Brief</span></dt><dd>صفحة واحدة تجيب عن: الهدف، الجمهور، الصفحات، مصدر المحتوى، التفاعل، الهوية، النشر والملكية.</dd></div>
+          <div><dt>الفعل الواحد <span>Primary action / CTA</span></dt><dd>الشيء الوحيد الذي نريده من الزائر. يحدد كل قرار في الصفحة.</dd></div>
+          <div><dt>رسالة واتساب جاهزة <span>wa.me?text=</span></dt><dd>رابط يفتح المحادثة بنص مكتوب مسبقًا ومرمّز.</dd></div>
+          <div><dt>الترميز <span>URL encoding</span></dt><dd>تحويل المسافات والعربية إلى رموز مثل %20 لتصلح داخل رابط.</dd></div>
+          <div><dt>تضمين <span>iframe / Embed</span></dt><dd>عرض خدمة خارجية داخل صفحتك: خريطة، تقويم، فيديو.</dd></div>
+          <div><dt>Formspree <span></span></dt><dd>خدمة تستقبل نماذج HTML وترسلها إلى بريدك بلا خادم.</dd></div>
+          <div><dt>قائمة فحص النشر <span>Launch checklist</span></dt><dd>بنود تُراجع قبل الإطلاق بدل الاعتماد على الشعور.</dd></div>
+          <div><dt>التسليم <span>Handover</span></dt><dd>نقل الملكية والحسابات والاتفاق على التحديث قبل إغلاق المشروع.</dd></div>
+        </dl>
+      </section>
+
+      <!-- ============ 2. التدريب العملي ============ -->
+      <section id="panel-practice" role="tabpanel" aria-labelledby="tab-practice" class="lesson-body prose" hidden data-print-title="التدريب العملي">
+        <p>مخرج اليوم: <strong>مشروعك الختامي منشورًا على دومين</strong>، بمواصفات مكتوبة، وتفاعل حقيقي، وقائمة فحص مكتملة، وعرض من دقيقتين أمام المجموعة. المشروع يبدأ قبل المحاضرة ويُقدَّم فيها.</p>
+        <div class="callout callout-note">
+          <div class="callout-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM12 8v4M12 16h.01"/></svg>
+            التوقيت
+          </div>
+          <p>المراحل 1 إلى 3 تُنجز في الأسبوع الذي يسبق المحاضرة (نحو 6 ساعات). المحاضرة نفسها للمرحلتين 4 و5 والعرض.</p>
+        </div>
+
+        <h2>قبل المحاضرة: المراحل 1 إلى 3</h2>
+        <ol class="steps">
+          <li><strong>اختر عميلًا حقيقيًا.</strong><p>شخص تعرفه يحتاج موقعًا فعلًا: نشاط عائلي، زميل يقدّم خدمة، جهة تطوعية. الحقيقي يعطيك محتوى حقيقيًا وقرارات حقيقية. إن تعذّر، فكرتك أنت بشرط أن تُنفَّذ كأنها لعميل.</p></li>
+          <li><strong>اكتب ورقة المواصفات</strong> بالأسئلة السبعة، وأرسلها للمدرّب قبل البناء. لا بناء قبل الموافقة على المواصفات. مرّرها على فحص الدرس 8.</li>
+          <li><strong>اجمع المحتوى من العميل</strong> في ملف واحد: النصوص الخام، الصور، الرقم، البريد، العنوان، الحسابات. ما لا يعطيك إياه العميل يصيغه الذكاء الاصطناعي ويراجعه العميل.</li>
+          <li><strong>ابنِ بالتسلسل السبعة</strong> في المرحلة 2، مع لقطة بعد كل خطوة. الحد الأدنى: 3 صفحات، هوية ثابتة، صور مضغوطة، جوال سليم.</li>
+          <li><strong>أضف تفاعلين على الأقل</strong> من جدول المرحلة 3، أحدهما واتساب برسالة جاهزة. جرّب كل واحد من جوالك: وصلت الرسالة؟ فتحت الخريطة؟</li>
+          <li><strong>ارفع على GitHub</strong> بـ README يحوي: اسم المشروع، للعميل من، رابط الموقع الحي، وقائمة التفاعلات.</li>
+        </ol>
+
+        <h2>في المحاضرة: المرحلتان 4 و5 (45 دقيقة)</h2>
+        <ol class="steps">
+          <li><strong>راجع قائمة الفحص العشرة</strong> بندًا بندًا مع زميل يفتح موقعك من جهازه هو. الزميل يضغط كل شيء ويسجّل ما ينكسر.</li>
+          <li><strong>أصلح ما وجده</strong> (تعديل واحد، لقطة، push، Purge Cache إن كان خلف Cloudflare).</li>
+          <li><strong>اربط الدومين</strong> إن لم تكن فعلت (الدرس 9)، وتأكد من https وwww.</li>
+          <li><strong>اكتب اتفاق التحديث</strong> في ثلاثة أسطر أسفل README: كيف يُحدَّث، متى يتجدد الدومين، ومن يملك الحسابات.</li>
+          <li><strong>جهّز العرض:</strong> اكتب الجمل الأربع على ورقة. لا أكثر.</li>
+        </ol>
+
+        <h2>العرض والتسليم (45 دقيقة)</h2>
+        <ol class="steps">
+          <li><strong>دقيقتان لكل طالب</strong> بالهيكل الرباعي، من الجوال، بالرابط فقط.</li>
+          <li><strong>سؤال واحد من المجموعة</strong> بعد كل عرض. الأسئلة عن القرارات لا عن الألوان.</li>
+          <li><strong>التسليم للمدرّب:</strong> رابط المستودع (فيه README والمواصفات كملف <code>BRIEF.md</code>)، رابط الموقع على الدومين، وقائمة الفحص موقّعة.</li>
+          <li><strong>التسليم للعميل:</strong> الرابط، بيانات الحسابات (الدومين، GitHub، Cloudflare، Formspree) باسمه، واتفاق التحديث. هذا ما يجعلك مهنيًا لا هاويًا.</li>
+        </ol>
+
+        <div class="callout callout-stuck">
+          <div class="callout-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3l9 16H3l9-16zM12 10v4M12 17h.01"/></svg>
+            إذا تعثّرت
+          </div>
+          <ul>
+            <li><strong>العميل لا يرد ولا يعطي محتوى:</strong> ابنِ بمحتوى مؤقت واضح («نص تجريبي») وسلّم كما هو. التأخير مشكلته لا مشكلتك، وهذا درس مهني بحد ذاته.</li>
+            <li><strong>الوقت لا يكفي لثلاث صفحات:</strong> صفحة واحدة طويلة بأقسام وروابط <code>#</code> تُقبل، بشرط التفاعلين والنشر على الدومين.</li>
+            <li><strong>لا دومين:</strong> GitHub Pages يُقبل، مع كتابة «الربط بالدومين» كخطوة معلّقة في README.</li>
+            <li><strong>النموذج لا يرسل:</strong> رابط Formspree غير مفعّل (يطلب تأكيدًا بالبريد أول مرة)، أو <code>method="POST"</code> ناقص.</li>
+            <li><strong>رسالة واتساب تظهر برموز غريبة:</strong> النص لم يُرمَّز. اطلب من الذكاء الاصطناعي: «رمّز هذا النص لرابط wa.me».</li>
+          </ul>
+        </div>
+
+        <div class="callout callout-advanced">
+          <div class="callout-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7.1L12 17.3 5.8 21l1.6-7.1L2 9.2l7.1-.6z"/></svg>
+            للمتقدمين
+          </div>
+          <ul>
+            <li>أضف صفحة <code>404.html</code> بتصميم الموقع ورابط عودة. GitHub Pages يعرضها تلقائيًا لأي رابط خاطئ.</li>
+            <li>أضف بيانات Open Graph (<code>og:title</code>، <code>og:image</code>) ليظهر الموقع ببطاقة جميلة حين يُشارك في واتساب وتويتر.</li>
+            <li>اكتب عرض سعر حقيقيًا للعميل بناءً على المواصفات، حتى لو كان المشروع مجانيًا. تدرّب على التسعير قبل أن تحتاجه.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ============ 3. النظري والاختبار ============ -->
+      <section id="panel-quiz" role="tabpanel" aria-labelledby="tab-quiz" class="lesson-body prose" hidden data-print-title="التدريب النظري والاختبار">
+        <h2>تلخيص المادة كاملة</h2>
+        <ul>
+          <li><strong>الدرس 1:</strong> ثابت أم ديناميكي، ستة أنواع، عائلات أدوات الذكاء الاصطناعي. رابط الأداة.</li>
+          <li><strong>الدرس 2:</strong> رابط بدل PDF، ثلاثة ملفات بثلاث وظائف، index.html إلزامي. Netlify Drop.</li>
+          <li><strong>الدرس 3:</strong> الأمر بخمسة عناصر، تعديل واحد كل مرة، لون وخط وRTL، الجوال أولًا.</li>
+          <li><strong>الدرس 4:</strong> الصور أقل من 200KB بـ WebP، مجلد لكل نوع، أسماء صغيرة، مسارات نسبية.</li>
+          <li><strong>الدرس 5:</strong> الشرائح موقع، متى الموقع ومتى الملف، ابنِ الموقع واطبع منه PDF.</li>
+          <li><strong>الدرس 6:</strong> لقطة قبل كل طلب، restore وcheckout، GitHub وPages. الدرجة الثالثة.</li>
+          <li><strong>الدرس 7:</strong> الاسم إلى رقم عبر DNS، سجلات A/CNAME/MX/TXT، public_html، SSL، تشخيص «لا يفتح».</li>
+          <li><strong>الدرس 8:</strong> هل يتذكّر المستخدم؟ أربعة أنواع، المنصات الجاهزة، لا تَعِد بما لا تستطيع.</li>
+          <li><strong>الدرس 9:</strong> اختيار الدومين، Cloudflare (Nameservers، CDN، كاش، برتقالي/رمادي)، SEO الأساسي، التحليلات.</li>
+          <li><strong>الدرس 10:</strong> مواصفات في صفحة، تفاعل بلا خادم، قائمة فحص، تسليم واتفاق تحديث، عرض من دقيقتين.</li>
+        </ul>
+
+        <h2>الاختبار الشامل</h2>
+        <p>عشرة أسئلة تغطي المادة كاملة. اختر إجابة لترى التصحيح والشرح فورًا.</p>
+        <div id="quiz" class="quiz no-print"></div>
+        <div class="print-quiz"></div>
+      </section>
+
+      <div class="complete-bar" data-complete>
+        <p></p>
+        <button class="btn" type="button">تعليم الدرس كمكتمل</button>
+      </div>
+
+      <nav class="lesson-nav" aria-label="التنقل بين الدروس" data-lesson-nav></nav>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <span>بناء ونشر المواقع بالذكاء الاصطناعي · مادة جامعية</span>
+      <span><button class="btn btn-subtle no-print" type="button" onclick="window.print()">طباعة الدرس</button></span>
+    </div>
+  </footer>
+
+  <script>
+  window.QUIZ_DATA = [
+    {
+      scenario: "الدرس 8 + 10",
+      q: "عميل يريد موقعًا فيه «حساب لكل زبون يرى طلباته السابقة». أنت في المشروع الختامي. ماذا تفعل؟",
+      options: ["أبنيه كاملًا وأتعلم في الطريق", "أوضح أن هذا الجزء تطبيق يحتاج مختصًا أو منصة، وأبني الجزء التعريفي وأكتب ذلك في المواصفات", "أرفض المشروع كله", "أبني الموقع وأتجاهل طلب الحسابات بلا إخبار"],
+      answer: 1,
+      explain: "تذكّر المستخدم = خارج النطاق. الصدق مع تحديد ما تبنيه هو الفحص الأول في المواصفات."
+    },
+    {
+      scenario: "الدرس 10",
+      q: "ما أول شيء تكتبه في ورقة المواصفات؟",
+      options: ["الألوان", "الهدف بجملة: الفعل الواحد الذي نريده من الزائر", "أسماء الملفات", "سعر الدومين"],
+      answer: 1,
+      explain: "الفعل الواحد يحدد كل قرار بعده: الصفحات، التفاعل، مكان الزر. بلا هدف تبني صفحات جميلة بلا وظيفة."
+    },
+    {
+      scenario: "الدرس 10",
+      q: "نموذج تواصل في موقع ثابت لا يرسل شيئًا عند الضغط على إرسال. لماذا، وما الحل؟",
+      options: ["HTML لا يدعم النماذج", "النموذج يحتاج خادمًا يستقبله، والحل خدمة جاهزة مثل Formspree في action", "الزر يحتاج JavaScript فقط", "يجب تحويله إلى تطبيق"],
+      answer: 1,
+      explain: "النموذج يرسل البيانات إلى عنوان في action. بلا خادم عندك، تضع رابط خدمة تستقبله وترسله إلى بريدك."
+    },
+    {
+      scenario: "الدرس 6",
+      q: "خلال البناء طلبت تعديلًا فكسر الذكاء الاصطناعي ثلاث صفحات. كنت قد صوّرت لقطة قبله. الأمر؟",
+      options: ["git push", "git restore .", "git init", "حذف المشروع"],
+      answer: 1,
+      explain: "restore يعيد كل الملفات إلى آخر لقطة. القاعدة الذهبية التي تحمي المشروع الختامي."
+    },
+    {
+      scenario: "الدرس 7 + 9",
+      q: "بعد الإطلاق: الموقع يفتح على www.example.com ولا يفتح على example.com. أين تبحث؟",
+      options: ["في ملفات CSS", "في سجلات DNS: سجل الجذر (A) ناقص", "في README", "في Formspree"],
+      answer: 1,
+      explain: "الجذر وwww اسمان مستقلان في DNS. كل واحد يحتاج سجله. من قائمة فحص النشر: «www والجذر كلاهما يعملان»."
+    },
+    {
+      scenario: "الدرس 4",
+      q: "الصور تظهر على جهازك واختفت بعد النشر. ما أول شيء تفحصه؟",
+      options: ["حجم الصور", "أسماء الملفات والمسارات: حرف كبير/صغير ومسار نسبي", "إعدادات Cloudflare", "الخط"],
+      answer: 1,
+      explain: "أشهر خطأ في المادة. Cover.webp في الكود وcover.webp في المجلد يعملان على ويندوز وينكسران على أي خادم."
+    },
+    {
+      scenario: "الدرس 3",
+      q: "العميل يريد أن يبدو الموقع «فخمًا». ما الطلب الصحيح للذكاء الاصطناعي؟",
+      options: ["اجعله فخمًا", "استخدم ألوانًا كثيرة وذهبية", "لون أساسي واحد بكود محدد، خط عربي معيّن، ومرجع بصري باسم موقع، وتعديل واحد في كل رسالة", "أضف حركات في كل مكان"],
+      answer: 2,
+      explain: "«فخم» غير قابل للتنفيذ. المرجع البصري واللون الواحد والخط المحدد هي ترجمة الكلمة إلى مواصفات."
+    },
+    {
+      scenario: "الدرس 9",
+      q: "حدّثت الموقع بعد الإطلاق وعملت push، والعميل يرى القديم. الموقع خلف Cloudflare. الحل؟",
+      options: ["إعادة شراء الدومين", "Purge Cache في Cloudflare", "تغيير الخط", "حذف المستودع"],
+      answer: 1,
+      explain: "الكاش يقدّم نسخة قديمة. بعد التحديثات المهمة: Purge Everything. بند من اتفاق التحديث الذي تسلّمه للعميل."
+    },
+    {
+      scenario: "الدرس 10",
+      q: "ما الذي يجب أن يكون باسم العميل عند التسليم؟",
+      options: ["لا شيء، كله باسمك لتتحكم", "الدومين وحسابات GitHub وCloudflare والخدمات المضمّنة", "الدومين فقط", "الخط والألوان"],
+      answer: 1,
+      explain: "الأصول ملك صاحب المشروع. أنت تدير منها. هذا يحميه إن اختفيت، ويحميك إن اختلفتما."
+    },
+    {
+      scenario: "الدرس 5 + 10",
+      q: "في عرض المشروع أمام المجموعة، ما الذي تعرضه؟",
+      options: ["شرائح تشرح الكود", "الموقع نفسه من الجوال بالرابط، مع قرار واحد صعب اتخذته", "ملف Word بالمواصفات", "لقطات شاشة"],
+      answer: 1,
+      explain: "الموقع هو العرض. من الجوال بالرابط يثبت أنه يعمل، والقرار الصعب يثبت أنك مهني لا منفّذ."
+    }
+  ];
+  </script>
+  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/quiz.js"></script>
+</body>
+</html>
