@@ -288,15 +288,15 @@ git push -u origin main</code></pre>
     {
       scenario: "أوامر",
       q: "ما الترتيب الصحيح لتصوير لقطة؟",
-      options: ["git commit ثم git add", "git add . ثم git commit -m \"رسالة\"", "git push ثم git commit", "git init كل مرة"],
-      answer: 1,
+      options: ["git push ثم git commit", "git init كل مرة", "git commit ثم git add", "git add . ثم git commit -m \"رسالة\""],
+      answer: 3,
       explain: "add يجهّز التغييرات، commit يصوّرها برسالة. init مرة واحدة فقط في بداية المشروع، وpush للرفع إلى GitHub."
     },
     {
       scenario: "رسائل",
       q: "أي رسالة لقطة أفضل؟",
-      options: ["update", "تعديلات", "أصلحت مسارات الصور بعد نقلها إلى assets", "final final"],
-      answer: 2,
+      options: ["أصلحت مسارات الصور بعد نقلها إلى assets", "final final", "update", "تعديلات"],
+      answer: 0,
       explain: "الرسالة تُقرأ بعد شهر. «ماذا ولماذا» بجملة قصيرة تجعل السجل مفهومًا. الكلمات العامة لا تخبر بشيء."
     },
     {
@@ -309,22 +309,22 @@ git push -u origin main</code></pre>
     {
       scenario: "GitHub",
       q: "عدّلت الموقع على جهازك وصوّرت لقطة، لكن GitHub Pages ما زال يعرض النسخة القديمة. ما الناقص؟",
-      options: ["git init", "git push", "git restore .", "إعادة تفعيل Pages"],
-      answer: 1,
+      options: ["إعادة تفعيل Pages", "git init", "git push", "git restore ."],
+      answer: 2,
       explain: "اللقطة على جهازك فقط. push يرفعها إلى GitHub، وPages يحدّث الموقع تلقائيًا بعد دقيقة."
     },
     {
       scenario: "مقارنة",
       q: "ما الفرق الجوهري بين Netlify Drop و GitHub Pages؟",
-      options: ["لا فرق، كلاهما مجاني", "Pages يتحدّث تلقائيًا مع كل push ويحتفظ بسجل النسخ، وDrop يحتاج سحب المجلد كل مرة", "Drop أسرع دائمًا", "Pages يحتاج دفعًا"],
-      answer: 1,
+      options: ["Drop أسرع دائمًا", "Pages يحتاج دفعًا", "لا فرق، كلاهما مجاني", "Pages يتحدّث تلقائيًا مع كل push ويحتفظ بسجل النسخ، وDrop يحتاج سحب المجلد كل مرة"],
+      answer: 3,
       explain: "Drop رفع ملفات. Pages نشر مشروع: الرابط ثابت، التحديث بأمر واحد، والسجل كامل. هذا معنى الصعود درجة."
     },
     {
       scenario: "تشخيص",
       q: "فعّلت Pages والرابط يعطي 404 بعد خمس دقائق. السبب الأرجح؟",
-      options: ["GitHub معطل", "index.html ليس في جذر المستودع أو اسمه بحرف كبير", "يجب دفع اشتراك", "المتصفح قديم"],
-      answer: 1,
+      options: ["index.html ليس في جذر المستودع أو اسمه بحرف كبير", "يجب دفع اشتراك", "المتصفح قديم", "GitHub معطل"],
+      answer: 0,
       explain: "Pages يبحث عن index.html في الجذر بالضبط، مثل Netlify والمتصفح. راجع المكان والاسم."
     },
     {
@@ -337,8 +337,8 @@ git push -u origin main</code></pre>
     {
       scenario: "مفاهيم",
       q: "زميلك في فريق يريد اقتراح تعديل على مشروعك ليراجعه أحد قبل دمجه. أي أداة في GitHub تناسب ذلك؟",
-      options: ["README", "Pull Request", "GitHub Pages", "git restore"],
-      answer: 1,
+      options: ["git restore", "README", "Pull Request", "GitHub Pages"],
+      answer: 2,
       explain: "Pull Request يعرض التعديل المقترح مع الفرق سطرًا سطرًا، ويُدمج بعد المراجعة. أداة الفرق، ولا تحتاجه في مشروعك الفردي الآن."
     }
   ];

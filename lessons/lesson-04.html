@@ -307,15 +307,15 @@ projects.html: شبكة 6 مشاريع، لكل مشروع صورة ووصف م�
     {
       scenario: "مسارات",
       q: "ملف index.html في الجذر، والصورة في assets/images/cover.webp. ما المسار الصحيح داخل index.html؟",
-      options: ["cover.webp", "assets/images/cover.webp", "../assets/images/cover.webp", "C:/portfolio/assets/images/cover.webp"],
-      answer: 1,
+      options: ["../assets/images/cover.webp", "C:/portfolio/assets/images/cover.webp", "cover.webp", "assets/images/cover.webp"],
+      answer: 3,
       explain: "من الجذر تدخل assets ثم images. لا صعود لأننا في الأعلى أصلًا، ومسار القرص لا يعمل بعد النشر."
     },
     {
       scenario: "مسارات",
       q: "صفحة projects/cafe.html داخل مجلد projects تريد ملف assets/css/style.css. ما المسار؟",
-      options: ["assets/css/style.css", "/style.css", "../assets/css/style.css", "projects/assets/css/style.css"],
-      answer: 2,
+      options: ["../assets/css/style.css", "projects/assets/css/style.css", "assets/css/style.css", "/style.css"],
+      answer: 0,
       explain: "الصفحة داخل مجلد فرعي، فيجب الصعود مجلدًا واحدًا بـ ../ ثم الدخول إلى assets. هذا ما تفعله صفحات الدروس في هذا الموقع."
     },
     {
@@ -335,15 +335,15 @@ projects.html: شبكة 6 مشاريع، لكل مشروع صورة ووصف م�
     {
       scenario: "الأداء",
       q: "معرض فيه 10 صور من كاميرا الجوال بحجم 5 ميغابايت لكل واحدة. ما النتيجة على زائر بشبكة جوال؟",
-      options: ["لا فرق، المتصفح يضغطها", "50 ميغابايت وانتظار طويل ثم مغادرة", "الصور تظهر أوضح", "الموقع لا يفتح أبدًا"],
-      answer: 1,
+      options: ["الصور تظهر أوضح", "الموقع لا يفتح أبدًا", "لا فرق، المتصفح يضغطها", "50 ميغابايت وانتظار طويل ثم مغادرة"],
+      answer: 3,
       explain: "الصور تُحمَّل بحجمها الكامل. 50 ميغابايت على شبكة جوال دقيقة أو أكثر، والزائر يغادر بعد ثوانٍ. الهدف أقل من 200 كيلوبايت للصورة."
     },
     {
       scenario: "الصور",
       q: "ما الإعداد الأنسب في Squoosh لصورة غلاف؟",
-      options: ["PNG بجودة 100 وعرض 4000px", "WebP بجودة 75 وعرض 1600px", "JPG بجودة 10", "لا تغيير، الأصل أفضل"],
-      answer: 1,
+      options: ["WebP بجودة 75 وعرض 1600px", "JPG بجودة 10", "لا تغيير، الأصل أفضل", "PNG بجودة 100 وعرض 4000px"],
+      answer: 0,
       explain: "WebP أصغر بثلث، جودة 75 لا تلاحظها العين، و1600px تكفي أكبر الشاشات. PNG للشعارات ذات الحواف الحادة فقط."
     },
     {
@@ -363,15 +363,15 @@ projects.html: شبكة 6 مشاريع، لكل مشروع صورة ووصف م�
     {
       scenario: "تشخيص",
       q: "في Console يظهر سطر أحمر: 404 assets/image/cover.webp. الملف موجود في assets/images/. ما الخطأ؟",
-      options: ["الصورة تالفة", "اسم المجلد في الكود image والصحيح images", "المتصفح لا يدعم WebP", "يجب إعادة النشر"],
-      answer: 1,
+      options: ["المتصفح لا يدعم WebP", "يجب إعادة النشر", "الصورة تالفة", "اسم المجلد في الكود image والصحيح images"],
+      answer: 3,
       explain: "404 يعني أن المتصفح بحث في المسار المكتوب ولم يجده. حرف واحد ناقص في اسم المجلد يكفي. قارن حرفًا حرفًا."
     },
     {
       scenario: "روابط",
       q: "تريد رابطًا في index.html يقفز إلى قسم id=\"cafe\" داخل projects.html. ما الصيغة؟",
-      options: ["href=\"#cafe\"", "href=\"projects.html#cafe\"", "href=\"cafe\"", "href=\"projects/cafe\""],
-      answer: 1,
+      options: ["href=\"projects.html#cafe\"", "href=\"cafe\"", "href=\"projects/cafe\"", "href=\"#cafe\""],
+      answer: 0,
       explain: "من صفحة أخرى: اسم الصفحة ثم # ثم المعرّف. الصيغة #cafe وحدها تعمل فقط داخل الصفحة نفسها."
     }
   ];
