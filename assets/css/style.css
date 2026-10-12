@@ -171,6 +171,7 @@ code, kbd, pre { font-family: var(--mono); font-size: 0.9em; direction: ltr; uni
 code {
   background: var(--surface-2); padding: 0.1em 0.4em; border-radius: 4px;
   color: var(--ink);
+  overflow-wrap: break-word; /* مسار طويل بلا مسافات لا يمدّ الصفحة على الجوال */
 }
 pre {
   max-width: 100%;
@@ -439,6 +440,8 @@ kbd {
 .callout-advanced .callout-title { color: var(--ink); }
 .callout-warn { background: var(--warning-soft); border-color: transparent; }
 .callout-warn .callout-title { color: var(--warning); }
+.callout-task { background: var(--bg); border-color: var(--primary); }
+.callout-task .callout-title { color: var(--primary); }
 
 /* خطوات عملية */
 .steps { list-style: none; padding: 0; margin: 0 0 var(--s-6); counter-reset: step; }

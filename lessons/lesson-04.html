@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>الدرس 4 · معرض أعمال | بناء ونشر المواقع بالذكاء الاصطناعي</title>
-  <meta name="description" content="توليد النصوص والصور بالذكاء الاصطناعي، أحجام الصور وضغطها، تنظيم مجلدات المشروع، والمسارات والروابط الداخلية.">
+  <meta name="description" content="توليد النصوص والصور بالذكاء الاصطناعي، أحجام الصور وضغطها، تنظيم مجلدات المشروع والمسارات، والبناء بـ OpenCode والنشر على Cloudflare Workers &amp; Pages.">
   <script>(function(){try{var t=localStorage.getItem('bnm-theme');if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}})();</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -62,12 +62,14 @@
           <span class="num-big">المحاضرة 04</span>
           <span class="badge">90 دقيقة</span>
           <span class="badge badge-project">مشروع 3</span>
+          <span class="badge badge-accent">تكليف</span>
         </div>
         <h1>معرض أعمال</h1>
         <p class="meta">
           <span>نصوص وصور بالذكاء الاصطناعي</span>
           <span>صور خفيفة وموقع سريع</span>
           <span>مجلدات ومسارات لا تنكسر</span>
+          <span>OpenCode يبني و Cloudflare ينشر</span>
         </p>
       </header>
 
@@ -80,7 +82,7 @@
       <!-- ============ 1. المحتوى ============ -->
       <section id="panel-content" role="tabpanel" aria-labelledby="tab-content" class="lesson-body prose" data-print-title="محتوى الدرس">
         <h2>معرض الأعمال: الصور هي البطل</h2>
-        <p>في المشروعين السابقين كان النص أهم من الصور. في معرض الأعمال ينقلب الأمر: الزائر يحكم من الصورة خلال ثانية، ثم يقرأ سطرًا واحدًا إن أعجبته. لذلك هذا الدرس عن شيئين: <strong>محتوى يُنتج بسرعة</strong> (نصوص وصور بالذكاء الاصطناعي)، و<strong>ملفات منظمة</strong> حتى لا تنكسر الصور بعد النشر.</p>
+        <p>في المشروعين السابقين كان النص أهم من الصور. في معرض الأعمال ينقلب الأمر: الزائر يحكم من الصورة خلال ثانية، ثم يقرأ سطرًا واحدًا إن أعجبته. لذلك هذا الدرس عن ثلاثة أشياء: <strong>محتوى يُنتج بسرعة</strong> (نصوص وصور بالذكاء الاصطناعي)، و<strong>ملفات منظمة</strong> حتى لا تنكسر الصور بعد النشر، و<strong>أداتان جديدتان</strong>: OpenCode يبني الموقع داخل مجلدك، و Cloudflare ينشره برابط ثابت.</p>
 
         <h2>توليد النصوص: صيغة السطر الواحد</h2>
         <p>كل مشروع في المعرض يحتاج جملة أو جملتين، لا فقرة. أسهل صيغة تُعطيها للذكاء الاصطناعي:</p>
@@ -191,6 +193,71 @@
           <p>افتح <kbd>F12</kbd> ثم تبويب <strong>Network</strong> وحدّث الصفحة. سترى كل ملف طلبه المتصفح وحجمه وزمنه. رتّب حسب الحجم: أثقل ملف هو أول ما تضغطه. وفي تبويب <strong>Console</strong> يظهر كل مسار مكسور بالأحمر (404) مع اسم الملف الذي لم يُعثر عليه.</p>
         </div>
 
+        <h2>من المجلد إلى الرابط: OpenCode و Cloudflare</h2>
+        <p>في الدرسين السابقين كنت تنسخ الكود من المحادثة وتلصقه في ملفات بنفسك. مع ثلاث صفحات وسبع صور ومجلدات فرعية، هنا بالضبط تنكسر المسارات. اليوم أداتان تختصران الطريق: <strong>OpenCode</strong> يبني الملفات داخل مجلدك، و<strong>Cloudflare Workers &amp; Pages</strong> يحوّل المجلد إلى رابط.</p>
+
+        <h3>OpenCode: مساعد يعمل داخل مجلد مشروعك</h3>
+        <p><a href="https://opencode.ai" target="_blank" rel="noopener">OpenCode</a> وكيل برمجة (AI coding agent) مجاني ومفتوح المصدر، له تطبيق سطح مكتب لويندوز وماك ولينكس. تفتح به مجلد المشروع وتكتب طلبك بالعربية، فيقرأ ملفاتك وينشئ الصفحات ويعدّلها بنفسه في أماكنها.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th></th><th>مساعد محادثة (الدرسان 2 و 3)</th><th>OpenCode (من اليوم)</th></tr></thead>
+            <tbody>
+              <tr><td><strong>أين يعمل</strong></td><td>في المتصفح</td><td>على جهازك، داخل مجلد المشروع</td></tr>
+              <tr><td><strong>ماذا يرى</strong></td><td>ما تلصقه له فقط</td><td>المجلد كاملًا: الصفحات والصور وأسماءها</td></tr>
+              <tr><td><strong>الملفات</strong></td><td>تنسخها وتلصقها وتحفظها بنفسك</td><td>ينشئها ويحفظها في أماكنها</td></tr>
+              <tr><td><strong>التعديل</strong></td><td>يعيد كتابة الملف وتلصقه من جديد</td><td>«كبّر صور المشاريع» فيعدّل الأسطر المطلوبة فقط</td></tr>
+              <tr><td><strong>النموذج</strong></td><td>نموذج الشركة نفسها</td><td>نماذج مجانية مدمجة، أو حسابك في ChatGPT أو Claude أو غيرهما</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>فائدته في معرض الأعمال تحديدًا:</p>
+        <ul>
+          <li><strong>مسارات أقل كسرًا:</strong> يقرأ أسماء الصور الحقيقية من <code>assets/images/</code> بدل أن يخمّنها.</li>
+          <li><strong>هيكل كامل دفعة واحدة:</strong> الصفحات والمجلدات كما تطلبها، لا ملفًا ملفًا.</li>
+          <li><strong>يفحص ويصلح:</strong> اطلب «افحص كل المسارات والروابط في المشروع وأصلح المكسور» فيراجع الملفات كلها.</li>
+          <li><strong>بلا تكلفة للبداية:</strong> تبدأ بنموذج مجاني مدمج، وتربط حسابك لاحقًا إن أردت نموذجًا أقوى.</li>
+        </ul>
+        <div class="callout callout-warn">
+          <div class="callout-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3l9 16H3l9-16zM12 10v4M12 17h.01"/></svg>
+            افتح مجلد المشروع وحده
+          </div>
+          <p>OpenCode يعدّل الملفات ويحذفها فعلًا في المجلد الذي تفتحه به. افتح <code>portfolio/</code> لا سطح المكتب كله، واحتفظ بنسخة من صورك الأصلية خارجه. وفي الدرس 6 سيصير الرجوع عن أي تعديل خطوة واحدة مع Git.</p>
+        </div>
+
+        <h3>Cloudflare Workers &amp; Pages: من مجلد إلى رابط عالمي</h3>
+        <p><a href="https://pages.cloudflare.com" target="_blank" rel="noopener">Cloudflare</a> شركة تدير واحدة من أكبر شبكات الإنترنت في العالم، وفي لوحة تحكمها قسم اسمه <strong>Workers &amp; Pages</strong> يستضيف موقعك الثابت مجانًا. تسحب المجلد وتفلته كما في Netlify Drop، فتحصل على رابط بصيغة <code>اسم-المشروع.pages.dev</code>. هو من درجة Netlify Drop نفسها في سلّم النشر، لكن بحساب ورابط ثابت.</p>
+        <p>لماذا ننشر عليه من هذا الدرس:</p>
+        <ul>
+          <li><strong>رابط ثابت باسمك:</strong> اسم المشروع يصير الرابط، مثل <code>sara-portfolio.pages.dev</code>. وعند كل تحديث ترفع نسخة جديدة والرابط نفسه يبقى.</li>
+          <li><strong>سريع في كل مكان:</strong> تُنسخ ملفاتك إلى مئات المدن حول العالم، فيُفتح المعرض من أقرب نقطة للزائر. وهذا يهمّ موقعًا بطله الصور.</li>
+          <li><strong>مجاني وآمن:</strong> بلا حد لعدد الزيارات في المواقع الثابتة، والقفل (HTTPS) يعمل تلقائيًا.</li>
+          <li><strong>خطوة نحو الدرس 9:</strong> الحساب نفسه ستستخدمه حين تربط دومينك الخاص بـ Cloudflare.</li>
+        </ul>
+
+        <h3>قاعدة الملف الرئيسي: index.html فقط</h3>
+        <p>حين يفتح الزائر <code>sara-portfolio.pages.dev</code> بلا اسم صفحة، يبحث Cloudflare عن ملف واحد بعينه: <code>index.html</code> في أعلى المجلد المرفوع. هذا باب الموقع. إن لم يجده بهذا الاسم حرفيًا ظهر خطأ 404 ولو كان كل شيء آخر سليمًا.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>ما في المجلد المرفوع</th><th>النتيجة</th><th>الإصلاح</th></tr></thead>
+            <tbody>
+              <tr><td><code>index.html</code> في أعلى المجلد</td><td>الرئيسية تفتح</td><td>هذا هو الصحيح</td></tr>
+              <tr><td><code>home.html</code> أو <code>portfolio.html</code></td><td>404</td><td>أعد التسمية إلى <code>index.html</code></td></tr>
+              <tr><td><code>Index.html</code> أو <code>INDEX.HTML</code></td><td>404</td><td>أحرف صغيرة كلها</td></tr>
+              <tr><td><code>index.html.html</code> أو <code>index.html.txt</code></td><td>404</td><td>أظهر امتدادات الملفات ثم صحّح الاسم</td></tr>
+              <tr><td><code>portfolio/index.html</code> (مجلد داخل مجلد)</td><td>الرئيسية على <code>/portfolio/</code> لا على الرابط نفسه</td><td>ارفع المجلد الذي فيه <code>index.html</code> مباشرة</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>الامتداد المخفي هو الفخ الأشهر: ويندوز يخفي <code>.html</code> افتراضيًا، فتكتب <code>index.html</code> ويصير الاسم الحقيقي <code>index.html.html</code>. الحل مرة واحدة: في مستكشف الملفات <strong>عرض ← إظهار ← ملحقات أسماء الملفات</strong> (View ← Show ← File name extensions).</p>
+        <div class="callout callout-note">
+          <div class="callout-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM12 8v4M12 16h.01"/></svg>
+            القاعدة نفسها في كل مكان
+          </div>
+          <p>Netlify، و GitHub Pages في الدرس 6، ولوحة الاستضافة في الدرس 7: كلها تفتح <code>index.html</code> حين لا يُذكر اسم صفحة. وهذا الموقع نفسه يتبع القاعدة: رئيسيته <code>index.html</code> في الجذر.</p>
+        </div>
+
         <h2>مسرد الدرس</h2>
         <dl class="terms">
           <div><dt>معرض أعمال <span>Portfolio</span></dt><dd>موقع يعرض مشاريع سابقة لإقناع عميل. الصور فيه البطل والنص سطران.</dd></div>
@@ -203,14 +270,19 @@
           <div><dt>مسار مطلق <span>Absolute path</span></dt><dd>عنوان كامل من جذر القرص أو من رابط كامل. لا يُستخدم للملفات المحلية.</dd></div>
           <div><dt>رابط مرساة <span>Anchor link</span></dt><dd>رابط يقفز إلى قسم بمعرّف: <code>href="#cafe"</code>.</dd></div>
           <div><dt>404 <span>Not found</span></dt><dd>خطأ يعني أن المتصفح طلب ملفًا في مسار لا يوجد فيه.</dd></div>
+          <div><dt>وكيل برمجة <span>AI coding agent</span></dt><dd>أداة ذكاء اصطناعي تنفّذ بنفسها: تنشئ الملفات وتعدّلها، لا تكتفي بكتابة الكود في محادثة.</dd></div>
+          <div><dt>OpenCode <span></span></dt><dd>وكيل برمجة مجاني ومفتوح المصدر يعمل على جهازك داخل مجلد المشروع.</dd></div>
+          <div><dt>Cloudflare Workers &amp; Pages <span></span></dt><dd>قسم في Cloudflare يستضيف المواقع الثابتة مجانًا برفع المجلد، ويعطي رابطًا بصيغة <code>pages.dev</code>.</dd></div>
+          <div><dt>index.html <span>Default page</span></dt><dd>الصفحة التي تُفتح حين لا يُذكر اسم صفحة في الرابط. مكانها أعلى المجلد، واسمها بأحرف صغيرة.</dd></div>
+          <div><dt>امتداد الملف <span>File extension</span></dt><dd>الجزء بعد النقطة الأخيرة في الاسم: <code>.html</code> و <code>.webp</code>. ويندوز يخفيه افتراضيًا.</dd></div>
         </dl>
       </section>
 
       <!-- ============ 2. التدريب العملي ============ -->
       <section id="panel-practice" role="tabpanel" aria-labelledby="tab-practice" class="lesson-body prose" hidden data-print-title="التدريب العملي">
-        <p>مخرج اليوم: <strong>معرض أعمال من 6 مشاريع</strong>، صوره أقل من 200 كيلوبايت، مجلداته منظمة، بلا مسار مكسور واحد، ومنشور على Netlify.</p>
+        <p>مخرج اليوم: <strong>معرض أعمال من 6 مشاريع</strong> تبنيه بـ OpenCode، صوره أقل من 200 كيلوبايت، مجلداته منظمة، بلا مسار مكسور واحد، ومنشور على Cloudflare Workers &amp; Pages. وفي آخر الصفحة <a href="#assignment">تكليف الدرس</a>.</p>
 
-        <h2>الجزء الأول: المحتوى (25 دقيقة)</h2>
+        <h2>الجزء الأول: المحتوى (20 دقيقة)</h2>
         <ol class="steps">
           <li><strong>اجمع 6 مشاريع.</strong><p>أعمالك الحقيقية (تصاميم، مقالات، مواقع الدرسين السابقين، مشاريع دراسية). إن لم تكتمل الستة، أضف مشاريع تدريبية واكتب تحتها «مشروع تدريبي».</p></li>
           <li><strong>اكتب لكل مشروع ثلاث كلمات:</strong> المشكلة، ما فعلته، النتيجة. سطر واحد لكل مشروع في ملف نصي.</li>
@@ -218,29 +290,42 @@
           <li><strong>جهّز صورة لكل مشروع.</strong><p>صورة حقيقية إن وجدت. وإلا، ولّد صورة توضيحية بأمر يصف <em>الفكرة</em> لا العمل: «رسم توضيحي بسيط لواجهة مقهى بلون أخضر، خلفية بيضاء». بالإضافة إلى صورة غلاف واحدة.</p></li>
         </ol>
 
-        <h2>الجزء الثاني: الصور الخفيفة والمجلدات (20 دقيقة)</h2>
+        <h2>الجزء الثاني: الصور الخفيفة والمجلدات (15 دقيقة)</h2>
         <ol class="steps">
           <li><strong>أنشئ هيكل المجلدات</strong> كما في المحتوى: <code>portfolio/</code> وبداخله <code>assets/css</code> و<code>assets/js</code> و<code>assets/images</code>.</li>
           <li><strong>اضغط الصور السبع في Squoosh.</strong><p>WebP، جودة 75، عرض 1600 للغلاف و 800 للمشاريع. تحقق أن كل ملف أقل من 200 كيلوبايت.</p></li>
           <li><strong>سمّها تسمية صحيحة</strong> وضعها في <code>assets/images/</code>: <code>cover.webp</code>، <code>project-1-cafe.webp</code>، وهكذا. لا عربية، لا مسافات، لا أحرف كبيرة.</li>
         </ol>
 
-        <h2>الجزء الثالث: البناء وفحص المسارات (35 دقيقة)</h2>
+        <h2>الجزء الثالث: البناء بـ OpenCode وفحص المسارات (35 دقيقة)</h2>
         <ol class="steps">
-          <li><strong>اطلب البناء</strong> من مساعد محادثة مع تحديد الهيكل:
-<pre class="rtl"><code>ابنِ معرض أعمال ثابتًا من 3 صفحات: index.html و projects.html و contact.html.
-الملفات: assets/css/style.css و assets/js/main.js.
-الصور موجودة في assets/images/ بهذه الأسماء: cover.webp, project-1-cafe.webp, ...
+          <li><strong>ثبّت OpenCode.</strong><p>من <a href="https://opencode.ai/download" target="_blank" rel="noopener">opencode.ai/download</a> حمّل تطبيق سطح المكتب لنظامك: Windows، أو macOS (Apple Silicon للأجهزة الحديثة، Intel للأقدم). ثبّته وافتحه.</p></li>
+          <li><strong>افتح فيه مجلد <code>portfolio/</code>.</strong><p>المجلد الذي جهّزته في الجزء الثاني، لا سطح المكتب كله. ابدأ بأحد النماذج المجانية المدمجة، وإن كان لديك اشتراك في ChatGPT أو Claude فاربطه لاحقًا من الإعدادات.</p></li>
+          <li><strong>اطلب البناء.</strong> لاحظ أنك لا تكتب أسماء الصور: OpenCode يقرؤها من المجلد.
+<pre class="rtl"><code>ابنِ في هذا المجلد معرض أعمال ثابتًا من 3 صفحات: index.html و projects.html و contact.html.
+الصفحة الرئيسية اسمها index.html بأحرف صغيرة، في أعلى المجلد.
+التنسيق في assets/css/style.css والحركة في assets/js/main.js.
+الصور في assets/images/: اقرأ أسماءها من المجلد واستخدمها كما هي.
 الرئيسية: غلاف بصورة cover.webp، جملة تعريف، 3 مشاريع مختارة، زر «كل المشاريع».
 projects.html: شبكة 6 مشاريع، لكل مشروع صورة ووصف من جملتين ورابط.
-كل صورة لها alt ووسم loading="lazy" وwidth وheight.
-عربي RTL، لون أساسي [#......]، خط [الخط]. استخدم مسارات نسبية فقط.
-البيانات: [الصق أوصاف المشاريع]</code></pre></li>
-          <li><strong>احفظ الملفات في أماكنها الصحيحة.</strong><p>الصفحات في الجذر، CSS في <code>assets/css/</code>، JS في <code>assets/js/</code>. إن كتب الذكاء الاصطناعي <code>href="style.css"</code> صحّحه إلى <code>assets/css/style.css</code>.</p></li>
-          <li><strong>افتح <code>index.html</code> وابحث عن أيقونات الصور المكسورة.</strong><p>كل أيقونة مكسورة تعني مسارًا خاطئًا. افتح <kbd>F12</kbd> ثم Console: كل سطر أحمر بـ 404 يخبرك باسم الملف المفقود. قارن الاسم في الكود مع الاسم في المجلد حرفًا حرفًا.</p></li>
+كل صورة لها alt و loading="lazy" و width و height.
+عربي RTL، لون أساسي [#......]، خط [الخط]. مسارات نسبية فقط.
+أوصاف المشاريع: [الصق الأوصاف]</code></pre></li>
+          <li><strong>راجع ما أنشأه في المجلد.</strong><p>الصفحات الثلاث في الجذر، CSS في <code>assets/css/</code>، JS في <code>assets/js/</code>. إن وضع ملفًا في غير مكانه فاطلب: «انقل style.css إلى assets/css وصحّح كل الروابط إليه».</p></li>
+          <li><strong>افتح <code>index.html</code> وابحث عن أيقونات الصور المكسورة.</strong><p>كل أيقونة مكسورة تعني مسارًا خاطئًا. افتح <kbd>F12</kbd> ثم Console: كل سطر أحمر بـ 404 يخبرك باسم الملف المفقود. انسخه إلى OpenCode واطلب الإصلاح، أو قارن الاسم في الكود مع الاسم في المجلد حرفًا حرفًا.</p></li>
           <li><strong>اضغط كل رابط في كل صفحة.</strong><p>القائمة، أزرار المشاريع، رابط العودة. ثلاث صفحات في دقيقتين.</p></li>
           <li><strong>قِس السرعة.</strong><p><kbd>F12</kbd> ثم Network ثم حدّث الصفحة. في أسفل اللوحة يظهر الحجم الكلي وزمن التحميل. الهدف: أقل من 1.5 ميغابايت للصفحة كاملة.</p></li>
-          <li><strong>انشر المجلد على Netlify Drop</strong> وافتح الرابط على جوالك. إن ظهرت الصور على جهازك واختفت بعد النشر فراجع «إذا تعثّرت».</li>
+        </ol>
+
+        <h2>الجزء الرابع: النشر على Cloudflare Workers &amp; Pages (15 دقيقة)</h2>
+        <ol class="steps">
+          <li><strong>افحص الملف الرئيسي قبل الرفع.</strong><p>أظهر امتدادات الملفات (عرض ← إظهار ← ملحقات أسماء الملفات)، ثم تأكد أن في أعلى المجلد ملفًا اسمه <code>index.html</code> بالضبط: أحرف صغيرة، بلا امتداد مكرر، وليس داخل مجلد فرعي.</p></li>
+          <li><strong>أنشئ حسابًا مجانيًا</strong> في <a href="https://dash.cloudflare.com/sign-up" target="_blank" rel="noopener">Cloudflare</a> وفعّل بريدك.</li>
+          <li><strong>أنشئ مشروعًا بالرفع المباشر.</strong><p>من القائمة الجانبية: <strong>Workers &amp; Pages</strong> ← <strong>Create application</strong> ← اختر Pages (<strong>Get started</strong>) ← <strong>Drag and drop your files</strong>. قد تتغير أسماء الأزرار قليلًا، فابحث دائمًا عن خيار رفع الملفات لا ربط Git.</p></li>
+          <li><strong>سمِّ المشروع.</strong><p>أحرف إنجليزية صغيرة وشرطات: <code>sara-portfolio</code>. الاسم يصير رابطك: <code>sara-portfolio.pages.dev</code>.</p></li>
+          <li><strong>اسحب مجلد <code>portfolio/</code> نفسه</strong> إلى مربع الرفع (أو ملف zip لمحتوياته)، ثم <strong>Deploy site</strong>.</li>
+          <li><strong>افتح الرابط على جوالك.</strong><p>إن ظهر خطأ 404 فالسبب غالبًا اسم <code>index.html</code> أو مكانه: راجع جدول «قاعدة الملف الرئيسي» في المحتوى. وإن ظهرت الصور على جهازك واختفت بعد النشر فراجع «إذا تعثّرت».</p></li>
+          <li><strong>للتحديث لاحقًا:</strong> افتح المشروع ← <strong>Create a new deployment</strong> ← ارفع المجلد من جديد. الرابط نفسه يبقى.</li>
         </ol>
 
         <div class="callout callout-stuck">
@@ -253,6 +338,9 @@ projects.html: شبكة 6 مشاريع، لكل مشروع صورة ووصف م�
             <li><strong>الصورة مكسورة رغم أن الاسم صحيح:</strong> المسار يبدأ من مكان خاطئ. من صفحة في الجذر: <code>assets/images/x.webp</code>. من صفحة داخل مجلد: <code>../assets/images/x.webp</code>.</li>
             <li><strong>Squoosh لا يفتح:</strong> استخدم <a href="https://tinypng.com" target="_blank" rel="noopener">TinyPNG</a> للضغط، أو خفّض دقة الصورة من برنامج الصور في جهازك إلى 1600px.</li>
             <li><strong>لا أملك 6 مشاريع:</strong> اثنان من الدرسين السابقين + 4 مشاريع تدريبية موسومة كذلك. المعرض ينمو مع الوقت.</li>
+            <li><strong>OpenCode لم يُثبَّت أو توقف النموذج المجاني:</strong> ابنِ بمساعد المحادثة كما في الدرس 3 (انسخ والصق في المجلدات نفسها)، ثم أكمل النشر على Cloudflare كما هو.</li>
+            <li><strong>الرابط يفتح خطأ 404:</strong> الملف الرئيسي ليس <code>index.html</code> في أعلى المجلد. صحّح الاسم أو المكان، ثم <strong>Create a new deployment</strong> وارفع المجلد من جديد.</li>
+            <li><strong>لم أستطع إنشاء حساب Cloudflare:</strong> انشر مؤقتًا على Netlify Drop كما في الدرس 2، وانقل المعرض إلى Cloudflare قبل تسليم التكليف.</li>
           </ul>
         </div>
 
@@ -265,8 +353,64 @@ projects.html: شبكة 6 مشاريع، لكل مشروع صورة ووصف م�
             <li>أضف صفحة مستقلة لكل مشروع داخل مجلد <code>projects/</code>، وتأكد أن مساراتها تبدأ بـ <code>../</code>.</li>
             <li>أضف تصفية المشاريع حسب النوع (تصميم / كتابة / مواقع) بأزرار في الأعلى.</li>
             <li>افحص الموقع في <a href="https://pagespeed.web.dev" target="_blank" rel="noopener">PageSpeed Insights</a> بعد النشر واستهدف 90 فأكثر على الجوال.</li>
+            <li>اطلب من OpenCode صفحة <code>404.html</code> بتصميم المعرض في أعلى المجلد. Cloudflare يعرضها تلقائيًا لأي رابط خاطئ داخل موقعك.</li>
+            <li>جرّب وضع <strong>Plan</strong> في OpenCode قبل التنفيذ: يشرح خطته دون أن يعدّل ملفًا، ثم انتقل إلى <strong>Build</strong> لينفّذ.</li>
           </ul>
         </div>
+
+        <h2 id="assignment">التكليف: معرض لمواقعك منذ بداية المادة</h2>
+        <p>صمّم بـ OpenCode معرض أعمال يعرض <strong>كل موقع بنيته في هذه المادة</strong>، وانشره على Cloudflare Workers &amp; Pages. اتّبع خطوات المحاضرة نفسها، ويمكنك أن تبدأ من معرض اليوم وتستبدل مشاريعه بمواقعك. هذا المعرض سيكبر معك: كل موقع تبنيه في الدروس القادمة يُضاف إليه.</p>
+
+        <div class="callout callout-task">
+          <div class="callout-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 3h6v3H9zM7 4.5H5V21h14V4.5h-2M8.5 13.5l2.5 2.5 4.5-5"/></svg>
+            بطاقة التكليف
+          </div>
+          <ul>
+            <li><strong>المطلوب:</strong> معرض أعمال لمواقعك في المادة.</li>
+            <li><strong>البناء:</strong> OpenCode على سطح المكتب.</li>
+            <li><strong>النشر:</strong> Cloudflare Workers &amp; Pages برابط مثل <code>sara-portfolio.pages.dev</code>.</li>
+            <li><strong>الملف الرئيسي:</strong> <code>index.html</code> فقط، بأحرف صغيرة في أعلى المجلد.</li>
+            <li><strong>التسليم:</strong> رابط المعرض، قبل المحاضرة القادمة.</li>
+          </ul>
+        </div>
+
+        <h3>المواقع التي يعرضها</h3>
+        <ul>
+          <li><strong>أول موقع بالذكاء الاصطناعي</strong> من الدرس 1.</li>
+          <li><strong>السيرة الرقمية</strong> من الدرس 2.</li>
+          <li><strong>موقع النشاط التجاري</strong> من الدرس 3.</li>
+          <li>وأي موقع آخر بنيته بنفسك داخل المادة أو خارجها.</li>
+        </ul>
+
+        <h3>لكل موقع في المعرض</h3>
+        <ul>
+          <li><strong>صورة شاشة</strong> لرئيسيته: <kbd>Win</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd> في ويندوز أو <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>4</kbd> في ماك، ثم Squoosh إلى WebP أقل من 200 كيلوبايت.</li>
+          <li><strong>اسم الموقع ونوعه:</strong> سيرة رقمية، موقع نشاط تجاري، معرض أعمال.</li>
+          <li><strong>وصف من جملتين</strong> بصيغة السطر الواحد: المشكلة ← ما فعلته ← النتيجة.</li>
+          <li><strong>الأداة التي بنيته بها</strong> ومكان نشره.</li>
+          <li><strong>زر «زيارة الموقع»</strong> يفتح الرابط الحي في تبويب جديد.</li>
+        </ul>
+
+        <h3>أمر البداية في OpenCode</h3>
+<pre class="rtl"><code>ابنِ في هذا المجلد معرض أعمال ثابتًا يعرض المواقع التي بنيتها في مادة «بناء ونشر المواقع بالذكاء الاصطناعي».
+الصفحة الرئيسية اسمها index.html بأحرف صغيرة، في أعلى المجلد.
+التنسيق في assets/css/style.css. صور الشاشات في assets/images/: اقرأ أسماءها من المجلد.
+الرئيسية: اسمي وجملة تعريف، ثم قسم لكل موقع فيه: صورة الشاشة، الاسم، النوع، وصف من جملتين، الأداة، وزر «زيارة الموقع» يفتح الرابط في تبويب جديد.
+كل صورة لها alt و loading="lazy" و width و height.
+عربي RTL، متجاوب مع الجوال، لون أساسي [#......]، خط [الخط]. مسارات نسبية فقط.
+المواقع:
+1. [الاسم] | [النوع] | [الأداة] | [الرابط] | [الوصف]
+2. ...</code></pre>
+
+        <h3>قبل أن تسلّم</h3>
+        <ul>
+          <li>الرابط يفتح الرئيسية مباشرة، دون أن تضيف اسم صفحة في آخره.</li>
+          <li>كل زر «زيارة الموقع» يفتح موقعًا حيًا. إن انتهى رابط موقع قديم فأعد نشر ملفاته على Cloudflare بمشروع جديد وضع الرابط الجديد.</li>
+          <li>لا صورة مكسورة، ولا سطر 404 أحمر في Console.</li>
+          <li>كل صورة أقل من 200 كيلوبايت، والصفحة كاملة أقل من 1.5 ميغابايت.</li>
+          <li>المعرض مقروء على الجوال: افتحه على جوالك قبل الإرسال.</li>
+        </ul>
       </section>
 
       <!-- ============ 3. النظري والاختبار ============ -->
@@ -279,10 +423,13 @@ projects.html: شبكة 6 مشاريع، لكل مشروع صورة ووصف م�
           <li>مجلد لكل نوع: الصفحات في الجذر، والباقي في <code>assets/</code>. أسماء إنجليزية صغيرة بشرطات.</li>
           <li>المسار نسبي إلى الملف الحالي: بجانبي، أو داخل مجلد، أو <code>../</code> للصعود. المسار من القرص لا يعمل بعد النشر.</li>
           <li>أيقونة صورة مكسورة أو 404 في Console = مسار خاطئ. قارن الاسم حرفًا حرفًا.</li>
+          <li>OpenCode وكيل برمجة يعمل داخل مجلد المشروع: يقرأ أسماء الملفات الحقيقية ويكتب الصفحات في أماكنها. افتح به مجلد المشروع وحده.</li>
+          <li>Cloudflare Workers &amp; Pages: اسحب المجلد فتحصل على <code>اسم-المشروع.pages.dev</code> مجانًا وبقفل HTTPS، والتحديث نسخة جديدة على الرابط نفسه.</li>
+          <li>الرابط بلا اسم صفحة يفتح <code>index.html</code> في أعلى المجلد فقط: أحرف صغيرة، بلا امتداد مكرر، وليس داخل مجلد فرعي.</li>
         </ul>
 
         <h2>الاختبار</h2>
-        <p>عشرة أسئلة عن المسارات وتنظيم المجلدات والصور. اختر إجابة لترى التصحيح والشرح فورًا.</p>
+        <p>عشرة أسئلة عن المسارات وتنظيم المجلدات والصور والنشر. اختر إجابة لترى التصحيح والشرح فورًا.</p>
         <div id="quiz" class="quiz no-print"></div>
         <div class="print-quiz"></div>
       </section>
@@ -327,11 +474,11 @@ projects.html: شبكة 6 مشاريع، لكل مشروع صورة ووصف م�
       explain: "ويندوز يتسامح مع Cover.webp و cover.webp، أما الخوادم فتفرّق. لذلك القاعدة: أحرف صغيرة دائمًا."
     },
     {
-      scenario: "تسمية",
-      q: "أي اسم ملف صحيح حسب قواعد الدرس؟",
-      options: ["شعار المقهى.webp", "Cafe Logo Final.WEBP", "cafe-logo.webp", "cafe_logo (1).webp"],
+      scenario: "النشر",
+      q: "رفعت معرضك على Cloudflare Workers & Pages، وفتحت sara-portfolio.pages.dev فظهر خطأ 404. في المجلد ملف اسمه Home.html. ما الحل؟",
+      options: ["احذف المشروع من Cloudflare وأنشئه من جديد", "انتظر يومًا حتى ينتشر الموقع", "أعد تسمية الملف إلى index.html بأحرف صغيرة ثم ارفع نسخة جديدة", "أضف /Home.html إلى آخر الرابط وأرسله هكذا"],
       answer: 2,
-      explain: "إنجليزية، أحرف صغيرة، شرطة بين الكلمات، بلا مسافات ولا أقواس. العربية والمسافات تتحول إلى رموز في الرابط."
+      explain: "حين يُفتح الرابط بلا اسم صفحة يبحث Cloudflare عن index.html في أعلى المجلد فقط، والحرف الكبير يجعله ملفًا آخر. بعد التصحيح: Create a new deployment والرابط نفسه يبقى."
     },
     {
       scenario: "الأداء",
@@ -348,11 +495,11 @@ projects.html: شبكة 6 مشاريع، لكل مشروع صورة ووصف م�
       explain: "WebP أصغر بثلث، جودة 75 لا تلاحظها العين، و1600px تكفي أكبر الشاشات. PNG للشعارات ذات الحواف الحادة فقط."
     },
     {
-      scenario: "قراءة كود",
-      q: "ماذا تفعل loading=\"lazy\" في وسم الصورة؟",
-      options: ["تخفي الصورة", "تؤخر تحميل الصورة حتى يقترب الزائر منها", "تضغط الصورة تلقائيًا", "تجعل الصورة أبطأ"],
+      scenario: "اختيار الأداة",
+      q: "مشروعك فيه 3 صفحات و 7 صور في assets/images، وتريد أن تُبنى الصفحات بأسماء الصور الصحيحة. لماذا OpenCode أنسب هنا من مساعد محادثة في المتصفح؟",
+      options: ["لأنه يرسم الصور بنفسه", "لأنه يعمل داخل مجلد المشروع فيقرأ أسماء الملفات وينشئ الصفحات في أماكنها", "لأنه لا يخطئ أبدًا فلا حاجة لفحص المسارات", "لأنه لا يحتاج أي نموذج ذكاء اصطناعي"],
       answer: 1,
-      explain: "التحميل الكسول يمنع تحميل الصور البعيدة أسفل الصفحة حتى الحاجة إليها، فتفتح الصفحة أسرع."
+      explain: "OpenCode يفتح المجلد نفسه: يرى أسماء الصور الحقيقية ويكتب الملفات في أماكنها، فلا نسخ ولا لصق ولا تخمين. ومع ذلك تفحص المسارات بعده، فالذكاء الاصطناعي يخطئ."
     },
     {
       scenario: "أخلاقيات",
